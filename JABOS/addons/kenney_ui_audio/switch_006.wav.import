@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/switch_006.wav-35c4918b79cffb1e7995e88d975f9d87.sample"
+
+[deps]
+
+source_file="res://addons/kenney_ui_audio/switch_006.wav"
+dest_files=[ "res://.import/switch_006.wav-35c4918b79cffb1e7995e88d975f9d87.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
