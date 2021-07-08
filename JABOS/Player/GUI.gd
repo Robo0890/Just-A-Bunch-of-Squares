@@ -39,7 +39,7 @@ func _ready():
 
 # warning-ignore:unused_argument
 func _process(delta):
-	
+	$Panel/Quit.visible = !level.start and Global.device != "mobile"
 	random_time += 1
 	if random_time == 10:
 		random_time = 0
@@ -131,3 +131,9 @@ func get_score_display(player,item = "") -> Object:
 
 func _on_Timer_timeout():
 	get_parent().get_parent().reset()
+
+
+func _on_Quit_pressed():
+	Global.players_active = []
+# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://StartScreen.tscn")
