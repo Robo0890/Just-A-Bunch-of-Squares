@@ -5,6 +5,7 @@ var players = 0
 
 var time = 0
 
+var allow_join = false
 var active_players = []
 var ready_players = []
 var alive_players = []
@@ -30,6 +31,10 @@ func _ready():
 		$Camera/Control/News.visible = false
 	else:
 		$Camera/Control/News.visible = true
+	for x in Global.players_active:
+		yield(get_tree().create_timer(.1),"timeout")
+		add_player(x)
+	allow_join = true
 
 func add_player(player_number):
 	GameSound.play_sound("drop_003")
@@ -72,9 +77,14 @@ func load_section():
 
 # warning-ignore:unused_argument
 func _process(delta):
+	for x in [1, 2, 3, 4]:
+		if Input.is_action_just_pressed("p" + str(x) + "_quit") and players == 0:
+			Global.players_active.erase(player)
+# warning-ignore:return_value_discarded
+			get_tree().change_scene("res://StartScreen.tscn")
 	if Input.is_action_just_pressed("ui_accept") and $Camera/Control/News.visible:
 		_on_Button_pressed()
-	if !$"Camera/Control/GuiHandler/End Screen".visible and !$Camera/Control/News.visible:
+	if allow_join:
 		if Input.is_action_just_pressed("p1_movement_jump") and !start and !active_players.has(1):
 			add_player(1)
 		if Input.is_action_just_pressed("p2_movement_jump") and !start and !active_players.has(2):
@@ -93,6 +103,7 @@ func _process(delta):
 	if ready_players.size() == active_players.size() and active_players != [] and !start:
 		start = true
 		alive_players = ready_players
+		Global.players_active = active_players
 		$Timer.start()
 		if active_players.size() == 1:
 			OS.set_window_title("Just A Bunch of Squares - In Single Player Game")
@@ -116,4 +127,5 @@ func _on_Timer_timeout():
 
 
 func _on_Button_pressed():
+	allow_join = true
 	$Camera/Control/News.visible = false

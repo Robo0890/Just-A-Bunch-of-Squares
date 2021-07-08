@@ -16,6 +16,9 @@ func _ready():
 		$MarginContainer.show()
 		$SplashLogo.queue_free()
 		GameSound.play_sound("question_002")
+		$Touch.show()
+		$PC.show()
+		$GamePad.show()
 
 # warning-ignore:unused_argument
 func _on_AnimationPlayer_animation_finished(anim_name):

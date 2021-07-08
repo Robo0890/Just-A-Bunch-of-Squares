@@ -37,10 +37,12 @@ func _physics_process(delta):
 	move(delta)
 	if Input.is_action_just_pressed(player_name + "quit") and !get_parent().start:
 		get_parent().active_players.erase(player)
-		get_parent().ready_players.erase(player)
+		get_parent().players -= 1
+		get_parent().ready_players = []
 		get_parent().get_node("Camera/Control/GuiHandler")._ready()
 		if get_parent().active_players.size() == 0:
 # warning-ignore:return_value_discarded
+			Global.players_active.erase(player)
 			get_tree().change_scene("res://StartScreen.tscn")
 		queue_free()
 	if position.y >= 500:

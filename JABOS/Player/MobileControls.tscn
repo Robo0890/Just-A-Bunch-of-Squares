@@ -31,6 +31,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Panel2" type="Panel" parent="."]
+margin_left = 922.0
+margin_right = 1022.0
+margin_bottom = 100.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit2" type="TouchScreenButton" parent="Panel2"]
+normal = ExtResource( 6 )
+pressed = ExtResource( 6 )
+shape = SubResource( 2 )
+action = "p4_movement_rigt"
+
 [node name="Left" type="TouchScreenButton" parent="."]
 normal = ExtResource( 2 )
 pressed = ExtResource( 2 )
@@ -64,6 +79,7 @@ pressed = ExtResource( 5 )
 shape = SubResource( 2 )
 action = "p4_movement_rigt"
 
+[connection signal="pressed" from="Panel2/Quit2" to="." method="_on_Quit2_pressed"]
 [connection signal="pressed" from="Left" to="." method="_on_Left_pressed"]
 [connection signal="released" from="Left" to="." method="_on_Left_released"]
 [connection signal="pressed" from="Right" to="." method="_on_Right_pressed"]

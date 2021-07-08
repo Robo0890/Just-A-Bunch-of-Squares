@@ -13,6 +13,7 @@ func _physics_process(delta):
 		zoom = lerp(zoom, Vector2(1,1),.1)
 		$Control.rect_size = Vector2(1024,600)
 	else:
+		
 		position = lerp(position,Vector2(0,0),.1)
 		zoom = lerp(zoom, Vector2(.5,.5),.1)
 		$Control.rect_size = Vector2(512,300)
@@ -36,6 +37,7 @@ func _on_Area2D_body_entered(body):
 			
 
 func end_game():
+	get_parent().allow_join = false
 	GameSound.play_sound("minimize_008")
 	get_parent().start = false
 	$Control/GuiHandler/Panel/Label.text = "  Press        to Continue"
