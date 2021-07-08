@@ -12,6 +12,7 @@ func _ready():
 		OS.set_icon(load("res://Player/Faces/Beta.png"))
 	else:
 		OS.set_window_title("Just A Bunch of Squares")
+		OS.set_window_title("Just A Bunch of Squares")
 		OS.set_icon(load("res://Player/Faces/Face.png"))
 
 func is_up_to_date():
