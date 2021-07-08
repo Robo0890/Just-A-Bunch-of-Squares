@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/question_003.wav-7ae54aa8a8e2f7efe3a7e1901946bfc6.sample"
+
+[deps]
+
+source_file="res://addons/kenney_ui_audio/question_003.wav"
+dest_files=[ "res://.import/question_003.wav-7ae54aa8a8e2f7efe3a7e1901946bfc6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

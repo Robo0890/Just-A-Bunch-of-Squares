@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/error_002.wav-8e7f9329bc918645e609d7ec2d252db7.sample"
+
+[deps]
+
+source_file="res://addons/kenney_ui_audio/error_002.wav"
+dest_files=[ "res://.import/error_002.wav-8e7f9329bc918645e609d7ec2d252db7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
