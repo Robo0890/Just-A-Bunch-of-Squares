@@ -39,7 +39,6 @@ func _ready():
 
 # warning-ignore:unused_argument
 func _process(delta):
-	$Panel/Quit.visible = !level.start and Global.device != "mobile"
 	random_time += 1
 	if random_time == 10:
 		random_time = 0

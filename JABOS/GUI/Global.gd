@@ -3,17 +3,14 @@ extends Node
 
 var players_active = []
 var device = "pc"
-var version = "1.1.5"
+var version = "v1.0"
 var splashed = false
 
 func _ready():
 	if OS.has_feature("beta"):
 		OS.set_window_title("Just A Bunch of Squares - Beta")
-		OS.set_icon(load("res://Player/Faces/Beta.png"))
 	else:
 		OS.set_window_title("Just A Bunch of Squares")
-		OS.set_window_title("Just A Bunch of Squares")
-		OS.set_icon(load("res://Player/Faces/Face.png"))
 
 func is_up_to_date():
 	var file = File.new()

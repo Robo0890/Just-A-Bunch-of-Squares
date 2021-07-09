@@ -80,7 +80,7 @@ __meta__ = {
 margin_right = 1024.0
 margin_bottom = 50.0
 custom_fonts/font = SubResource( 3 )
-text = "Just A Bunch Of Bug Fixes"
+text = "Just A Bunch Of Updates"
 align = 1
 valign = 1
 

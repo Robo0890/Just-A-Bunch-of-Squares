@@ -56,4 +56,4 @@ func end_game():
 	$Control/GuiHandler.allow_continue = true
 
 func reset():
-	get_tree().change_scene("res://Level.tscn")
+	get_tree().change_scene("res://Classic/Level.tscn")

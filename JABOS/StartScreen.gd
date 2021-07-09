@@ -31,7 +31,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		$GamePad.show()
 	if anim_name == "Fade":
 # warning-ignore:return_value_discarded
-		get_tree().change_scene("res://Level.tscn")
+		get_tree().change_scene("res://GUI/GameMode.tscn")
 
 func _input(event):
 	if !focused and $MarginContainer.visible:

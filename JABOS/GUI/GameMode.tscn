@@ -1,0 +1,697 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://GUI/GameMode.gd" type="Script" id=1]
+[ext_resource path="res://GUI/MomcakeBold-WyonA.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://GUI/Icons/locked.png" type="Texture" id=3]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.192871, 0.503464, 0.625, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.00662252, 0.523179 )
+colors = PoolColorArray( 0.851563, 0.199585, 0, 1, 0.941406, 0.23807, 0.0257416, 1, 0.0898438, 0.0252686, 0, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 60
+outline_size = 2
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=10]
+resource_name = "Fade"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.72549, 0.72549, 0.72549, 0.498039 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0, 0, 0, 0.498039 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="DynamicFont" id=8]
+size = 90
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[node name="GameMode" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Control" parent="."]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Classic" type="Node2D" parent="Background"]
+
+[node name="Background" type="TextureRect" parent="Background/Classic"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 600.0
+margin_right = 600.0
+margin_bottom = 1624.0
+rect_rotation = -90.0
+texture = SubResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Move" type="Node2D" parent="Background/Classic"]
+
+[node name="ColorRect" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 401.08
+margin_top = 466.299
+margin_right = 694.08
+margin_bottom = 506.299
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 0.317078
+margin_top = 379.487
+margin_right = 293.317
+margin_bottom = 419.487
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 685.3
+margin_top = 314.081
+margin_right = 978.3
+margin_bottom = 354.081
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect6" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 1419.81
+margin_top = 319.575
+margin_right = 1712.81
+margin_bottom = 359.575
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect7" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 1186.51
+margin_top = 214.878
+margin_right = 1226.51
+margin_bottom = 254.878
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect8" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 1992.47
+margin_top = 313.291
+margin_right = 2032.47
+margin_bottom = 353.291
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect9" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 2743.98
+margin_top = 447.303
+margin_right = 2783.98
+margin_bottom = 487.303
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect5" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 2236.19
+margin_top = 234.884
+margin_right = 2529.19
+margin_bottom = 269.884
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect4" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 2642.62
+margin_top = 234.172
+margin_right = 2935.62
+margin_bottom = 532.172
+rect_rotation = 90.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect10" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 3482.05
+margin_top = 466.299
+margin_right = 3775.05
+margin_bottom = 506.299
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect11" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 3081.29
+margin_top = 379.487
+margin_right = 3374.29
+margin_bottom = 419.487
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect12" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 3766.27
+margin_top = 314.081
+margin_right = 4059.27
+margin_bottom = 354.081
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect13" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 4902.72
+margin_top = 283.842
+margin_right = 5195.72
+margin_bottom = 323.842
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect14" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 5373.9
+margin_top = 283.514
+margin_right = 5413.9
+margin_bottom = 323.514
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect15" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 5618.33
+margin_top = 235.637
+margin_right = 5658.33
+margin_bottom = 275.637
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect16" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 5824.95
+margin_top = 447.303
+margin_right = 5864.95
+margin_bottom = 487.303
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect17" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 4507.98
+margin_top = 433.51
+margin_right = 4800.98
+margin_bottom = 468.51
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect18" type="ColorRect" parent="Background/Classic/Move"]
+margin_left = 4249.4
+margin_top = 170.037
+margin_right = 4542.4
+margin_bottom = 468.037
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FloorIsLava" type="Node2D" parent="Background"]
+modulate = Color( 1, 1, 1, 0 )
+
+[node name="Background" type="TextureRect" parent="Background/FloorIsLava"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 600.0
+margin_right = 600.0
+margin_bottom = 1624.0
+rect_rotation = -90.0
+texture = SubResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Move" type="Node2D" parent="Background/FloorIsLava"]
+
+[node name="ColorRect" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 550.165
+margin_top = 559.018
+margin_right = 843.165
+margin_bottom = 599.018
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 197.279
+margin_top = 247.94
+margin_right = 490.279
+margin_bottom = 287.94
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 0.317078
+margin_top = 477.356
+margin_right = 293.317
+margin_bottom = 517.356
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect6" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 300.178
+margin_top = 29.3435
+margin_right = 593.178
+margin_bottom = 69.3435
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect7" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 148.36
+margin_top = -79.999
+margin_right = 188.36
+margin_bottom = -39.999
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect8" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 50.6869
+margin_top = 126.768
+margin_right = 90.6869
+margin_bottom = 166.769
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect9" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 154.001
+margin_top = -354.521
+margin_right = 194.001
+margin_bottom = -314.521
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect5" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 976.375
+margin_top = 39.8994
+margin_right = 1269.38
+margin_bottom = 74.8994
+rect_rotation = 90.0
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect4" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 717.796
+margin_top = -223.573
+margin_right = 1010.79
+margin_bottom = 74.427
+rect_rotation = 90.0
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect11" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 491.302
+margin_top = -422.338
+margin_right = 784.302
+margin_bottom = -382.338
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect13" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 14.947
+margin_top = -513.512
+margin_right = 307.947
+margin_bottom = -473.512
+rect_rotation = -90.0
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect14" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 486.131
+margin_top = -513.841
+margin_right = 526.131
+margin_bottom = -473.841
+rect_rotation = -90.0
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect15" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 730.556
+margin_top = -561.718
+margin_right = 770.556
+margin_bottom = -521.718
+rect_rotation = -90.0
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect16" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 937.185
+margin_top = -350.051
+margin_right = 977.185
+margin_bottom = -310.051
+rect_rotation = -90.0
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect18" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 575.886
+margin_top = -128.779
+margin_right = 868.886
+margin_bottom = 169.221
+rect_rotation = -90.0
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect10" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 549.847
+margin_top = -998.322
+margin_right = 842.847
+margin_bottom = -958.322
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect12" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 196.962
+margin_top = -1309.4
+margin_right = 489.962
+margin_bottom = -1269.4
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect17" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_top = -1079.98
+margin_right = 293.0
+margin_bottom = -1039.98
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect19" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 299.861
+margin_top = -1527.99
+margin_right = 592.861
+margin_bottom = -1487.99
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect20" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 148.043
+margin_top = -1637.34
+margin_right = 188.043
+margin_bottom = -1597.34
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect21" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 50.37
+margin_top = -1430.57
+margin_right = 90.37
+margin_bottom = -1390.57
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect22" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 153.683
+margin_top = -1911.86
+margin_right = 193.683
+margin_bottom = -1871.86
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect23" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 976.06
+margin_top = -1517.44
+margin_right = 1269.06
+margin_bottom = -1482.44
+rect_rotation = 90.0
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect24" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 717.478
+margin_top = -1780.91
+margin_right = 1010.48
+margin_bottom = -1482.91
+rect_rotation = 90.0
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect25" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 490.985
+margin_top = -1979.68
+margin_right = 783.985
+margin_bottom = -1939.68
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect26" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 14.63
+margin_top = -2070.85
+margin_right = 307.63
+margin_bottom = -2030.85
+rect_rotation = -90.0
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect27" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 485.814
+margin_top = -2071.18
+margin_right = 525.814
+margin_bottom = -2031.18
+rect_rotation = -90.0
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect28" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 730.238
+margin_top = -2119.06
+margin_right = 770.238
+margin_bottom = -2079.06
+rect_rotation = -90.0
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect29" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 936.87
+margin_top = -1907.39
+margin_right = 976.87
+margin_bottom = -1867.39
+rect_rotation = -90.0
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect30" type="ColorRect" parent="Background/FloorIsLava/Move"]
+margin_left = 575.569
+margin_top = -1685.12
+margin_right = 868.569
+margin_bottom = -1387.12
+rect_rotation = -90.0
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 100.0
+margin_right = 924.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 0.294118 )
+text = "Choose Game Mode"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 100
+custom_constants/margin_top = 40
+custom_constants/margin_left = 100
+custom_constants/margin_bottom = 200
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer"]
+anims/Fade = SubResource( 10 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 100.0
+margin_top = 40.0
+margin_right = 924.0
+margin_bottom = 400.0
+custom_constants/separation = 237
+alignment = 1
+
+[node name="Classic" type="Control" parent="MarginContainer/VBoxContainer"]
+margin_top = 61.0
+margin_right = 824.0
+margin_bottom = 61.0
+
+[node name="Panel" type="Button" parent="MarginContainer/VBoxContainer/Classic"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 197.0
+focus_neighbour_bottom = NodePath("../../Floor is Lava/Panel")
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Classic/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 8 )
+text = "Classic"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Floor is Lava" type="Control" parent="MarginContainer/VBoxContainer"]
+modulate = Color( 0.447059, 0.447059, 0.447059, 0.733333 )
+margin_top = 298.0
+margin_right = 824.0
+margin_bottom = 298.0
+
+[node name="Panel" type="Button" parent="MarginContainer/VBoxContainer/Floor is Lava"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 197.0
+focus_neighbour_top = NodePath("../../Classic/Panel")
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = SubResource( 6 )
+icon = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Floor is Lava/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 8 )
+text = "Comming Soon"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="animation_finished" from="MarginContainer/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Classic/Panel" to="." method="_on_Panel_pressed"]
