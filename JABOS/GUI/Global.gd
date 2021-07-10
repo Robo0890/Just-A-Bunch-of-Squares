@@ -8,9 +8,12 @@ var splashed = false
 
 func _ready():
 	if OS.has_feature("beta"):
+		version = "beta"
 		OS.set_window_title("Just A Bunch of Squares - Beta")
+		OS.set_icon(load("res://Player/Faces/Beta.png"))
 	else:
 		OS.set_window_title("Just A Bunch of Squares")
+		OS.set_icon(load("res://Player/Faces/Face.png"))
 
 func is_up_to_date():
 	var file = File.new()

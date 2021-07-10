@@ -47,7 +47,7 @@ func _physics_process(delta):
 		queue_free()
 	if position.y >= 500:
 		_on_death()
-	if position.distance_to(start_pos) <= 100 and $CollisionShape.disabled:
+	if position.distance_to(start_pos) <= 10 and $CollisionShape.disabled:
 		$CollisionShape.disabled = false
 
 # warning-ignore:unused_argument
@@ -58,23 +58,26 @@ func move(delta):
 	move_and_slide(velocity, Vector2.UP)
 
 func apply_velocity():
-	if !constant_movement and !$CollisionShape.disabled:
+	if !constant_movement:
 		var movex = (Input.get_action_strength(player_name + "movement_right") - Input.get_action_strength(player_name + "movement_left")) * 500
 # warning-ignore:unused_variable
 		var movey = (Input.get_action_strength(player_name + "movement_left") - Input.get_action_strength(player_name + "movement_right")) * 500
 		velocity.x = movex * speed
-	elif !$CollisionShape.disabled:
+	else:
 		velocity.x = 100
+	if $CollisionShape.disabled:
+		velocity.x = 0
 
 
 func apply_gravity():
 	if is_on_floor():
 		if velocity.y > 300:
 			pass
-		velocity.y = 0
+		velocity.y = -10
 		jumps = 0
 		if $Area.is_colliding() and !$Area.get_collider().is_in_group("Player"):
 			start_pos = position
+			
 	if !$CollisionShape.disabled and Input.is_action_just_pressed(player_name + "movement_jump") and jumps != max_jumps:
 		velocity.y = jumpVelocity
 		jumps += 1
@@ -87,7 +90,15 @@ func apply_gravity():
 		
 	if is_on_ceiling() and Input.is_action_pressed(player_name + "movement_jump") and hook:
 		velocity.y = -10
+		if Input.is_action_just_pressed(player_name + "flip"):
+			hook_flip()
 # warning-ignore:return_value_discarded
 	move_and_slide(velocity, Vector2(0, -1)) 
 
-
+func hook_flip():
+	$CollisionShape.disabled = true
+	position.y -= 100
+	if is_on_floor():
+		hook_flip()
+	else:
+		$CollisionShape.disabled = false

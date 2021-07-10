@@ -13,9 +13,9 @@ script = ExtResource( 1 )
 wall_jump = true
 
 [node name="Area" type="RayCast2D" parent="."]
-position = Vector2( 0, 21.858 )
+position = Vector2( 0, 20 )
 enabled = true
-cast_to = Vector2( 0, 10 )
+cast_to = Vector2( 0, 1 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
