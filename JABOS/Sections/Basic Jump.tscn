@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Sections/end_of_section.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/Level Referance.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 152.476, 15.3323 )
+
+[node name="Basic Jump" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+margin_left = -153.0
+margin_top = -16.0
+margin_right = 153.0
+margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="StaticBody2D"]
+margin_left = -153.0
+margin_top = -16.0
+margin_right = 153.0
+margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="StaticBody2D"]
+margin_left = 412.705
+margin_top = -16.0
+margin_right = 718.705
+margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 565.972, 0 )
+shape = SubResource( 1 )
+
+[node name="end_of_section" parent="." instance=ExtResource( 1 )]
+position = Vector2( 774.475, -97.9283 )
+
+[node name="ColorRect" parent="." instance=ExtResource( 2 )]

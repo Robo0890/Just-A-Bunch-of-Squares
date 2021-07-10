@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/toggle_004.wav-126ebc36d16243d76a5a5b5aeeffff36.sample"
+
+[deps]
+
+source_file="res://addons/kenney_ui_audio/toggle_004.wav"
+dest_files=[ "res://.import/toggle_004.wav-126ebc36d16243d76a5a5b5aeeffff36.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
