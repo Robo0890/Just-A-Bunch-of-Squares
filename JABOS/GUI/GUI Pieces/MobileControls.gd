@@ -21,8 +21,9 @@ func _process(delta):
 			"End":
 				$Panel/Left/Left.visible = false
 				$Panel/Left/Right/Right.visible = false
-				$Panel/Panel.visible = false
+				$Panel.self_modulate = Color(1,1,1,0)
 				$Panel2.visible = true
+				
 
 
 func _on_Left_pressed():
