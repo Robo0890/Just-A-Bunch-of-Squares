@@ -1,22 +1,18 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=1]
 [ext_resource path="res://GUI/Icons/gameicons-expansion/PNG/White/1x/cloud.png" type="Texture" id=2]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/gamepad.png" type="Texture" id=3]
 [ext_resource path="res://GUI/Fonts/Title_Font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://GUI/Fonts/MomcakeBold-WyonA.otf" type="DynamicFontData" id=5]
-[ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/checkmark.png" type="Texture" id=6]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/menuList.png" type="Texture" id=7]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/cross.png" type="Texture" id=8]
 [ext_resource path="res://GUI/GUI.gd" type="Script" id=9]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/buttonA.png" type="Texture" id=10]
-[ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/up.png" type="Texture" id=11]
-[ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/arrowRight.png" type="Texture" id=12]
-[ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/arrowLeft.png" type="Texture" id=13]
-[ext_resource path="res://GUI/Mobile/Mobile Contoller.gd" type="Script" id=14]
 [ext_resource path="res://Gamemodes/Classic/Images/Icon.png" type="Texture" id=15]
 [ext_resource path="res://GUI/Icons/customicons/x1/ruby.png" type="Texture" id=16]
 [ext_resource path="res://Images/Face.png" type="Texture" id=17]
+[ext_resource path="res://GUI/GUI Pieces/MobileControls.tscn" type="PackedScene" id=18]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.319318 ), -1.83695, 0.0, 0, 0 ]
@@ -283,84 +279,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Mobile Contoller" type="Panel" parent="Bottom_UI"]
-visible = false
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -100.0
-script = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Buttons" type="Control" parent="Bottom_UI/Mobile Contoller"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="Left" type="HBoxContainer" parent="Bottom_UI/Mobile Contoller/Buttons"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_top = -50.0
-margin_right = 204.0
-margin_bottom = 50.0
-grow_horizontal = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Left" type="TextureButton" parent="Bottom_UI/Mobile Contoller/Buttons/Left"]
-margin_right = 100.0
-margin_bottom = 100.0
-texture_normal = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Right" type="TextureButton" parent="Bottom_UI/Mobile Contoller/Buttons/Left"]
-margin_left = 104.0
-margin_right = 204.0
-margin_bottom = 100.0
-texture_normal = ExtResource( 12 )
-
-[node name="Right" type="HBoxContainer" parent="Bottom_UI/Mobile Contoller/Buttons"]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -204.0
-margin_top = -50.0
-margin_bottom = 50.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Ready" type="TextureButton" parent="Bottom_UI/Mobile Contoller/Buttons/Right"]
-margin_right = 100.0
-margin_bottom = 100.0
-texture_normal = ExtResource( 6 )
-
-[node name="Jump" type="TextureButton" parent="Bottom_UI/Mobile Contoller/Buttons/Right"]
-margin_left = 104.0
-margin_right = 204.0
-margin_bottom = 100.0
-texture_normal = ExtResource( 11 )
-
-[node name="Flip" type="TextureButton" parent="Bottom_UI/Mobile Contoller/Buttons"]
-modulate = Color( 1, 1, 1, 0 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 412.0
-margin_top = -150.387
-margin_right = 512.0
-margin_bottom = -50.3866
-action_mode = 0
-texture_normal = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Mobile Controller" parent="Bottom_UI" instance=ExtResource( 18 )]
 
 [node name="Options" type="Panel" parent="."]
 anchor_left = 0.5
@@ -554,20 +473,8 @@ modulate = Color( 1, 1, 1, 0 )
 shape = SubResource( 9 )
 
 [connection signal="pressed" from="Top_UI/Option_Button" to="." method="_on_Button_pressed"]
-[connection signal="button_down" from="Bottom_UI/Mobile Contoller/Buttons/Left/Left" to="Bottom_UI/Mobile Contoller" method="_on_Left_button_down"]
-[connection signal="button_up" from="Bottom_UI/Mobile Contoller/Buttons/Left/Left" to="Bottom_UI/Mobile Contoller" method="_on_Left_button_up"]
-[connection signal="button_down" from="Bottom_UI/Mobile Contoller/Buttons/Left/Right" to="Bottom_UI/Mobile Contoller" method="_on_Right_button_down"]
-[connection signal="button_up" from="Bottom_UI/Mobile Contoller/Buttons/Left/Right" to="Bottom_UI/Mobile Contoller" method="_on_Right_button_up"]
-[connection signal="button_down" from="Bottom_UI/Mobile Contoller/Buttons/Right/Ready" to="Bottom_UI/Mobile Contoller" method="_on_Ready_button_down"]
-[connection signal="button_up" from="Bottom_UI/Mobile Contoller/Buttons/Right/Ready" to="Bottom_UI/Mobile Contoller" method="_on_Ready_button_up"]
-[connection signal="button_down" from="Bottom_UI/Mobile Contoller/Buttons/Right/Jump" to="Bottom_UI/Mobile Contoller" method="_on_Jump_button_down"]
-[connection signal="button_up" from="Bottom_UI/Mobile Contoller/Buttons/Right/Jump" to="Bottom_UI/Mobile Contoller" method="_on_Jump_button_up"]
-[connection signal="button_down" from="Bottom_UI/Mobile Contoller/Buttons/Flip" to="Bottom_UI/Mobile Contoller" method="_on_Flip_button_down"]
-[connection signal="button_up" from="Bottom_UI/Mobile Contoller/Buttons/Flip" to="Bottom_UI/Mobile Contoller" method="_on_Flip_button_up"]
-[connection signal="mouse_entered" from="Bottom_UI/Mobile Contoller/Buttons/Flip" to="Bottom_UI/Mobile Contoller" method="_on_Flip_mouse_entered"]
-[connection signal="mouse_exited" from="Bottom_UI/Mobile Contoller/Buttons/Flip" to="Bottom_UI/Mobile Contoller" method="_on_Flip_mouse_exited"]
-[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click_select"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_on_GameType_item_selected"]
+[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click_select"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click_select"]

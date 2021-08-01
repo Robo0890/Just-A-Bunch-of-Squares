@@ -1,0 +1,155 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/arrowRight.png" type="Texture" id=1]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/arrowLeft.png" type="Texture" id=2]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/up.png" type="Texture" id=3]
+[ext_resource path="res://GUI/GUI Pieces/MobileControls.gd" type="Script" id=4]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/checkmark.png" type="Texture" id=5]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/exitLeft.png" type="Texture" id=6]
+[ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=7]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 50, 50 )
+
+[node name="MobileControls" type="Control"]
+modulate = Color( 1, 1, 1, 0.698039 )
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -100.0
+rect_min_size = Vector2( 0, 100 )
+theme = ExtResource( 7 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="HBoxContainer" parent="Panel"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -50.0
+margin_right = 1024.0
+margin_bottom = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="ColorRect" parent="Panel/Left"]
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="Left" type="TouchScreenButton" parent="Panel/Left/Left"]
+normal = ExtResource( 2 )
+pressed = ExtResource( 2 )
+shape = SubResource( 2 )
+shape_visible = false
+action = "p4_movement_left"
+
+[node name="Right" type="ColorRect" parent="Panel/Left"]
+margin_left = 104.0
+margin_right = 204.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="Right" type="TouchScreenButton" parent="Panel/Left/Right"]
+normal = ExtResource( 1 )
+pressed = ExtResource( 1 )
+shape = SubResource( 2 )
+shape_visible = false
+action = "p4_movement_rigt"
+
+[node name="Quit" type="ColorRect" parent="Panel/Left"]
+visible = false
+margin_left = 208.0
+margin_right = 308.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="Quit" type="TouchScreenButton" parent="Panel/Left/Quit"]
+normal = ExtResource( 6 )
+pressed = ExtResource( 6 )
+shape = SubResource( 2 )
+shape_visible = false
+action = "p4_movement_rigt"
+
+[node name="Right" type="HBoxContainer" parent="Panel"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -1024.0
+margin_top = -50.0
+margin_bottom = 50.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ready" type="ColorRect" parent="Panel/Right"]
+margin_left = 820.0
+margin_right = 920.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="Ready" type="TouchScreenButton" parent="Panel/Right/Ready"]
+normal = ExtResource( 5 )
+pressed = ExtResource( 5 )
+shape = SubResource( 2 )
+shape_visible = false
+action = "p4_movement_rigt"
+
+[node name="Jump" type="ColorRect" parent="Panel/Right"]
+margin_left = 924.0
+margin_right = 1024.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="Jump" type="TouchScreenButton" parent="Panel/Right/Jump"]
+normal = ExtResource( 3 )
+pressed = ExtResource( 3 )
+shape = SubResource( 2 )
+shape_visible = false
+
+[node name="Flip" type="TouchScreenButton" parent="Panel/Right/Jump/Jump"]
+position = Vector2( 0, -99.5895 )
+shape = SubResource( 2 )
+shape_visible = false
+passby_press = true
+
+[node name="Panel2" type="Panel" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -50.0
+margin_bottom = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Panel/Left/Left/Left" to="." method="_on_Left_pressed"]
+[connection signal="released" from="Panel/Left/Left/Left" to="." method="_on_Left_released"]
+[connection signal="pressed" from="Panel/Left/Right/Right" to="." method="_on_Right_pressed"]
+[connection signal="released" from="Panel/Left/Right/Right" to="." method="_on_Right_released"]
+[connection signal="pressed" from="Panel/Left/Quit/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="released" from="Panel/Left/Quit/Quit" to="." method="_on_Quit_released"]
+[connection signal="pressed" from="Panel/Right/Ready/Ready" to="." method="_on_Ready_pressed"]
+[connection signal="released" from="Panel/Right/Ready/Ready" to="." method="_on_Ready_released"]
+[connection signal="pressed" from="Panel/Right/Jump/Jump" to="." method="_on_Jump_pressed"]
+[connection signal="released" from="Panel/Right/Jump/Jump" to="." method="_on_Jump_released"]
+[connection signal="pressed" from="Panel/Right/Jump/Jump/Flip" to="." method="_on_Flip_pressed"]
+[connection signal="released" from="Panel/Right/Jump/Jump/Flip" to="." method="_on_Flip_released"]
