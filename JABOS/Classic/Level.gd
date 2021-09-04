@@ -132,3 +132,10 @@ func _on_Timer_timeout():
 func _on_Button_pressed():
 	allow_join = true
 	$Camera/Control/News.visible = false
+
+
+func _on_TouchScreenButton_pressed():
+	Global.device = "mobile"
+	add_player(4)
+	$TouchScreenButton.queue_free()
+
