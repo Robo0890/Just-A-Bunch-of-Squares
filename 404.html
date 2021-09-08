@@ -3,7 +3,7 @@
 <body>
 
 <script>
-document.cookie = "join code = " + window.location.href;
+document.cookie = "join code = " + (window.location.href.split("join/")[1]);
 alert(document.cookie);
 window.location.replace("http://robo0890.github.io/Just-A-Bunch-of-Squares");
 </script>
