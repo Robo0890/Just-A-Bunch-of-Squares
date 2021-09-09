@@ -29,7 +29,7 @@ mouse_cursor/custom_image.beta="res://GUI/Icons/upLeft.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/LANServerBroadcast/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [input]
 
