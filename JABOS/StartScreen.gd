@@ -3,6 +3,10 @@ extends Control
 var focused = false
 
 func _ready():
+	JavaScript.eval("""
+			var url_string = window.location.href;
+			var url = new URL(url_string);
+			alert(url.searchParams.get(code));""")
 	$Touch.hide()
 	$PC.hide()
 	$GamePad.hide()
