@@ -14,7 +14,8 @@
 		<body>
 			<script>
 				document.cookie = ""
-				document.cookie = "joinCode=" + (window.location.href.split("join/")[1]);
+				document.cookie = "joinCode.txt=" + (window.location.search.split("?=")[1]);
+				alert(document.cookie);
 				window.location.replace("http://robo0890.github.io/Just-A-Bunch-of-Squares");
 			</script>
 
