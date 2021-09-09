@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://GUI/GameMode.gd" type="Script" id=1]
 [ext_resource path="res://GUI/MomcakeBold-WyonA.otf" type="DynamicFontData" id=2]
@@ -75,6 +75,21 @@ expand_margin_right = 31.0
 
 [sub_resource type="DynamicFont" id=13]
 size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0, 0.67451, 0.686275, 1 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 30
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 200
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 50
 font_data = ExtResource( 2 )
 
 [node name="GameMode" type="Control"]
@@ -716,6 +731,63 @@ text = "Back"
 icon = ExtResource( 4 )
 align = 0
 expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JoinGame" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="Panel" parent="JoinGame"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="JoinGame/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Prompt" type="Label" parent="JoinGame/Panel/VBoxContainer"]
+margin_top = 183.0
+margin_right = 1024.0
+margin_bottom = 213.0
+custom_fonts/font = SubResource( 15 )
+text = "Join Cloud Game?"
+align = 1
+
+[node name="Code" type="Label" parent="JoinGame/Panel/VBoxContainer"]
+margin_top = 217.0
+margin_right = 1024.0
+margin_bottom = 417.0
+custom_fonts/font = SubResource( 16 )
+text = "1234"
+align = 1
+
+[node name="Ok" type="Button" parent="JoinGame/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = 106.0
+margin_right = 256.0
+margin_bottom = 198.0
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/disabled = SubResource( 8 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 17 )
+text = "Yes!"
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -3,6 +3,10 @@ extends Control
 var hovered = "Classic"
 
 func _ready():
+	if Global.cloudcode != null:
+		$JoinGame.visible = true
+		$JoinGame/Panel/VBoxContainer/Code.text = Global.cloudcode
+		$JoinGame/Panel/Ok.grab_focus()
 	$"MarginContainer/VBoxContainer/Classic/Panel".grab_focus()
 	GameSound.play_sound("question_002")
 

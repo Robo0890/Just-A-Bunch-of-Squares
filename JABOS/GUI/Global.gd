@@ -6,6 +6,8 @@ var device = "gamepad"
 var version = "v1.0"
 var splashed = false
 
+var cloudcode = null
+
 func _ready():
 	if OS.has_feature("beta"):
 		version = "beta"
