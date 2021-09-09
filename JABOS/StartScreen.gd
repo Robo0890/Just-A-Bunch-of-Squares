@@ -9,7 +9,7 @@ func _ready():
 		url.searchParams.get("join");""")
 	if joincode != null:
 		Global.cloudcode = joincode
-	JavaScript.eval("alert(\"" + str(joincode) + "\")")
+	#JavaScript.eval("alert(\"" + str(joincode) + "\")")
 	$Touch.hide()
 	$PC.hide()
 	$GamePad.hide()

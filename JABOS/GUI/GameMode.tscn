@@ -78,7 +78,7 @@ size = 24
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxFlat" id=14]
-bg_color = Color( 0, 0.67451, 0.686275, 1 )
+bg_color = Color( 0, 0.772549, 0.788235, 1 )
 
 [sub_resource type="DynamicFont" id=15]
 size = 30
@@ -736,7 +736,6 @@ __meta__ = {
 }
 
 [node name="JoinGame" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -757,37 +756,54 @@ __meta__ = {
 }
 
 [node name="Prompt" type="Label" parent="JoinGame/Panel/VBoxContainer"]
-margin_top = 183.0
+margin_top = 156.0
 margin_right = 1024.0
-margin_bottom = 213.0
+margin_bottom = 186.0
 custom_fonts/font = SubResource( 15 )
 text = "Join Cloud Game?"
 align = 1
 
 [node name="Code" type="Label" parent="JoinGame/Panel/VBoxContainer"]
-margin_top = 217.0
+margin_top = 190.0
 margin_right = 1024.0
-margin_bottom = 417.0
+margin_bottom = 390.0
 custom_fonts/font = SubResource( 16 )
 text = "1234"
 align = 1
 
-[node name="Ok" type="Button" parent="JoinGame/Panel"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -256.0
-margin_top = 106.0
-margin_right = 256.0
-margin_bottom = 198.0
+[node name="HBoxContainer" type="HBoxContainer" parent="JoinGame/Panel/VBoxContainer"]
+margin_top = 394.0
+margin_right = 1024.0
+margin_bottom = 444.0
+custom_constants/separation = 53
+alignment = 1
+
+[node name="Ok" type="Button" parent="JoinGame/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 379.0
+margin_right = 481.0
+margin_bottom = 50.0
 custom_styles/hover = SubResource( 7 )
 custom_styles/pressed = SubResource( 8 )
 custom_styles/focus = SubResource( 8 )
 custom_styles/disabled = SubResource( 8 )
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 17 )
-text = "Yes!"
+text = "Sure!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="No" type="Button" parent="JoinGame/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 534.0
+margin_right = 645.0
+margin_bottom = 50.0
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/disabled = SubResource( 8 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 17 )
+text = "Nope!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
