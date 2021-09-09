@@ -29,7 +29,9 @@ func _on_Right_released():
 
 func _on_Jump_pressed():
 	Input.action_press("p4_movement_jump", 1)
+	$Flip.visible = true
 func _on_Jump_released():
+	$Flip.visible = false
 	Input.action_release("p4_movement_jump")
 
 func _on_Ready_pressed():
@@ -42,3 +44,7 @@ func _on_Quit_pressed():
 func _on_Quit_released():
 	Input.action_release("p4_quit")
 
+func _on_Flip_pressed():
+	Input.action_press("p4_flip",1)
+func _on_Flip_released():
+	Input.action_release("p4_flip")

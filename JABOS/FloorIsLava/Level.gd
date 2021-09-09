@@ -12,12 +12,12 @@ var alive_players = []
 
 var player_scores = {}
 
-onready var basic_jump = preload("res://Sections/Classic/Basic Jump.tscn")
-onready var hook = preload("res://Sections/Classic/Hook.tscn")
-onready var small_jumps = preload("res://Sections/Classic/Small Jumps.tscn")
-onready var wall = preload("res://Sections/Classic/Wall.tscn")
-onready var split_direction = preload("res://Sections/Classic/Split Direction.tscn")
-onready var stick = preload("res://Sections/Classic/Stick.tscn")
+onready var basic_jump = preload("res://Sections/FloorIsLava/Basic Jump.tscn")
+onready var hook = preload("res://Sections/FloorIsLava/Hook.tscn")
+onready var small_jumps = preload("res://Sections/FloorIsLava/Small Jumps.tscn")
+onready var wall = preload("res://Sections/FloorIsLava/Wall.tscn")
+onready var split_direction = preload("res://Sections/FloorIsLava/Split Direction.tscn")
+onready var stick = preload("res://Sections/FloorIsLava/Stick.tscn")
 
 onready var player = preload("res://Player/Player2D.tscn")
  
@@ -56,7 +56,7 @@ func add_player(player_number):
 
 
 func load_section():
-	
+	print("loading")
 	var s = null
 	randomize()
 	var pick = int(rand_range(1,sections + 1))
@@ -73,7 +73,7 @@ func load_section():
 			s = split_direction.instance()
 		6:
 			s = stick.instance()
-	s.position = $Camera.position + Vector2(800,0)
+	s.position = $Camera.position + Vector2(rand_range(-500,500),-400)
 	$Sections.add_child(s)
 	
 	
@@ -132,10 +132,8 @@ func _on_Timer_timeout():
 func _on_Button_pressed():
 	allow_join = true
 	$Camera/Control/News.visible = false
-
-
+	
 func _on_TouchScreenButton_pressed():
 	Global.device = "mobile"
 	add_player(4)
 	$TouchScreenButton.queue_free()
-

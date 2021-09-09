@@ -13,6 +13,7 @@ func _ready():
 		GameSound.play_sound("confirmation_001")
 		Global.splashed = true
 	else:
+		get_tree().change_scene("res://GUI/GameMode.tscn")
 		$MarginContainer.show()
 		$SplashLogo.queue_free()
 		GameSound.play_sound("question_002")
@@ -23,6 +24,7 @@ func _ready():
 # warning-ignore:unused_argument
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "EonSplash":
+		get_tree().change_scene("res://GUI/GameMode.tscn")
 		$MarginContainer.show()
 		$SplashLogo.queue_free()
 		GameSound.play_sound("question_002")

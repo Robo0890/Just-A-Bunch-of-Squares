@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sections/Classic/end_of_section.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/Level Referance.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 210.055, 18.1159 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 414.158, 18.1159 )
+
+[node name="Hook" type="Node2D"]
+position = Vector2( -0.713684, -0.638062 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( -574.007, -133.797 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+margin_left = 158.416
+margin_top = -36.6877
+margin_right = 579.416
+margin_bottom = -0.687744
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 368.416, -18.6877 )
+shape = SubResource( 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="StaticBody2D"]
+margin_left = 378.089
+margin_top = -129.319
+margin_right = 1205.09
+margin_bottom = -93.3188
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 792.138, -110.821 )
+shape = SubResource( 2 )
+
+[node name="ColorRect3" type="ColorRect" parent="StaticBody2D"]
+margin_left = 680.537
+margin_top = 129.116
+margin_right = 1101.54
+margin_bottom = 165.116
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 890.537, 147.116 )
+shape = SubResource( 1 )
+
+[node name="end_of_section" parent="." instance=ExtResource( 1 )]
+position = Vector2( -6.81091, -321.064 )
+
+[node name="ColorRect" parent="." instance=ExtResource( 2 )]
+margin_left = 753.122
+margin_top = 49.0247
+margin_right = 793.122
+margin_bottom = 89.0247

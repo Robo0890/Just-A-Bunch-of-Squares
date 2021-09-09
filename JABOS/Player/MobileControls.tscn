@@ -66,6 +66,11 @@ normal = ExtResource( 3 )
 pressed = ExtResource( 3 )
 shape = SubResource( 2 )
 
+[node name="Flip" type="TouchScreenButton" parent="."]
+position = Vector2( 924, -99.5895 )
+shape = SubResource( 2 )
+passby_press = true
+
 [node name="Ready" type="TouchScreenButton" parent="."]
 position = Vector2( 820, 0 )
 normal = ExtResource( 5 )
@@ -81,5 +86,7 @@ action = "p4_movement_rigt"
 [connection signal="released" from="Quit" to="." method="_on_Quit_released"]
 [connection signal="pressed" from="Jump" to="." method="_on_Jump_pressed"]
 [connection signal="released" from="Jump" to="." method="_on_Jump_released"]
+[connection signal="pressed" from="Flip" to="." method="_on_Flip_pressed"]
+[connection signal="released" from="Flip" to="." method="_on_Flip_released"]
 [connection signal="pressed" from="Ready" to="." method="_on_Ready_pressed"]
 [connection signal="released" from="Ready" to="." method="_on_Ready_released"]

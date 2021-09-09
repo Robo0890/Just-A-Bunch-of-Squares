@@ -2,7 +2,7 @@ extends Node
 
 
 var players_active = []
-var device = "pc"
+var device = "gamepad"
 var version = "v1.0"
 var splashed = false
 

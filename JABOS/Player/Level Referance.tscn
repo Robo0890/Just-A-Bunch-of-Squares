@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Sections/Referance.gd" type="Script" id=1]
+[ext_resource path="res://Sections/Classic/Referance.gd" type="Script" id=1]
+
 
 [node name="Referance" type="ColorRect"]
 show_behind_parent = true
