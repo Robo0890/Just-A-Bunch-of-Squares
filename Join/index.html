@@ -16,7 +16,10 @@
 	</head>
 		<body>
 			<script>
-				window.location.replace("http://robo0890.github.io/Just-A-Bunch-of-Squares/Beta?join=" + );
+				var url_string = window.location.href
+				var url = new URL(url_string);
+				var code = url.searchParams.get("join");
+				window.location.replace("http://robo0890.github.io/Just-A-Bunch-of-Squares/Beta?join=" + code);
 			</script>
 
 		</body>
