@@ -1,11 +1,13 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://GUI/GameMode.gd" type="Script" id=1]
 [ext_resource path="res://GUI/MomcakeBold-WyonA.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://GUI/News.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GUI/Icons/exitLeft.png" type="Texture" id=4]
+[ext_resource path="res://GUI/Icons/cloud.png" type="Texture" id=5]
 
 [sub_resource type="Gradient" id=1]
-colors = PoolColorArray( 0.192871, 0.503464, 0.625, 1, 1, 1, 1, 1 )
+colors = PoolColorArray( 0.0828094, 0.587622, 0.785156, 1, 1, 1, 1, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
@@ -40,24 +42,33 @@ tracks/0/keys = {
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.72549, 0.72549, 0.72549, 0.498039 )
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 border_color = Color( 1, 1, 1, 1 )
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 corner_detail = 20
+expand_margin_left = 25.0
+expand_margin_right = 25.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0, 0, 0, 0.498039 )
+border_color = Color( 1, 1, 1, 1 )
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 corner_detail = 20
+expand_margin_left = 25.0
+expand_margin_right = 25.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxEmpty" id=9]
 
@@ -78,7 +89,7 @@ size = 24
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxFlat" id=14]
-bg_color = Color( 0, 0.772549, 0.788235, 1 )
+bg_color = Color( 0, 0.929412, 1, 1 )
 
 [sub_resource type="DynamicFont" id=15]
 size = 30
@@ -738,6 +749,9 @@ __meta__ = {
 [node name="JoinGame" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Panel" type="Panel" parent="JoinGame"]
 anchor_right = 1.0
@@ -760,6 +774,9 @@ margin_top = 156.0
 margin_right = 1024.0
 margin_bottom = 186.0
 custom_fonts/font = SubResource( 15 )
+custom_colors/font_color_shadow = Color( 0.729412, 0.729412, 0.729412, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 0
 text = "Join Cloud Game?"
 align = 1
 
@@ -768,6 +785,9 @@ margin_top = 190.0
 margin_right = 1024.0
 margin_bottom = 390.0
 custom_fonts/font = SubResource( 16 )
+custom_colors/font_color_shadow = Color( 0.729412, 0.729412, 0.729412, 1 )
+custom_constants/shadow_offset_x = 6
+custom_constants/shadow_offset_y = 0
 text = "1234"
 align = 1
 
@@ -775,12 +795,12 @@ align = 1
 margin_top = 394.0
 margin_right = 1024.0
 margin_bottom = 444.0
-custom_constants/separation = 53
+custom_constants/separation = 75
 alignment = 1
 
 [node name="Ok" type="Button" parent="JoinGame/Panel/VBoxContainer/HBoxContainer"]
-margin_left = 379.0
-margin_right = 481.0
+margin_left = 368.0
+margin_right = 470.0
 margin_bottom = 50.0
 custom_styles/hover = SubResource( 7 )
 custom_styles/pressed = SubResource( 8 )
@@ -794,8 +814,8 @@ __meta__ = {
 }
 
 [node name="No" type="Button" parent="JoinGame/Panel/VBoxContainer/HBoxContainer"]
-margin_left = 534.0
-margin_right = 645.0
+margin_left = 545.0
+margin_right = 656.0
 margin_bottom = 50.0
 custom_styles/hover = SubResource( 7 )
 custom_styles/pressed = SubResource( 8 )
@@ -808,6 +828,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Clouds" type="Sprite" parent="JoinGame"]
+position = Vector2( 860, 640 )
+texture = ExtResource( 5 )
+
+[node name="1" type="Sprite" parent="JoinGame/Clouds"]
+position = Vector2( -711.856, -383.016 )
+texture = ExtResource( 5 )
+
+[node name="News" parent="." instance=ExtResource( 3 )]
+visible = false
+
 [connection signal="animation_finished" from="MarginContainer/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Classic/Panel" to="." method="_on_Panel_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Floor is Lava/Panel" to="." method="_on_Panel_pressed"]
+[connection signal="pressed" from="JoinGame/Panel/VBoxContainer/HBoxContainer/Ok" to="." method="_on_Ok_pressed"]

@@ -25,17 +25,20 @@ var sections = 6
 
 
 func _ready():
-	Global.players_active = []
-	GameSound.play_sound("maximize_006")
-	OS.set_window_title("Just A Bunch of Squares")
-	for x in Global.players_active:
-		yield(get_tree().create_timer(.1),"timeout")
-		add_player(x)
-	allow_join = true
-	if Global.is_up_to_date():
-		$Camera/Control/News.visible = false
+	if Global.cloudcode == null:
+		Global.players_active = []
+		GameSound.play_sound("maximize_006")
+		OS.set_window_title("Just A Bunch of Squares")
+		for x in Global.players_active:
+			yield(get_tree().create_timer(.1),"timeout")
+			add_player(x)
+		allow_join = true
+		if Global.is_up_to_date():
+			$Camera/Control/News.visible = false
+		else:
+			$Camera/Control/News.visible = true
+			allow_join = false
 	else:
-		$Camera/Control/News.visible = true
 		allow_join = false
 
 func add_player(player_number):
@@ -85,8 +88,6 @@ func _process(delta):
 			Global.players_active.erase(player)
 # warning-ignore:return_value_discarded
 			get_tree().change_scene("res://StartScreen.tscn")
-	if Input.is_action_just_pressed("ui_accept") and $Camera/Control/News.visible:
-		_on_Button_pressed()
 	if allow_join:
 		if Input.is_action_just_pressed("p1_movement_jump") and !start and !active_players.has(1):
 			add_player(1)
@@ -129,9 +130,6 @@ func _on_Timer_timeout():
 	$Timer.start()
 
 
-func _on_Button_pressed():
-	allow_join = true
-	$Camera/Control/News.visible = false
 
 
 func _on_TouchScreenButton_pressed():

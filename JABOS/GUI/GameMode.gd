@@ -15,6 +15,12 @@ func _ready():
 
 
 func _process(delta):
+	$JoinGame/Clouds.position = Vector2(860,640)
+	$JoinGame/Clouds.position += get_global_mouse_position()/35
+	$JoinGame/Panel/VBoxContainer.rect_position = Vector2(15,-15)
+	$JoinGame/Panel/VBoxContainer.rect_position -= get_global_mouse_position()/70
+	
+	
 	$Background/Classic/Move.position.x -= 4
 	$Background/FloorIsLava/Move.position.y += 4
 	if $Background/Classic/Move.position.x == -3080:
@@ -43,3 +49,7 @@ func _on_Panel_pressed():
 func _on_AnimationPlayer_animation_finished(anim_name):
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://" + hovered + "/Level.tscn")
+
+
+func _on_Ok_pressed():
+	pass # Replace with function body.
