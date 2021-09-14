@@ -18,9 +18,9 @@
 		<body>
 			<script>
 				/*Javascript code to change the url to the correct site*/
-				var url = window.location.href;
-				var queryString = new URLSearchParams(url);
-				window.location.replace("https://robo0890.github.io/Just-A-Bunch-of-Squares?join=" + queryString.get("code"));
+				var url_string = window.location.href;
+				var url = new URL(url_string);
+				window.location.replace("https://robo0890.github.io/Just-A-Bunch-of-Squares?join=" + url.searchParams.get("code"));
 			</script>
 		</body>
 </html>
