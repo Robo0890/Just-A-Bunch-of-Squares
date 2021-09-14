@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/server_advertiser.png-49980d5ca0093bd7de917a0b6a6f2f75.stex"
+path="res://.import/cloud.png-49fa4f47180f02f13c9fef833d9febd3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/LANServerBroadcast/server_advertiser/server_advertiser.png"
-dest_files=[ "res://.import/server_advertiser.png-49980d5ca0093bd7de917a0b6a6f2f75.stex" ]
+source_file="res://GUI/Icons/cloud.png"
+dest_files=[ "res://.import/cloud.png-49fa4f47180f02f13c9fef833d9febd3.stex" ]
 
 [params]
 
