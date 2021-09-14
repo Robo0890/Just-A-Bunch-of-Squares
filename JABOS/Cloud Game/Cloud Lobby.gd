@@ -2,25 +2,40 @@ extends Control
 
 
 onready var key = preload("res://GUI/Key.tscn")
-
 var keyboard = "1234567890qwertyuiopasdfghjklzxcvbnm"
 
+var player_name = "Steve"
+
 func _ready():
-	
+	$Keyboard.visible = false
 	for x in keyboard.length():
 		x = keyboard[x]
 		var k = key.instance()
 		k.name = "Key_" + x
 		k.text = str(x).capitalize()
 		$Keyboard/Board.add_child(k)
-		k.connect("pressed", self, "key_pressed")
-	$Keyboard/Board.move_child($"Keyboard/Board/Backspace_<",keyboard.length() + 1)
-	$Keyboard/Board.move_child($"Keyboard/Board/Confirm_=",10)
+	$Keyboard/Board.move_child($"Keyboard/Board/Key_Backspace",keyboard.length() + 1)
+	$Keyboard/Board.move_child($"Keyboard/Board/Key_Enter",29)
+	for x in $Keyboard/Board.get_children():
+		x.connect("pressed", self, "key_pressed")
+# warning-ignore:unused_argument
 func _process(delta):
+	$Keyboard/Label.text = player_name
+
+func key_pressed():
+	var key_pressed
 	for x in $Keyboard/Board.get_children():
 		if x.pressed:
-			var key_pressed = str(x.name).split("_")[1]
+			key_pressed = str(x.name).split("_")[1]
 			print(key_pressed)
+			break
+	if key_pressed == "Enter":
+		$Keyboard.visible = false
+		$Control/Profile/VBoxContainer/Name.visible = true
+	if key_pressed == "Backspace":
+		player_name.erase(player_name.length() - 1s)
 
 
-
+func _on_Name_pressed():
+	$Keyboard.visible = true
+	$Control/Profile/VBoxContainer/Name.visible = false
