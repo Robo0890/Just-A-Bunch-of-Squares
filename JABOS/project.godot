@@ -8,22 +8,6 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Node",
-"class": "ServerAdvertiser",
-"language": "GDScript",
-"path": "res://addons/LANServerBroadcast/server_advertiser/ServerAdvertiser.gd"
-}, {
-"base": "Node",
-"class": "ServerListener",
-"language": "GDScript",
-"path": "res://addons/LANServerBroadcast/server_listener/ServerListener.gd"
-} ]
-_global_script_class_icons={
-"ServerAdvertiser": "res://addons/LANServerBroadcast/server_advertiser/server_advertiser.png",
-"ServerListener": "res://addons/LANServerBroadcast/server_listener/server_listener.png"
-}
-
 [application]
 
 config/name="Just A Bunch of Squares"
@@ -45,7 +29,7 @@ mouse_cursor/custom_image.beta="res://GUI/Icons/upLeft.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/LANServerBroadcast/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [input]
 

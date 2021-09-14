@@ -3,6 +3,13 @@ extends Control
 var focused = false
 
 func _ready():
+	var joincode = JavaScript.eval("""
+		var url_string = window.location.href;
+		var url = new URL(url_string);
+		url.searchParams.get("join");""")
+	if joincode != null:
+		Global.cloudcode = joincode
+	#JavaScript.eval("alert(\"" + str(joincode) + "\")")
 	$Touch.hide()
 	$PC.hide()
 	$GamePad.hide()
