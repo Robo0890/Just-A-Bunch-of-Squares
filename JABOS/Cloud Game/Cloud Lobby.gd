@@ -21,6 +21,12 @@ func _ready():
 # warning-ignore:unused_argument
 func _process(delta):
 	$Keyboard/Label.text = player_name
+	if Input.is_action_just_pressed("Menu_X"):
+		if $Control/Profile/VBoxContainer/Name.visible:
+			_on_Name_pressed()
+		else:
+			player_name.erase(player_name.length() - 1,1)
+	
 
 func key_pressed():
 	var key_pressed
@@ -32,10 +38,16 @@ func key_pressed():
 	if key_pressed == "Enter":
 		$Keyboard.visible = false
 		$Control/Profile/VBoxContainer/Name.visible = true
+		$Control/Profile/VBoxContainer/Name.text = player_name
+		return
 	if key_pressed == "Backspace":
-		player_name.erase(player_name.length() - 1s)
+		player_name.erase(player_name.length() - 1,1)
+	else:
+		if player_name.length() < 9:
+			player_name = player_name + key_pressed
 
 
 func _on_Name_pressed():
 	$Keyboard.visible = true
 	$Control/Profile/VBoxContainer/Name.visible = false
+	$Keyboard/Board.get_child(0).grab_focus()
