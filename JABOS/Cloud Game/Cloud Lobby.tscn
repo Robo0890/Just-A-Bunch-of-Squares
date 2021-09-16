@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://GUI/MomcakeBold-WyonA.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Player/Faces/Face.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Cloud Game/Cloud Lobby.gd" type="Script" id=4]
 [ext_resource path="res://GUI/Icons/left.png" type="Texture" id=5]
 [ext_resource path="res://GUI/Icons/checkmark.png" type="Texture" id=6]
+[ext_resource path="res://GUI/Icons/cloud.png" type="Texture" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.929412, 1, 1 )
@@ -125,6 +126,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Cloud1" type="Sprite" parent="Panel"]
+position = Vector2( 153.71, 264.583 )
+texture = ExtResource( 7 )
+
+[node name="Cloud2" type="Sprite" parent="Panel"]
+position = Vector2( 810.129, 617.361 )
+texture = ExtResource( 7 )
+
 [node name="Control" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -243,6 +252,7 @@ icon = ExtResource( 3 )
 expand_icon = true
 
 [node name="Keyboard" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {

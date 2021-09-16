@@ -41,6 +41,8 @@ func _process(delta):
 
 
 func _on_Panel_pressed():
+	$MarginContainer.visible = false
+	$MarginContainer2.visible = true
 	GameSound.play_sound("confirmation_001")
 	$MarginContainer/AnimationPlayer.play("Fade")
 
@@ -52,4 +54,13 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_Ok_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene("res://Cloud Game/Cloud Lobby.tscn")
+
+
+func _on_No_pressed():
+	$JoinGame.visible = false
+
+
+func _on_Back_pressed():
+	$MarginContainer.visible = true
+	$MarginContainer2.visible = false
