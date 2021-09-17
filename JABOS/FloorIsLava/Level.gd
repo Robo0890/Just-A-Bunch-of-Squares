@@ -85,8 +85,6 @@ func _process(delta):
 			Global.players_active.erase(player)
 # warning-ignore:return_value_discarded
 			get_tree().change_scene("res://StartScreen.tscn")
-	if Input.is_action_just_pressed("ui_accept") and $Camera/Control/News.visible:
-		_on_Button_pressed()
 	if allow_join:
 		if Input.is_action_just_pressed("p1_movement_jump") and !start and !active_players.has(1):
 			add_player(1)

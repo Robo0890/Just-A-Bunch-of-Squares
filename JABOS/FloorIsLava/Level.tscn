@@ -7,21 +7,21 @@
 [ext_resource path="res://GUI/News.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Player/MobileControls.tscn" type="PackedScene" id=6]
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 229, 31 )
 
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 532.774, 26.026 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 547.835, 26.026 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 26.9297, 507.767 )
 
-[sub_resource type="Gradient" id=10]
+[sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.00662252, 0.523179 )
 colors = PoolColorArray( 0.851563, 0.199585, 0, 1, 0.941406, 0.23807, 0.0257416, 1, 0.0898438, 0.0252686, 0, 1 )
 
-[sub_resource type="GradientTexture" id=11]
-gradient = SubResource( 10 )
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 512, 300 )
@@ -43,7 +43,7 @@ position = Vector2( -0.890686, -380.601 )
 position = Vector2( 0, 80 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sections/StaticBody2D"]
-shape = SubResource( 7 )
+shape = SubResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="Sections/StaticBody2D"]
 margin_left = -229.0
@@ -58,7 +58,7 @@ __meta__ = {
 position = Vector2( 318.493, -31.3394 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sections/StaticBody2D3"]
-shape = SubResource( 7 )
+shape = SubResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="Sections/StaticBody2D3"]
 margin_left = -230.0
@@ -74,7 +74,7 @@ position = Vector2( -139.326, -255.895 )
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sections/StaticBody2D2"]
-shape = SubResource( 7 )
+shape = SubResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="Sections/StaticBody2D2"]
 margin_left = -230.0
@@ -93,22 +93,22 @@ script = ExtResource( 3 )
 [node name="Area2D" type="Area2D" parent="Camera"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/Area2D"]
-position = Vector2( 0, 332.062 )
-shape = SubResource( 8 )
+position = Vector2( -3.1748, 368.572 )
+shape = SubResource( 2 )
 
 [node name="Front_Edge" type="Area2D" parent="Camera"]
 rotation = -1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/Front_Edge"]
 position = Vector2( 381.664, 0 )
-shape = SubResource( 9 )
+shape = SubResource( 3 )
 
 [node name="ColorRect" type="Sprite" parent="Camera"]
 position = Vector2( 1.33878, 0.482821 )
 rotation = -1.57079
 scale = Vector2( 0.309432, 1130.68 )
 z_index = -2
-texture = SubResource( 11 )
+texture = SubResource( 5 )
 
 [node name="MobileControls" parent="Camera" instance=ExtResource( 6 )]
 margin_left = -512.0

@@ -9,7 +9,8 @@ func _ready():
 		$JoinGame/Panel/Ok.grab_focus()
 	$"MarginContainer/VBoxContainer/Classic/Panel".grab_focus()
 	GameSound.play_sound("question_002")
-
+	$MarginContainer.visible = true
+	$MarginContainer2.visible = false
 # warning-ignore:unused_argument
 
 
@@ -30,12 +31,22 @@ func _process(delta):
 	if $MarginContainer/VBoxContainer/Classic/Panel.is_hovered():
 		hovered = "Classic"
 	if $"MarginContainer/VBoxContainer/Floor is Lava/Panel".is_hovered():
-		hovered = "FloorIsLava"
+		hovered = "Floor Is Lava"
+	if $MarginContainer2/VBoxContainer/Gamemode/HBoxContainer2/Local.is_hovered():
+		$MarginContainer2/VBoxContainer/Info.text = "Local Multiplayer - Play with friends on the same device"
+	elif $MarginContainer2/VBoxContainer/Gamemode/HBoxContainer2/Cloud.is_hovered():
+		$MarginContainer2/VBoxContainer/Info.text = "Cloud Multiplayer - Coming Soon!"
+	else:
+		match hovered:
+			"Classic":
+				$MarginContainer2/VBoxContainer/Info.text = "Classic - Be the last one to fall victum to \nthe edge of the screen"
+			"Floor Is Lava":
+				$MarginContainer2/VBoxContainer/Info.text = "Floor Is Lava - Be the last one to fall!"
 	match hovered:
 		"Classic":
 			$Background/Classic.modulate.a = lerp($Background/Classic.modulate.a,1,.09)
 			$Background/FloorIsLava.modulate.a = lerp($Background/FloorIsLava.modulate.a,0,.09)
-		"FloorIsLava":
+		"Floor Is Lava":
 			$Background/Classic.modulate.a = lerp($Background/Classic.modulate.a,0,.09)
 			$Background/FloorIsLava.modulate.a = lerp($Background/FloorIsLava.modulate.a,1,.09)
 
@@ -43,14 +54,15 @@ func _process(delta):
 func _on_Panel_pressed():
 	$MarginContainer.visible = false
 	$MarginContainer2.visible = true
-	GameSound.play_sound("confirmation_001")
-	$MarginContainer/AnimationPlayer.play("Fade")
+	$MarginContainer2/VBoxContainer/Gamemode/Back/Label.text = hovered
+	$MarginContainer2/VBoxContainer/Gamemode/Back.grab_focus()
+	
 
 
 # warning-ignore:unused_argument
 func _on_AnimationPlayer_animation_finished(anim_name):
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://" + hovered + "/Level.tscn")
+	get_tree().change_scene("res://" + hovered.replace(" ", "") + "/Level.tscn")
 
 
 func _on_Ok_pressed():
@@ -64,3 +76,17 @@ func _on_No_pressed():
 func _on_Back_pressed():
 	$MarginContainer.visible = true
 	$MarginContainer2.visible = false
+	match hovered:
+		"Classic":
+			$MarginContainer/VBoxContainer.get_child(0).get_child(0).grab_focus()
+		"Floor Is Lava":
+			$MarginContainer/VBoxContainer.get_child(1).get_child(0).grab_focus()
+
+
+func _on_Local_pressed():
+	GameSound.play_sound("confirmation_001")
+	$MarginContainer/AnimationPlayer.play("Fade")
+
+
+func _on_Cloud_pressed():
+	pass # Replace with function body.
