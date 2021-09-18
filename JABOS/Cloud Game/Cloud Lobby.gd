@@ -1,5 +1,10 @@
 extends Control
 
+var shareData = {
+	"title" : "JABOS Cloud Game Invite",
+	"text" : "Join a Game of JABOS!",
+	"url" : "https://robo0890.github.io/Just-A-Bunch-of-Squares/Join?code="
+}
 
 onready var key = preload("res://GUI/Key.tscn")
 var keyboard = "1234567890qwertyuiopasdfghjklzxcvbnm"
@@ -7,6 +12,7 @@ var keyboard = "1234567890qwertyuiopasdfghjklzxcvbnm"
 var player_name = "Steve"
 
 func _ready():
+	$Control/Profile/VBoxContainer/Code.text = "Join Code: " + str(Global.cloudcode)
 	$Keyboard.visible = false
 	for x in keyboard.length():
 		x = keyboard[x]
@@ -39,6 +45,7 @@ func key_pressed():
 		$Keyboard.visible = false
 		$Control/Profile/VBoxContainer/Name.visible = true
 		$Control/Profile/VBoxContainer/Name.text = player_name
+		$Control/Players.visible = true
 		return
 	if key_pressed == "Backspace":
 		player_name.erase(player_name.length() - 1,1)
@@ -50,4 +57,18 @@ func key_pressed():
 func _on_Name_pressed():
 	$Keyboard.visible = true
 	$Control/Profile/VBoxContainer/Name.visible = false
+	$Control/Players.visible = false
 	$Keyboard/Board.get_child(0).grab_focus()
+
+
+func _on_Invite_pressed():
+	
+	shareData.url += str(Global.cloudcode)
+	JavaScript.eval("""
+	var shareData = {
+	"title" : "JABOS Cloud Game Invite",
+	"text" : "Join a Game of JABOS!",
+	"url" : "https://robo0890.github.io/Just-A-Bunch-of-Squares/Join?code=""" + str(Global.cloudcode) + """"
+	}
+	navigator.share(shareData);
+	""")

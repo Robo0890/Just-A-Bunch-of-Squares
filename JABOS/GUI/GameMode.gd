@@ -89,4 +89,4 @@ func _on_Local_pressed():
 
 
 func _on_Cloud_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene("res://Cloud Game/Cloud Lobby.tscn")

@@ -79,45 +79,45 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxEmpty" id=11]
 
-[sub_resource type="DynamicFont" id=22]
+[sub_resource type="DynamicFont" id=12]
 size = 50
 outline_color = Color( 1, 0.996078, 0.996078, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxEmpty" id=12]
+[sub_resource type="StyleBoxEmpty" id=13]
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=14]
 size = 50
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxEmpty" id=14]
-
 [sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="StyleBoxEmpty" id=16]
 content_margin_top = 245.0
 
-[sub_resource type="DynamicFont" id=16]
+[sub_resource type="DynamicFont" id=17]
 size = 30
 outline_size = 2
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxFlat" id=17]
+[sub_resource type="StyleBoxFlat" id=18]
 bg_color = Color( 0, 0, 0, 0.498039 )
 corner_radius_bottom_right = 50
 corner_detail = 20
 expand_margin_right = 31.0
 
-[sub_resource type="DynamicFont" id=18]
+[sub_resource type="DynamicFont" id=19]
 size = 24
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxFlat" id=19]
+[sub_resource type="StyleBoxFlat" id=20]
 bg_color = Color( 0, 0.929412, 1, 1 )
 
-[sub_resource type="DynamicFont" id=20]
+[sub_resource type="DynamicFont" id=21]
 size = 30
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=21]
+[sub_resource type="DynamicFont" id=22]
 size = 200
 font_data = ExtResource( 2 )
 
@@ -750,7 +750,7 @@ margin_left = 354.384
 margin_top = 124.867
 margin_right = 450.384
 margin_bottom = 174.867
-custom_fonts/font = SubResource( 22 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Beta"
 __meta__ = {
@@ -832,10 +832,10 @@ margin_right = 444.0
 margin_bottom = 133.0
 custom_styles/hover = SubResource( 7 )
 custom_styles/pressed = SubResource( 8 )
-custom_styles/focus = SubResource( 12 )
+custom_styles/focus = SubResource( 13 )
 custom_styles/disabled = SubResource( 8 )
 custom_styles/normal = SubResource( 8 )
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
 text = "                              "
 __meta__ = {
 "_edit_use_anchors_": false
@@ -853,10 +853,10 @@ margin_right = 850.0
 margin_bottom = 133.0
 custom_styles/hover = SubResource( 7 )
 custom_styles/pressed = SubResource( 8 )
-custom_styles/focus = SubResource( 14 )
+custom_styles/focus = SubResource( 15 )
 custom_styles/disabled = SubResource( 8 )
 custom_styles/normal = SubResource( 8 )
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
 text = "                              "
 __meta__ = {
 "_edit_use_anchors_": false
@@ -872,8 +872,8 @@ texture = ExtResource( 5 )
 margin_top = 140.0
 margin_right = 824.0
 margin_bottom = 448.0
-custom_styles/normal = SubResource( 15 )
-custom_fonts/font = SubResource( 16 )
+custom_styles/normal = SubResource( 16 )
+custom_fonts/font = SubResource( 17 )
 custom_colors/font_outline_modulate = Color( 0.145098, 0.145098, 0.145098, 0.45098 )
 text = "Classic - Be the last one to fall victum to 
 	 the edge of the screen"
@@ -884,12 +884,12 @@ valign = 1
 visible = false
 margin_right = 97.0
 margin_bottom = 66.0
-custom_styles/hover = SubResource( 17 )
-custom_styles/pressed = SubResource( 17 )
-custom_styles/focus = SubResource( 17 )
-custom_styles/disabled = SubResource( 17 )
-custom_styles/normal = SubResource( 17 )
-custom_fonts/font = SubResource( 18 )
+custom_styles/hover = SubResource( 18 )
+custom_styles/pressed = SubResource( 18 )
+custom_styles/focus = SubResource( 18 )
+custom_styles/disabled = SubResource( 18 )
+custom_styles/normal = SubResource( 18 )
+custom_fonts/font = SubResource( 19 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Back"
 icon = ExtResource( 4 )
@@ -910,7 +910,7 @@ __meta__ = {
 [node name="Panel" type="Panel" parent="JoinGame"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 19 )
+custom_styles/panel = SubResource( 20 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -927,7 +927,7 @@ __meta__ = {
 margin_top = 156.0
 margin_right = 1024.0
 margin_bottom = 186.0
-custom_fonts/font = SubResource( 20 )
+custom_fonts/font = SubResource( 21 )
 custom_colors/font_color_shadow = Color( 0.729412, 0.729412, 0.729412, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 0
@@ -938,7 +938,7 @@ align = 1
 margin_top = 190.0
 margin_right = 1024.0
 margin_bottom = 390.0
-custom_fonts/font = SubResource( 21 )
+custom_fonts/font = SubResource( 22 )
 custom_colors/font_color_shadow = Color( 0.729412, 0.729412, 0.729412, 1 )
 custom_constants/shadow_offset_x = 6
 custom_constants/shadow_offset_y = 0
@@ -961,7 +961,7 @@ custom_styles/pressed = SubResource( 8 )
 custom_styles/focus = SubResource( 8 )
 custom_styles/disabled = SubResource( 8 )
 custom_styles/normal = SubResource( 8 )
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
 text = "Sure!"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -976,7 +976,7 @@ custom_styles/pressed = SubResource( 8 )
 custom_styles/focus = SubResource( 8 )
 custom_styles/disabled = SubResource( 8 )
 custom_styles/normal = SubResource( 8 )
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
 text = "Nope!"
 __meta__ = {
 "_edit_use_anchors_": false
