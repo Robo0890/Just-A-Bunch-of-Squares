@@ -10,7 +10,6 @@ onready var PlayerList = $Top_UI/Panel/VBoxContainer
 onready var PlayerReady = preload("res://GUI/GUI Pieces/Player_Ready.tscn")
 
 func _ready():
-	Options.hide()
 	for x in get_tree().get_nodes_in_group("Cloud_Only"):
 		x.visible = false
 

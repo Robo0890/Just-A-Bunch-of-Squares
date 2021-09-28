@@ -17,26 +17,14 @@ font_data = ExtResource( 5 )
 [sub_resource type="Animation" id=2]
 resource_name = "Options"
 tracks/0/type = "bezier"
-tracks/0/path = NodePath("Options:rect_position:x")
+tracks/0/path = NodePath("Options:rect_position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 1024, -0.25, 0, 0.02, -768.99, 200, -0.54, -7.40253, 0.33, 28.2619 ),
-"times": PoolRealArray( 0.1, 0.9 )
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Options:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, true ]
+"points": PoolRealArray( -600, -0.25, 0, 0.25, 0, 70, -0.97, 8.78192, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
 }
 
 [node name="GUI" type="Control"]
@@ -100,9 +88,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -312.0
-margin_top = -230.0
+margin_top = -900.0
 margin_right = 311.997
-margin_bottom = 230.0
+margin_bottom = -440.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -281,10 +269,10 @@ texture_normal = ExtResource( 8 )
 anims/Options = SubResource( 2 )
 
 [connection signal="pressed" from="Top_UI/Option_Button" to="." method="_on_Button_pressed"]
-[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click_select"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_on_GameType_item_selected"]
+[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click_select"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click"]
-[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click_select"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]
+[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click_select"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click"]
 [connection signal="pressed" from="Options/CenterContainer/TextureButton" to="." method="_on_TextureButton_pressed"]

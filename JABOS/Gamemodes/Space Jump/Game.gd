@@ -23,19 +23,27 @@ func start():
 		leaderboard_data[player.player_id] = {}
 
 func _physics_process(delta):
+	for player in Players:
+		player.gravity = 25
+	
 	match Level.game_state:
 		"Playing":
 			game_tick()
+		"End":
+			$Stars.gravity.x = 0
 
 func game_tick():
-	Level.Game_Camera.transform.origin.x += 8
+	var move = 0
+	for x in get_tree().get_nodes_in_group("Player"):
+		move += x.position.x - Level.Game_Camera.position.x
+		move = ((move / Level.player_count) / 100) + 32
+		Level.Game_Camera.position.x += (move/4) + (.0004 * Level.Game_Camera.position.x)
 	$Stars.position = Level.Game_Camera.position
-	$Stars.gravity.x = -8
+	$Stars.gravity.x = -move
 	
 	for player in Players:
 		if player.position.y >= 1200:
-			player.kill(false)
-			players_left -= 1
+			player.kill(true)
 			if players_left == 0:
 				leaderboard(player.player_id, "Winner", true)
 			else:
