@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+onready var Level = get_parent().get_parent()
 
 var player_id : int
 var spawnpoint = Vector2(0,0)

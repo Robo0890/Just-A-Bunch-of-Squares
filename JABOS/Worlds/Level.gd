@@ -22,10 +22,25 @@ onready var Classic = preload("res://Gamemodes/Classic/Game.tscn")
 
 func _ready():
 	change_gamemode("Classic")
+	var load_data = Save.load_data("jabos_profile")
+	if load_data.size() > 0:
+		print(load_data)
+		Profile.data = load_data
+	else:
+		Profile.clear()
+		
 
 func _physics_process(delta):
 	match game_state:
 		"Lobby":
+			for player in $Manager.get_children():
+				if player.position.y >= 1200:
+					player.kill(true, true)
+			
+			if GUI.is_shop_visible:
+				$Camera.position = lerp($Camera.position, Vector2(1024,300), .1)
+			else:
+				$Camera.position = lerp($Camera.position, Vector2(512,300), .1)
 			$Camera.zoom = lerp($Camera.zoom, Vector2(1,1), .1)
 			if ready_players.size() == $Manager.get_child_count() and $Manager.get_child_count() != 0:
 				game_start()
@@ -63,8 +78,17 @@ func change_gamemode(new_gamemode : String):
 	add_child(Game)
 
 func reset():
+	for card in $Control/GUI/Leaderboard/Cards.get_children():
+		card.set_script(null)
+	Save.save_data(Profile.data, "jabos_profile")
 	is_resetting = true
 	$Reset_Timer.start(1)
 
 func _on_Reset_Timer_timeout():
+	for Player in $Manager.get_children():
+		InputMap.erase_action("p" + str(Player.player_id) + "jump")
+		InputMap.erase_action("p" + str(Player.player_id) + "ready")
+		InputMap.erase_action("p" + str(Player.player_id) + "movement_left")
+		InputMap.erase_action("p" + str(Player.player_id) + "movement_right")
+		InputMap.erase_action("p" + str(Player.player_id) + "flip")
 	get_tree().change_scene("res://Worlds/Level.tscn")

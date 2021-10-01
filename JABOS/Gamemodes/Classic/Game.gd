@@ -10,6 +10,7 @@ var leaderboard_data = {}
 
 var is_singleplayer = false
 
+
 func _ready():
 	$Level_Genorator.gamemode = "Classic"
 
@@ -42,8 +43,9 @@ func game_tick():
 	#Move the game camera
 	var move = 0
 	for x in get_tree().get_nodes_in_group("Player"):
-		move += x.position.x - Level.Game_Camera.position.x
-		move = ((move / Level.player_count) / 100) + 32
+		if x.active:
+			move += x.position.x - Level.Game_Camera.position.x
+			move = (move / Level.player_count) / 100 + 32
 	Level.Game_Camera.position.x += (move/4) + (.0002 * Level.Game_Camera.position.x)
 
 	#For each player, check if they have gone off screen
@@ -68,6 +70,9 @@ func game_tick():
 		leaderboard(player.player_id, "Falls", player.falls)
 		leaderboard(player.player_id, "Jumps", player.jump_count)
 		leaderboard(player.player_id, "Main", format_time(player.time))
+# warning-ignore:integer_division
+		leaderboard(player.player_id, "Ruby", int(player.time) / 2)
+		leaderboard(player.player_id, "XP", int(player.time) * 2)
 
 		#If all players are dead, end the game
 		if players_left == 0:
@@ -104,6 +109,7 @@ func format_time(input_seconds):
 	var minutes = str(int(input_seconds) / 60)
 	var seconds = str(int(input_seconds - (int(minutes) * 60)))
 	var miliseconds = str(int((input_seconds - int(seconds)) * 100))
+	miliseconds =  str(int(miliseconds) - int(minutes))
 	
 	if int(seconds) < 10:
 		seconds = "0" + seconds

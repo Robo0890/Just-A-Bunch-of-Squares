@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://GUI/Fonts/MomcakeBold-WyonA.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/checkmark.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=4]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/buttonA.png" type="Texture" id=5]
 [ext_resource path="res://GUI/GUI Pieces/Player_Card.gd" type="Script" id=6]
+[ext_resource path="res://GUI/Icons/customicons/x1/ruby.png" type="Texture" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.588235 )
@@ -28,7 +29,26 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.319318 ), -1.83695, 0.0
 
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.205298, 1 )
-colors = PoolColorArray( 1, 0.843137, 0, 0, 1, 0.843137, 0, 1, 1, 1, 1, 0 )
+colors = PoolColorArray( 1, 1, 1, 0, 0.0823529, 0.956863, 0.00784314, 1, 1, 1, 1, 0 )
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.205298, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.205298, 1 )
+colors = PoolColorArray( 0.992188, 1, 0, 0, 0.796875, 0.597656, 0, 1, 1, 1, 1, 0 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 0, 0, 0.588235 )
+border_color = Color( 0, 0, 0, 0.780392 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+expand_margin_left = 12.0
+expand_margin_right = 12.0
 
 [node name="Player0" type="Panel"]
 margin_right = 175.0
@@ -119,20 +139,81 @@ __meta__ = {
 }
 
 [node name="Particles" type="Node2D" parent="."]
-visible = false
 position = Vector2( 87, 150 )
 
-[node name="Gold" type="CPUParticles2D" parent="Particles"]
-z_index = -1
-amount = 30
-lifetime = 2.0
-preprocess = 10.0
+[node name="XP" type="CPUParticles2D" parent="Particles"]
+position = Vector2( 0, 250 )
+z_index = 1
+emitting = false
+amount = 10
+one_shot = true
 emission_shape = 2
-emission_rect_extents = Vector2( 58, 100 )
+emission_rect_extents = Vector2( 58, 10 )
 direction = Vector2( 0, 0 )
-gravity = Vector2( 0, 10 )
-angular_velocity = 5.0
-tangential_accel = 40.0
+gravity = Vector2( 0, -50 )
 scale_amount = 15.0
 scale_amount_curve = SubResource( 4 )
 color_ramp = SubResource( 5 )
+
+[node name="Rubies" type="CPUParticles2D" parent="Particles"]
+position = Vector2( 0, 198.343 )
+z_index = 1
+emitting = false
+amount = 5
+one_shot = true
+texture = ExtResource( 7 )
+emission_shape = 2
+emission_rect_extents = Vector2( 58, 10 )
+direction = Vector2( 0, 0 )
+gravity = Vector2( 0, -50 )
+linear_accel = 93.62
+scale_amount_curve = SubResource( 4 )
+color_ramp = SubResource( 6 )
+
+[node name="Gold" type="CPUParticles2D" parent="Particles"]
+position = Vector2( 1.5874, -165.033 )
+z_index = -1
+amount = 10
+emission_shape = 2
+emission_rect_extents = Vector2( 58, 10 )
+direction = Vector2( 0, 0 )
+gravity = Vector2( 0, -50 )
+scale_amount = 15.0
+scale_amount_curve = SubResource( 4 )
+color_ramp = SubResource( 7 )
+
+[node name="Rewards" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = 172.0
+margin_right = 48.0
+margin_bottom = 278.0
+custom_constants/separation = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rubies" type="Button" parent="Rewards"]
+margin_right = 96.0
+margin_bottom = 50.0
+custom_styles/normal = SubResource( 8 )
+custom_colors/font_color = Color( 0.0784314, 1, 0, 1 )
+text = "+10"
+icon = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XP" type="Button" parent="Rewards"]
+margin_top = 62.0
+margin_right = 96.0
+margin_bottom = 97.0
+custom_styles/normal = SubResource( 8 )
+custom_colors/font_color = Color( 0.0823529, 0.956863, 0.00784314, 1 )
+text = "XP +10"
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -17,6 +17,8 @@ config/icon="res://Images/Face.png"
 [autoload]
 
 UIAudio="*res://GUI/Audio/UI_Audio.tscn"
+Save="*res://Important Scripts/Save.gd"
+Profile="*res://Important Scripts/Profile.gd"
 
 [debug]
 

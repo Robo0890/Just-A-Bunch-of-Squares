@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=1]
 [ext_resource path="res://GUI/Icons/gameicons-expansion/PNG/White/1x/cloud.png" type="Texture" id=2]
@@ -14,17 +14,54 @@
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/arrowRight.png" type="Texture" id=12]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/arrowLeft.png" type="Texture" id=13]
 [ext_resource path="res://GUI/Mobile/Mobile Contoller.gd" type="Script" id=14]
+[ext_resource path="res://Gamemodes/Classic/Images/Icon.png" type="Texture" id=15]
+[ext_resource path="res://GUI/Icons/customicons/x1/ruby.png" type="Texture" id=16]
+[ext_resource path="res://Images/Face.png" type="Texture" id=17]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.319318 ), -1.83695, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.205298, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 0, 1, 0.0683594, 1, 1, 1, 1, 0 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0, 0, 0, 0.588235 )
 corner_radius_bottom_right = 10
 corner_detail = 20
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 0.588235 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0, 0, 0, 0.588235 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+
+[sub_resource type="DynamicFont" id=7]
 size = 23
 font_data = ExtResource( 5 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=8]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Options:rect_position:y")
 tracks/0/interp = 1
@@ -36,6 +73,9 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 )
 }
 
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 512, 300 )
+
 [node name="GUI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -43,6 +83,145 @@ margin_top = 0.44545
 margin_bottom = 0.445435
 theme = ExtResource( 1 )
 script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Leaderboard" type="MarginContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cards" type="GridContainer" parent="Leaderboard"]
+margin_left = 512.0
+margin_top = 300.0
+margin_right = 512.0
+margin_bottom = 300.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/vseparation = 30
+custom_constants/hseparation = 45
+columns = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Leaderboard"]
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="Profile" type="HBoxContainer" parent="Leaderboard/Control"]
+anchor_right = 1.0
+margin_bottom = 50.0
+custom_constants/separation = 50
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Profile" type="Panel" parent="Leaderboard/Control/Profile"]
+margin_left = 179.0
+margin_right = 679.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 500, 0 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Leaderboard/Control/Profile/Profile"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 12.0
+margin_bottom = -12.0
+custom_constants/separation = 26
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Leaderboard/Control/Profile/Profile/HBoxContainer"]
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+
+[node name="TextureRect" type="TextureRect" parent="Leaderboard/Control/Profile/Profile/HBoxContainer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="Leaderboard/Control/Profile/Profile/HBoxContainer"]
+margin_left = 56.0
+margin_right = 456.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 400, 0 )
+size_flags_vertical = 1
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+value = 23.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level" type="Control" parent="Leaderboard/Control/Profile/Profile/HBoxContainer/ProgressBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Leaderboard/Control/Profile/Profile/HBoxContainer/ProgressBar/Level"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Level 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XP" type="Label" parent="Leaderboard/Control/Profile/Profile/HBoxContainer/ProgressBar/Level"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "XP 13/100"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XP" type="CPUParticles2D" parent="Leaderboard/Control/Profile/Profile/HBoxContainer/ProgressBar"]
+visible = false
+position = Vector2( -11.4686, 13.1174 )
+z_index = 1
+lifetime = 2.0
+speed_scale = 2.0
+emission_shape = 2
+emission_rect_extents = Vector2( 0, 10 )
+direction = Vector2( 0, 0 )
+gravity = Vector2( 50, 0 )
+scale_amount = 15.0
+scale_amount_curve = SubResource( 1 )
+color_ramp = SubResource( 2 )
+
+[node name="Button" type="Button" parent="Leaderboard/Control/Profile/Profile"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rubies" type="Button" parent="Leaderboard/Control/Profile"]
+margin_left = 729.0
+margin_right = 844.0
+margin_bottom = 50.0
+text = "230"
+icon = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -56,7 +235,7 @@ __meta__ = {
 
 [node name="Panel" type="Panel" parent="Top_UI"]
 margin_right = 294.0
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -86,8 +265,10 @@ texture = ExtResource( 10 )
 [node name="Option_Button" type="Button" parent="Top_UI"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -169.0
+margin_left = -179.0
 margin_bottom = 50.0
+custom_styles/hover = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
 text = "Options"
 icon = ExtResource( 7 )
 __meta__ = {
@@ -262,8 +443,10 @@ margin_top = 58.0
 margin_right = 550.0
 margin_bottom = 103.0
 text = "Classic"
+icon = ExtResource( 15 )
 align = 1
-items = [ "Classic", null, false, 0, null, "Floor Is Lava", null, true, 1, null, "Space Jump", null, true, 2, null ]
+expand_icon = true
+items = [ "Classic", ExtResource( 15 ), false, 0, null ]
 selected = 0
 
 [node name="Power-Ups" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
@@ -278,7 +461,7 @@ margin_left = 270.0
 margin_top = 111.0
 margin_right = 550.0
 margin_bottom = 156.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0.521569, 0.521569, 0.521569, 1 )
 custom_colors/font_color_hover = Color( 0.521569, 0.521569, 0.521569, 1 )
 text = "Comming Soon"
@@ -362,35 +545,30 @@ margin_right = 50.0
 margin_bottom = 50.0
 texture_normal = ExtResource( 8 )
 
-[node name="Leaderboard" type="MarginContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cards" type="GridContainer" parent="Leaderboard"]
-margin_left = 512.0
-margin_top = 300.0
-margin_right = 512.0
-margin_bottom = 300.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-custom_constants/vseparation = 30
-custom_constants/hseparation = 45
-columns = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Options = SubResource( 3 )
+anims/Options = SubResource( 8 )
+
+[node name="Mobile Detection" type="TouchScreenButton" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+shape = SubResource( 9 )
 
 [connection signal="pressed" from="Top_UI/Option_Button" to="." method="_on_Button_pressed"]
-[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_on_GameType_item_selected"]
+[connection signal="button_down" from="Bottom_UI/Mobile Contoller/Buttons/Left/Left" to="Bottom_UI/Mobile Contoller" method="_on_Left_button_down"]
+[connection signal="button_up" from="Bottom_UI/Mobile Contoller/Buttons/Left/Left" to="Bottom_UI/Mobile Contoller" method="_on_Left_button_up"]
+[connection signal="button_down" from="Bottom_UI/Mobile Contoller/Buttons/Left/Right" to="Bottom_UI/Mobile Contoller" method="_on_Right_button_down"]
+[connection signal="button_up" from="Bottom_UI/Mobile Contoller/Buttons/Left/Right" to="Bottom_UI/Mobile Contoller" method="_on_Right_button_up"]
+[connection signal="button_down" from="Bottom_UI/Mobile Contoller/Buttons/Right/Ready" to="Bottom_UI/Mobile Contoller" method="_on_Ready_button_down"]
+[connection signal="button_up" from="Bottom_UI/Mobile Contoller/Buttons/Right/Ready" to="Bottom_UI/Mobile Contoller" method="_on_Ready_button_up"]
+[connection signal="button_down" from="Bottom_UI/Mobile Contoller/Buttons/Right/Jump" to="Bottom_UI/Mobile Contoller" method="_on_Jump_button_down"]
+[connection signal="button_up" from="Bottom_UI/Mobile Contoller/Buttons/Right/Jump" to="Bottom_UI/Mobile Contoller" method="_on_Jump_button_up"]
+[connection signal="mouse_entered" from="Bottom_UI/Mobile Contoller/Buttons/Flip" to="Bottom_UI/Mobile Contoller" method="_on_Flip_mouse_entered"]
+[connection signal="mouse_exited" from="Bottom_UI/Mobile Contoller/Buttons/Flip" to="Bottom_UI/Mobile Contoller" method="_on_Flip_mouse_exited"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click_select"]
+[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_on_GameType_item_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click"]
-[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click_select"]
+[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click"]
 [connection signal="pressed" from="Options/CenterContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Mobile Detection" to="." method="_on_Mobile_Detection_pressed"]
