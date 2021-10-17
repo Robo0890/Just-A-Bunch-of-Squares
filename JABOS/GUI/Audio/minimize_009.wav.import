@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/minimize_009.wav-31f96a2f537c6e34e766512a622349de.sample"
+
+[deps]
+
+source_file="res://GUI/Audio/minimize_009.wav"
+dest_files=[ "res://.import/minimize_009.wav-31f96a2f537c6e34e766512a622349de.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

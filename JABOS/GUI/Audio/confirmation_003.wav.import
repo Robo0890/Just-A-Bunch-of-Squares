@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/confirmation_003.wav-06d5cd23b0857b2f76d6605be2afb6c0.sample"
+
+[deps]
+
+source_file="res://GUI/Audio/confirmation_003.wav"
+dest_files=[ "res://.import/confirmation_003.wav-06d5cd23b0857b2f76d6605be2afb6c0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/toggle_001.wav-c4b5c06b18d5831521ce02f9489eb021.sample"
+
+[deps]
+
+source_file="res://GUI/Audio/toggle_001.wav"
+dest_files=[ "res://.import/toggle_001.wav-c4b5c06b18d5831521ce02f9489eb021.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

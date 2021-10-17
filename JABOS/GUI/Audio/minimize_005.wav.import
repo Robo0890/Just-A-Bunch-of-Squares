@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/minimize_005.wav-c3d4a317cfa90757a7a429692fd58622.sample"
+
+[deps]
+
+source_file="res://GUI/Audio/minimize_005.wav"
+dest_files=[ "res://.import/minimize_005.wav-c3d4a317cfa90757a7a429692fd58622.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/switch_003.wav-4b44dd0a25075524df4ed584e7b564a4.sample"
+
+[deps]
+
+source_file="res://GUI/Audio/switch_003.wav"
+dest_files=[ "res://.import/switch_003.wav-4b44dd0a25075524df4ed584e7b564a4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/error_003.wav-c0ac067126a6c4847f12d93d99d7ecb4.sample"
+
+[deps]
+
+source_file="res://GUI/Audio/error_003.wav"
+dest_files=[ "res://.import/error_003.wav-c0ac067126a6c4847f12d93d99d7ecb4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

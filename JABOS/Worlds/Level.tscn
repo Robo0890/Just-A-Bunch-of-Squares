@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Important Scripts/Manager.gd" type="Script" id=2]
+[ext_resource path="res://Worlds/Level.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 173, 24 )
+
+[node name="Level" type="Node"]
+script = ExtResource( 3 )
+
+[node name="Course" type="StaticBody2D" parent="."]
+position = Vector2( 512, 360 )
+scale = Vector2( 2, 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Course"]
+position = Vector2( 0, 58 )
+shape = SubResource( 1 )
+
+[node name="Manager" type="Node2D" parent="."]
+position = Vector2( 512, 0 )
+script = ExtResource( 2 )
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 512, 300 )
+current = true
+
+[node name="Control" type="Control" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GUI" parent="Control" instance=ExtResource( 1 )]
+rect_pivot_offset = Vector2( 512, 300 )

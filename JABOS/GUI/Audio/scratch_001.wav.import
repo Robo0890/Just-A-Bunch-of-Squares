@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/scratch_001.wav-3e39e1ef208c2de586cd5037a317bde1.sample"
+
+[deps]
+
+source_file="res://GUI/Audio/scratch_001.wav"
+dest_files=[ "res://.import/scratch_001.wav-3e39e1ef208c2de586cd5037a317bde1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
