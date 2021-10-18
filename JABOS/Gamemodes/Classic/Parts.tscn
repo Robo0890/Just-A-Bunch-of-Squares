@@ -1,0 +1,146 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Level Builder/End.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 400, 40 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 731.521, 40 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 300, 300 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 40, 40 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 318.941, 40 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 318.941, 320.617 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 318.941, 44.4096 )
+
+[node name="Parts" type="Node2D"]
+
+[node name="Part0" type="Node2D" parent="."]
+visible = false
+
+[node name="Box1" type="CollisionShape2D" parent="Part0"]
+position = Vector2( 400.025, 0 )
+shape = SubResource( 1 )
+
+[node name="Box2" type="CollisionShape2D" parent="Part0"]
+position = Vector2( 1742.09, 0 )
+shape = SubResource( 1 )
+
+[node name="Box3" type="CollisionShape2D" parent="Part0"]
+position = Vector2( -908.41, 171.543 )
+shape = SubResource( 1 )
+
+[node name="End" parent="Part0" instance=ExtResource( 1 )]
+position = Vector2( 2191.01, -126.047 )
+
+[node name="Part1" type="Node2D" parent="."]
+visible = false
+
+[node name="Box1" type="CollisionShape2D" parent="Part1"]
+position = Vector2( 400.025, 0 )
+shape = SubResource( 1 )
+
+[node name="Box2" type="CollisionShape2D" parent="Part1"]
+position = Vector2( 1742.09, 0 )
+shape = SubResource( 1 )
+
+[node name="End" parent="Part1" instance=ExtResource( 1 )]
+position = Vector2( 2184.28, -146.228 )
+
+[node name="Part2" type="Node2D" parent="."]
+visible = false
+
+[node name="Box1" type="CollisionShape2D" parent="Part2"]
+position = Vector2( 400.025, -3.05176e-05 )
+shape = SubResource( 1 )
+
+[node name="Box2" type="CollisionShape2D" parent="Part2"]
+position = Vector2( 1452.35, -264.447 )
+shape = SubResource( 2 )
+
+[node name="Box3" type="CollisionShape2D" parent="Part2"]
+position = Vector2( 2390.71, -3.05176e-05 )
+shape = SubResource( 1 )
+
+[node name="End" parent="Part2" instance=ExtResource( 1 )]
+position = Vector2( 2854.84, -113.316 )
+
+[node name="Part3" type="Node2D" parent="."]
+visible = false
+
+[node name="Box1" type="CollisionShape2D" parent="Part3"]
+position = Vector2( 400.025, 207.339 )
+shape = SubResource( 1 )
+
+[node name="Box2" type="CollisionShape2D" parent="Part3"]
+position = Vector2( 1382.51, 181.002 )
+shape = SubResource( 3 )
+
+[node name="Box3" type="CollisionShape2D" parent="Part3"]
+position = Vector2( 2301.81, -72.0436 )
+shape = SubResource( 1 )
+
+[node name="End" parent="Part3" instance=ExtResource( 1 )]
+position = Vector2( 2743.72, -141.889 )
+
+[node name="Part4" type="Node2D" parent="."]
+visible = false
+
+[node name="Box1" type="CollisionShape2D" parent="Part4"]
+position = Vector2( 41.2725, 130.167 )
+shape = SubResource( 4 )
+
+[node name="Box2" type="CollisionShape2D" parent="Part4"]
+position = Vector2( 561.94, 130.167 )
+shape = SubResource( 4 )
+
+[node name="Box3" type="CollisionShape2D" parent="Part4"]
+position = Vector2( 1060.38, 130.167 )
+shape = SubResource( 4 )
+
+[node name="End" parent="Part4" instance=ExtResource( 1 )]
+position = Vector2( 1145.23, 28.5732 )
+
+[node name="Part5" type="Node2D" parent="."]
+visible = false
+
+[node name="Box1" type="CollisionShape2D" parent="Part5"]
+position = Vector2( 574.639, 488.919 )
+shape = SubResource( 4 )
+
+[node name="Box2" type="CollisionShape2D" parent="Part5"]
+position = Vector2( 1095.31, 488.919 )
+shape = SubResource( 4 )
+
+[node name="Box3" type="CollisionShape2D" parent="Part5"]
+position = Vector2( 1593.75, 488.919 )
+shape = SubResource( 4 )
+
+[node name="Box4" type="CollisionShape2D" parent="Part5"]
+position = Vector2( 320.655, 28.5732 )
+shape = SubResource( 5 )
+
+[node name="Box5" type="CollisionShape2D" parent="Part5"]
+position = Vector2( 1133.4, -98.4189 )
+shape = SubResource( 6 )
+
+[node name="Box6" type="CollisionShape2D" parent="Part5"]
+position = Vector2( 1664.32, -184.429 )
+shape = SubResource( 7 )
+
+[node name="Box7" type="CollisionShape2D" parent="Part5"]
+position = Vector2( 2209.22, 222.565 )
+shape = SubResource( 7 )
+
+[node name="End" parent="Part5" instance=ExtResource( 1 )]
+position = Vector2( 2574.76, 132.844 )

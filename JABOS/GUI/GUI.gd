@@ -23,6 +23,8 @@ func _physics_process(delta):
 		"Lobby":
 			$Top_UI/Panel.show()
 			$Top_UI/Option_Button.show()
+		"End":
+			pass
 	
 
 func player_join(player):

@@ -7,21 +7,22 @@ var active_players = []
 var connected_devices = []
 
 func _input(event):
-	if event.is_action("join"):
-		if event is InputEventKey:
-			if !connected_devices.has("keyboard1") and event.scancode == KEY_W:
-				connected_devices.append("keyboard1")
-				add_player(active_players.size(), "Keyboard1")
-				
-			if !connected_devices.has("keyboard2") and event.scancode == KEY_UP:
-				connected_devices.append("keyboard2")
-				add_player(active_players.size(), "Keyboard2")
-				
-		elif event is InputEventJoypadButton:
-			if !connected_devices.has("Gamepad:" + str(event.device)):
-				connected_devices.append("Gamepad:" + str(event.device))
-				add_player(active_players.size(), "Gamepad:" + str(event.device))
-		
+	if Level.game_state == "Lobby":
+		if event.is_action("join"):
+			if event is InputEventKey:
+				if !connected_devices.has("keyboard1") and event.scancode == KEY_W:
+					connected_devices.append("keyboard1")
+					add_player(active_players.size(), "Keyboard1")
+					
+				if !connected_devices.has("keyboard2") and event.scancode == KEY_UP:
+					connected_devices.append("keyboard2")
+					add_player(active_players.size(), "Keyboard2")
+					
+			elif event is InputEventJoypadButton:
+				if !connected_devices.has("Gamepad:" + str(event.device)):
+					connected_devices.append("Gamepad:" + str(event.device))
+					add_player(active_players.size(), "Gamepad:" + str(event.device))
+			
 
 func add_player(id, device):
 	active_players.append(id)

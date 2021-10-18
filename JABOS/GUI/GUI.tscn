@@ -281,10 +281,10 @@ texture_normal = ExtResource( 8 )
 anims/Options = SubResource( 2 )
 
 [connection signal="pressed" from="Top_UI/Option_Button" to="." method="_on_Button_pressed"]
-[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_on_GameType_item_selected"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click_select"]
+[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_on_GameType_item_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click"]
-[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click_select"]
+[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click"]
 [connection signal="pressed" from="Options/CenterContainer/TextureButton" to="." method="_on_TextureButton_pressed"]

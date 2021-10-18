@@ -80,9 +80,10 @@ func process_input():
 	if Input.is_action_pressed("p" + str(player_id) + "jump") and jumps != 0:
 		jump()
 		jumps -= 1
-	elif !is_on_floor():
+	elif !is_on_floor() and !is_on_ceiling():
 		velocity.y += gravity
 	else:
+		spawnpoint = position
 		velocity.y = 0
 		jumps = max_jumps
 	
