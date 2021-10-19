@@ -1,19 +1,34 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Gamemodes/Classic/Game.gd" type="Script" id=1]
 [ext_resource path="res://Important Scripts/Level_Genorator.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Images/Beta.png" type="Texture" id=3]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.00653595 )
+colors = PoolColorArray( 0.24939, 0.826969, 0.886719, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
 [node name="Game" type="Node2D" groups=[
 "Game",
 ]]
 script = ExtResource( 1 )
 
+[node name="Edge" type="Node2D" parent="."]
+position = Vector2( 0, 300 )
+
+[node name="Sprite" type="Sprite" parent="Edge"]
+texture = ExtResource( 3 )
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="BG" type="ColorRect" parent="ParallaxBackground"]
+[node name="BG" type="TextureRect" parent="ParallaxBackground"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0.905882, 1, 1 )
+texture = SubResource( 2 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

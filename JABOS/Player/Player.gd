@@ -30,17 +30,20 @@ func _ready():
 		add_input_map(InputEventKey, "movement_left", KEY_A)
 		add_input_map(InputEventKey, "movement_right", KEY_D)
 		add_input_map(InputEventKey, "ready", KEY_R)
+		add_input_map(InputEventKey, "flip", KEY_SHIFT)
 	if device_type == "Keyboard2":
 		add_input_map(InputEventKey, "jump", KEY_UP)
 		add_input_map(InputEventKey, "movement_left", KEY_LEFT)
 		add_input_map(InputEventKey, "movement_right", KEY_RIGHT)
-		add_input_map(InputEventKey, "ready", KEY_END)
+		add_input_map(InputEventKey, "ready", KEY_PERIOD)
+		add_input_map(InputEventKey, "flip", KEY_BACKSLASH)
 	
 	if device_type.split(":")[0] == "Gamepad":
 		add_input_map(InputEventJoypadButton, "jump", JOY_XBOX_A)
 		add_input_map(InputEventJoypadMotion, "movement_left", JOY_AXIS_0, -1.0)
 		add_input_map(InputEventJoypadMotion, "movement_right", JOY_AXIS_0, 1.0)
 		add_input_map(InputEventJoypadButton, "ready", JOY_XBOX_Y)
+		add_input_map(InputEventJoypadButton, "flip", JOY_R2)
 		
 func _physics_process(delta):
 	
@@ -82,7 +85,7 @@ func process_input():
 		jumps -= 1
 	elif !is_on_floor() and !is_on_ceiling():
 		velocity.y += gravity
-	else:
+	elif is_on_floor():
 		spawnpoint = position
 		velocity.y = 0
 		jumps = max_jumps
@@ -98,13 +101,21 @@ func process_input():
 	
 	if Input.is_action_just_pressed("p" + str(player_id) + "ready"):
 		ready = !ready
-
+	if Input.is_action_pressed("p" + str(player_id) + "flip") and is_on_ceiling():
+		flip()
+	
 func kill(is_respwan):
 	falls += 1
 	if is_respwan:
-		position = spawnpoint
+		position = spawnpoint + Vector2(0,-600)
 	else:
 		active = false
 		visible = false
 		
-
+func flip():
+	$CollisionShape.disabled = true
+	position.y -= 100
+	if is_on_floor():
+		flip()
+	else:
+		$CollisionShape.disabled = false

@@ -25,6 +25,7 @@ func start():
 func _physics_process(delta):
 	for player in Players:
 		player.gravity = 25
+		player.max_jumps = 2
 	
 	match Level.game_state:
 		"Playing":

@@ -9,4 +9,5 @@ extents = Vector2( 40, 40 )
 modulate = Color( 1, 0, 0, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
 shape = SubResource( 1 )

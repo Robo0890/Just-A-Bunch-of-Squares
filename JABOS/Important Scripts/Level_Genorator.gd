@@ -16,7 +16,7 @@ func _ready():
 func _physics_process(delta):
 	position = get_parent().Level.Game_Camera.transform.origin
 	$Course.position = Vector2(300,400) - position
-	
+
 	
 	
 func load_part(part):

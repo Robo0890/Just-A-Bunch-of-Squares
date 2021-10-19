@@ -24,6 +24,7 @@ func start():
 		leaderboard_data[player.player_id] = {}
 
 func _physics_process(delta):
+	$Edge.position = Level.Game_Camera.position - Vector2(get_viewport_rect().size.x + 50,0)
 	match Level.game_state:
 		"Playing":
 			game_tick()
@@ -39,6 +40,8 @@ func game_tick():
 	for player in Players:
 		if player.position.y >= 1200:
 			player.kill(true)
+		if player.position.x <= $Edge.global_position.x - 512:
+			player.kill(false)
 			players_left -= 1
 			if players_left == 0:
 				leaderboard(player.player_id, "Winner", true)
@@ -58,3 +61,9 @@ func end():
 func leaderboard(who : int, key : String, value):
 	leaderboard_data[who][key] = value
 
+
+
+func on_player_offscreen(body):
+	if body.is_in_group("Player") and Level.game_state == "Playing":
+		body.kill(false)
+		players_left -= 1
