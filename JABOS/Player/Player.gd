@@ -10,6 +10,12 @@ var velocity = Vector2(0,0)
 var jumpPower = 880
 var max_jumps = 1
 
+const DEFAULT_SPEED = 2
+const DEFAULT_GRAVITY = 39.29
+const DEFAULT_VELOCITY = Vector2(0,0)
+const DEFAULT_JUMPPOWER = 880
+const DEFAULT_MAX_JUMPS = 1
+
 var falls = 0
 var jump_count = 0
 var active = false
@@ -80,12 +86,14 @@ func jump():
 		jump_count += 1
 
 func process_input():
-	if Input.is_action_pressed("p" + str(player_id) + "jump") and jumps != 0:
+	
+	if Input.is_action_just_pressed("p" + str(player_id) + "jump") and jumps != 0:
 		jump()
 		jumps -= 1
-	elif !is_on_floor() and !is_on_ceiling():
+		
+	elif !is_on_floor():
 		velocity.y += gravity
-	elif is_on_floor():
+	else:
 		spawnpoint = position
 		velocity.y = 0
 		jumps = max_jumps
@@ -108,10 +116,21 @@ func kill(is_respwan):
 	falls += 1
 	if is_respwan:
 		position = spawnpoint + Vector2(0,-600)
+		respawn()
 	else:
 		active = false
 		visible = false
 		
+func respawn():
+	frozen = true
+	$CollisionShape.disabled = true
+	if position.distance_to(spawnpoint) < 10:
+		$CollisionShape.disabled = false
+		frozen = false
+	else:
+		
+		respawn()
+
 func flip():
 	$CollisionShape.disabled = true
 	position.y -= 100

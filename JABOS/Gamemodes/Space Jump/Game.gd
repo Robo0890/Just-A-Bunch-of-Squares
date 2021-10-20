@@ -18,14 +18,15 @@ func start():
 	
 	if players_left == 1:
 		is_singleplayer = true
-		
+	
 	for player in Players:
 		leaderboard_data[player.player_id] = {}
 
 func _physics_process(delta):
-	for player in Players:
-		player.gravity = 25
-		player.max_jumps = 2
+	$Edge.position = Level.Game_Camera.position - Vector2(get_viewport_rect().size.x + 50,0)
+	
+	set_player("gravity", 25)
+	set_player("max_jumps", 2)
 	
 	match Level.game_state:
 		"Playing":
@@ -45,6 +46,9 @@ func game_tick():
 	for player in Players:
 		if player.position.y >= 1200:
 			player.kill(true)
+		if player.position.x <= $Edge.global_position.x - 512:
+			player.kill(false)
+			players_left -= 1
 			if players_left == 0:
 				leaderboard(player.player_id, "Winner", true)
 			else:
@@ -63,3 +67,9 @@ func end():
 func leaderboard(who : int, key : String, value):
 	leaderboard_data[who][key] = value
 
+func set_player(what : String, to_what):
+	Players = get_tree().get_nodes_in_group("Player")
+	if to_what == null:
+		to_what = Players[0].get("DEFAULT_" + what.to_upper())
+	for player in Players:
+		player.set(what, to_what)

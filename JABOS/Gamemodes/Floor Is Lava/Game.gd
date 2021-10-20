@@ -20,6 +20,9 @@ func start():
 
 
 func _physics_process(delta):
+	set_player("gravity", null)
+	set_player("max_jumps", null)
+	
 	match Level.game_state:
 		"Playing":
 			for player in Players:
@@ -44,3 +47,9 @@ func _physics_process(delta):
 func leaderboard(who : int, key : String, value):
 	leaderboard_data[who][key] = value
 
+func set_player(what : String, to_what):
+	Players = get_tree().get_nodes_in_group("Player")
+	if to_what == null:
+		to_what = Players[0].get("DEFAULT_" + what.to_upper())
+	for player in Players:
+		player.set(what, to_what)

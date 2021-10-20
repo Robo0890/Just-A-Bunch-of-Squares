@@ -12,6 +12,9 @@ colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
 ]]
 script = ExtResource( 1 )
 
+[node name="Edge" type="Node2D" parent="."]
+position = Vector2( 0, 300 )
+
 [node name="Stars" type="CPUParticles2D" parent="."]
 z_index = -1
 amount = 100
