@@ -5,6 +5,8 @@ var ready_players = []
 var game_state = "Lobby"
 var gamemode = "Classic"
 
+var leaderboard_data = {}
+
 var player_count : int
 
 onready var Game_Object = get_tree().get_nodes_in_group("Game")[0]
@@ -12,8 +14,8 @@ onready var Game_Camera = $Camera
 
 onready var Game : Object
 onready var Classic = preload("res://Gamemodes/Classic/Game.tscn")
-onready var Floor_Is_Lava = preload("res://Gamemodes/Floor Is Lava/Game.tscn")
-onready var Space_Jump = preload("res://Gamemodes/Space Jump/Game.tscn")
+#onready var Floor_Is_Lava = preload("res://Gamemodes/Floor Is Lava/Game.tscn")
+#onready var Space_Jump = preload("res://Gamemodes/Space Jump/Game.tscn")
 
 func _ready():
 	change_gamemode("Classic")
@@ -42,6 +44,7 @@ func game_start():
 	
 func end_game(leaderboard : Dictionary):
 	print(leaderboard)
+	leaderboard_data = leaderboard
 	for x in $Manager.get_children():
 		x.active = false
 		x.frozen = true

@@ -26,14 +26,13 @@ extents = Vector2( 318.941, 44.4096 )
 [node name="Parts" type="Node2D"]
 
 [node name="Part0" type="Node2D" parent="."]
-visible = false
 
 [node name="Box1" type="CollisionShape2D" parent="Part0"]
-position = Vector2( 400.025, 0 )
+position = Vector2( 77.1212, -3.05176e-05 )
 shape = SubResource( 1 )
 
 [node name="Box2" type="CollisionShape2D" parent="Part0"]
-position = Vector2( 1742.09, 0 )
+position = Vector2( 1382.51, -3.05176e-05 )
 shape = SubResource( 1 )
 
 [node name="Box3" type="CollisionShape2D" parent="Part0"]
@@ -41,7 +40,7 @@ position = Vector2( -908.41, 171.543 )
 shape = SubResource( 1 )
 
 [node name="End" parent="Part0" instance=ExtResource( 1 )]
-position = Vector2( 2191.01, -126.047 )
+position = Vector2( 1817.65, -113.316 )
 
 [node name="Part1" type="Node2D" parent="."]
 visible = false

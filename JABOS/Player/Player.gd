@@ -21,12 +21,10 @@ var jump_count = 0
 var active = false
 var time = 0
 
+var is_respawning = false
 var frozen = false
-
 var device_type = "Cloud"
-
 var ready = false
-
 var jumps = 1
 
 func _ready():
@@ -52,6 +50,19 @@ func _ready():
 		add_input_map(InputEventJoypadButton, "flip", JOY_R2)
 		
 func _physics_process(delta):
+	if $FloorDetector.is_colliding():
+		if $FloorDetector.get_collider().name == "Course":
+			spawnpoint = position
+	
+	
+	if is_respawning:
+		$Sprite.modulate = Color(1,1,1,.2)
+		position.y += gravity
+		if position.distance_to(spawnpoint) <= 20:
+			$Sprite.modulate = Color.white
+			is_respawning = false
+			frozen = false
+			$CollisionShape.disabled = false
 	
 	if active:
 		time += .016
@@ -86,15 +97,12 @@ func jump():
 		jump_count += 1
 
 func process_input():
-	
 	if Input.is_action_just_pressed("p" + str(player_id) + "jump") and jumps != 0:
 		jump()
 		jumps -= 1
-		
 	elif !is_on_floor():
 		velocity.y += gravity
 	else:
-		spawnpoint = position
 		velocity.y = 0
 		jumps = max_jumps
 	
@@ -112,10 +120,10 @@ func process_input():
 	if Input.is_action_pressed("p" + str(player_id) + "flip") and is_on_ceiling():
 		flip()
 	
-func kill(is_respwan):
-	falls += 1
+func kill(is_respwan, add_fall = false):
+	if add_fall:
+		falls += 1
 	if is_respwan:
-		position = spawnpoint + Vector2(0,-600)
 		respawn()
 	else:
 		active = false
@@ -124,12 +132,8 @@ func kill(is_respwan):
 func respawn():
 	frozen = true
 	$CollisionShape.disabled = true
-	if position.distance_to(spawnpoint) < 10:
-		$CollisionShape.disabled = false
-		frozen = false
-	else:
-		
-		respawn()
+	is_respawning = true
+	position = spawnpoint + Vector2(0,-600)
 
 func flip():
 	$CollisionShape.disabled = true

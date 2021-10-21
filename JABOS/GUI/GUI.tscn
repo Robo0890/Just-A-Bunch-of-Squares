@@ -1,21 +1,30 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=1]
 [ext_resource path="res://GUI/Icons/gameicons-expansion/PNG/White/1x/cloud.png" type="Texture" id=2]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/gamepad.png" type="Texture" id=3]
 [ext_resource path="res://GUI/Fonts/Title_Font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://GUI/Fonts/MomcakeBold-WyonA.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/checkmark.png" type="Texture" id=6]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/menuList.png" type="Texture" id=7]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/cross.png" type="Texture" id=8]
 [ext_resource path="res://GUI/GUI.gd" type="Script" id=9]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/buttonA.png" type="Texture" id=10]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/up.png" type="Texture" id=11]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/arrowRight.png" type="Texture" id=12]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/arrowLeft.png" type="Texture" id=13]
+[ext_resource path="res://GUI/Mobile/Mobile Contoller.gd" type="Script" id=14]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0.588235 )
+corner_radius_bottom_right = 10
+corner_detail = 20
+
+[sub_resource type="DynamicFont" id=2]
 size = 23
 font_data = ExtResource( 5 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "Options"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Options:rect_position:y")
 tracks/0/interp = 1
@@ -30,6 +39,8 @@ tracks/0/keys = {
 [node name="GUI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = 0.44545
+margin_bottom = 0.445435
 theme = ExtResource( 1 )
 script = ExtResource( 9 )
 __meta__ = {
@@ -45,6 +56,7 @@ __meta__ = {
 
 [node name="Panel" type="Panel" parent="Top_UI"]
 margin_right = 294.0
+custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -82,6 +94,92 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Bottom_UI" type="Control" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mobile Contoller" type="Panel" parent="Bottom_UI"]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -100.0
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="Control" parent="Bottom_UI/Mobile Contoller"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Left" type="HBoxContainer" parent="Bottom_UI/Mobile Contoller/Buttons"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -50.0
+margin_right = 204.0
+margin_bottom = 50.0
+grow_horizontal = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="TextureButton" parent="Bottom_UI/Mobile Contoller/Buttons/Left"]
+margin_right = 100.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="TextureButton" parent="Bottom_UI/Mobile Contoller/Buttons/Left"]
+margin_left = 104.0
+margin_right = 204.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 12 )
+
+[node name="Right" type="HBoxContainer" parent="Bottom_UI/Mobile Contoller/Buttons"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -204.0
+margin_top = -50.0
+margin_bottom = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ready" type="TextureButton" parent="Bottom_UI/Mobile Contoller/Buttons/Right"]
+margin_right = 100.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 6 )
+
+[node name="Jump" type="TextureButton" parent="Bottom_UI/Mobile Contoller/Buttons/Right"]
+margin_left = 104.0
+margin_right = 204.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 11 )
+
+[node name="Flip" type="TextureButton" parent="Bottom_UI/Mobile Contoller/Buttons"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 412.0
+margin_top = -150.387
+margin_right = 512.0
+margin_bottom = -50.3866
+texture_normal = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Options" type="Panel" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -98,7 +196,6 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="Options"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 20.0
 custom_constants/separation = 15
 __meta__ = {
 "_edit_use_anchors_": false
@@ -119,7 +216,7 @@ margin_bottom = 60.0
 [node name="MarginContainer" type="MarginContainer" parent="Options/VBoxContainer"]
 margin_top = 75.0
 margin_right = 623.0
-margin_bottom = 470.0
+margin_bottom = 478.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_bottom = 214
@@ -127,7 +224,7 @@ custom_constants/margin_bottom = 214
 [node name="GridContainer" type="GridContainer" parent="Options/VBoxContainer/MarginContainer"]
 margin_left = 28.0
 margin_right = 594.0
-margin_bottom = 181.0
+margin_bottom = 189.0
 rect_min_size = Vector2( 566, 0 )
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -144,12 +241,12 @@ text = "Type:"
 
 [node name="GameType" type="OptionButton" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
 margin_left = 270.0
-margin_right = 564.0
+margin_right = 550.0
 margin_bottom = 50.0
 text = "Local"
 icon = ExtResource( 3 )
 align = 1
-items = [ "Local", ExtResource( 3 ), false, 0, null, "Cloud", ExtResource( 2 ), false, 1, null ]
+items = [ "Local", ExtResource( 3 ), false, 0, null, "Cloud", ExtResource( 2 ), true, 1, null ]
 selected = 0
 
 [node name="Mode" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
@@ -162,11 +259,11 @@ text = "Gamemode:"
 [node name="GameMode" type="OptionButton" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
 margin_left = 270.0
 margin_top = 58.0
-margin_right = 564.0
+margin_right = 550.0
 margin_bottom = 103.0
 text = "Classic"
 align = 1
-items = [ "Classic", null, false, 0, null, "Floor Is Lava", null, false, 1, null, "Space Jump", null, false, 2, null ]
+items = [ "Classic", null, false, 0, null, "Floor Is Lava", null, true, 1, null, "Space Jump", null, true, 2, null ]
 selected = 0
 
 [node name="Power-Ups" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
@@ -179,9 +276,9 @@ text = "Power-Ups:"
 [node name="PowerUps" type="Button" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
 margin_left = 270.0
 margin_top = 111.0
-margin_right = 564.0
+margin_right = 550.0
 margin_bottom = 156.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.521569, 0.521569, 0.521569, 1 )
 custom_colors/font_color_hover = Color( 0.521569, 0.521569, 0.521569, 1 )
 text = "Comming Soon"
@@ -239,17 +336,17 @@ __meta__ = {
 [node name="Blank" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
 margin_top = 164.0
 margin_right = 214.0
-margin_bottom = 181.0
+margin_bottom = 189.0
 
 [node name="Expander" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
 margin_left = 270.0
 margin_top = 164.0
-margin_right = 564.0
-margin_bottom = 181.0
+margin_right = 550.0
+margin_bottom = 189.0
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 0 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
-text = "45345345345345345345345345345sd554345345"
+text = "453453453453453453453453"
 
 [node name="CenterContainer" type="CenterContainer" parent="Options"]
 anchor_left = 1.0
@@ -265,12 +362,33 @@ margin_right = 50.0
 margin_bottom = 50.0
 texture_normal = ExtResource( 8 )
 
+[node name="Leaderboard" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cards" type="GridContainer" parent="Leaderboard"]
+margin_left = 512.0
+margin_top = 300.0
+margin_right = 512.0
+margin_bottom = 300.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/vseparation = 30
+custom_constants/hseparation = 45
+columns = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Options = SubResource( 2 )
+anims/Options = SubResource( 3 )
 
 [connection signal="pressed" from="Top_UI/Option_Button" to="." method="_on_Button_pressed"]
-[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_on_GameType_item_selected"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click_select"]
+[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_on_GameType_item_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click_select"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]

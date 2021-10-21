@@ -16,3 +16,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+
+[node name="FloorDetector" type="RayCast2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+enabled = true

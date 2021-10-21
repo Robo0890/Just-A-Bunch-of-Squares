@@ -28,8 +28,8 @@ func _physics_process(delta):
 	$Edge.position = Level.Game_Camera.position - Vector2(get_viewport_rect().size.x + 50,0)
 	
 	#Change the values of players
-	set_player("gravity", null)
-	set_player("max_jumps", null)
+	set_all_players("gravity", null)
+	set_all_players("max_jumps", null)
 	
 	match Level.game_state:
 		
@@ -45,39 +45,71 @@ func game_tick():
 	for x in get_tree().get_nodes_in_group("Player"):
 		move += x.position.x - Level.Game_Camera.position.x
 		move = ((move / Level.player_count) / 100) + 32
-	Level.Game_Camera.position.x += (move/4) + (.0001 * Level.Game_Camera.position.x)
+	Level.Game_Camera.position.x += (move/4) + (.0002 * Level.Game_Camera.position.x)
 
 	#For each player, check if they have gone off screen
 	for player in Players:
 		if player.position.y >= 1200:
-			player.kill(true)
+			player.kill(true, true)
 			
-		#Using the edge indicator from above
-		if player.position.x <= $Edge.global_position.x - 512:
-			player.kill(false)
+		#Using the edge indicator from above, determine wether a player is offscreen
+		if player.position.x <= $Edge.global_position.x - 512 and player.active:
+			player.kill(false) #Run kill() function on the offscreen player
 			players_left -= 1
+			
+			#If that player is the last one remaining:
 			if players_left == 0:
+				#Player is winner
 				leaderboard(player.player_id, "Winner", true)
 			else:
-				leaderboard(player.player_id, "Winner", true)
+				#Player did not win
+				leaderboard(player.player_id, "Winner", false)
 
+		#Update the leaderboard stats
 		leaderboard(player.player_id, "Falls", player.falls)
 		leaderboard(player.player_id, "Jumps", player.jump_count)
-		leaderboard(player.player_id, "Time", player.time)
+		leaderboard(player.player_id, "Main", format_time(player.time))
 
+		#If all players are dead, end the game
 		if players_left == 0:
 			end()
 
 func end():
+	#Tell the Level scene that the game is over
 	Level.end_game(leaderboard_data)
 
+#Set player leaderboard stat
 func leaderboard(who : int, key : String, value):
 	leaderboard_data[who][key] = value
 
-func set_player(what : String, to_what):
+#Set variable for all players
+func set_all_players(what : String, to_what):
 	Players = get_tree().get_nodes_in_group("Player")
 	if Players.size() > 0:
 		if to_what == null:
 			to_what = Players[0].get("DEFAULT_" + what.to_upper())
 		for player in Players:
 			player.set(what, to_what)
+
+#Get value of given player by id
+func get_player(id : int, what : String):
+	Players = get_tree().get_nodes_in_group("Player")
+	if Players.size() > 0:
+		for player in Players:
+			if player.player_id == id:
+				return player.get(what)
+
+#Format the number of seconds into minutes, seconds, and miliseconds (EX: 0:00:00)
+func format_time(input_seconds):
+	var minutes = str(int(input_seconds) / 60)
+	var seconds = str(int(input_seconds - (int(minutes) * 60)))
+	var miliseconds = str(int((input_seconds - int(seconds)) * 100))
+	
+	if int(seconds) < 10:
+		seconds = "0" + seconds
+	
+	return minutes + ":" + seconds + ":" + miliseconds
+
+#Get the current score of a player by their id
+func get_score(player):
+	return format_time(get_player(player, "time"))

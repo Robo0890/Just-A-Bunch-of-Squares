@@ -7,7 +7,8 @@ onready var Animator = $AnimationPlayer
 onready var NameBox = $Options/VBoxContainer/MarginContainer/GridContainer/LineEdit
 onready var PlayerList = $Top_UI/Panel/VBoxContainer
 
-onready var PlayerReady = preload("res://GUI/GUI Pieces/Player_Ready.tscn")
+onready var PlayerTag = preload("res://GUI/GUI Pieces/Player_Tag.tscn")
+onready var PlayerCard = preload("res://GUI/GUI Pieces/Player_Card.tscn")
 
 func _ready():
 	for x in get_tree().get_nodes_in_group("Cloud_Only"):
@@ -17,22 +18,39 @@ func _physics_process(delta):
 	$Top_UI/Panel.rect_size.y = (PlayerList.get_child_count() - 1) * 55
 	match Level.game_state:
 		"Playing":
-			$Top_UI/Panel.hide()
 			$Top_UI/Option_Button.hide()
+			$Top_UI/Panel/VBoxContainer/Join_Prompt.hide()
+			$Leaderboard.hide()
 		"Lobby":
 			$Top_UI/Panel.show()
 			$Top_UI/Option_Button.show()
+			$Top_UI/Panel/VBoxContainer/Join_Prompt.show()
 		"End":
-			pass
-	
+			$Top_UI/Panel.hide()
+			if !$Leaderboard.visible:
+				show_leaderboard()
+				$Leaderboard.show()
+			
+
+
 
 func player_join(player):
-	var p = PlayerReady.instance()
+	var p = PlayerTag.instance()
 	p.name = "Player_" + str(player.player_id)
-	p.player = player
+	p.Player = player
+	p.Level = Level
+	p.Game = Level.Game
 	PlayerList.add_child(p)
-	
 	PlayerList.move_child($Top_UI/Panel/VBoxContainer/Join_Prompt, PlayerList.get_child_count())
+
+func show_leaderboard():
+	for player in Level.Game.Players:
+		var c = PlayerCard.instance()
+		c.name = "Player" + str(player.player_id)
+		c.Player = player
+		c.Level = Level
+		c.data = Level.leaderboard_data[player.player_id]
+		$Leaderboard/Cards.add_child(c)
 
 func _on_TextureButton_pressed():
 	Animator.play_backwards("Options")

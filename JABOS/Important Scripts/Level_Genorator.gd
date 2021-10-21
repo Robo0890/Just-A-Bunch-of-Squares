@@ -20,7 +20,6 @@ func _physics_process(delta):
 	
 	
 func load_part(part):
-	print("loaded part " + str(part))
 	var p = Part.instance()
 	var boxes = p.get_node("Part" + str(part)).get_children()
 	for x in boxes:
