@@ -115,7 +115,7 @@ func process_input():
 		
 	velocity.x = (speed * 500) * (Input.get_action_strength("p" + str(player_id) + "movement_right") - Input.get_action_strength("p" + str(player_id) + "movement_left"))
 	
-	if Input.is_action_just_pressed("p" + str(player_id) + "ready"):
+	if Input.is_action_just_pressed("p" + str(player_id) + "ready") and get_parent().get_parent().game_state == "Lobby":
 		ready = !ready
 	if Input.is_action_pressed("p" + str(player_id) + "flip") and is_on_ceiling():
 		flip()

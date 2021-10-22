@@ -32,6 +32,8 @@ func _physics_process(delta):
 			
 		"End":
 			$Camera.zoom = lerp($Camera.zoom, Vector2(1,1), .1)
+			if ready_players.size() == 0:
+				get_tree().change_scene("res://Worlds/Level.tscn")
 
 func game_start():
 	player_count = $Manager.get_child_count()
