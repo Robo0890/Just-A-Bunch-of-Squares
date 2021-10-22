@@ -27,3 +27,5 @@ func _process(delta):
 		modulate = Color(1,1,1,.7)
 		$Ok.disabled = true
 		Level.ready_players.erase(Player.player_id)
+		InputMap.action_erase_events(("p" + str(Player.player_id) + "jump"))
+		print(Level.ready_players)

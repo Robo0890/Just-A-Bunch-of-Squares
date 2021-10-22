@@ -7,7 +7,7 @@
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/buttonA.png" type="Texture" id=5]
 [ext_resource path="res://GUI/GUI Pieces/Player_Card.gd" type="Script" id=6]
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.588235 )
 corner_radius_top_left = 25
 corner_radius_top_right = 25
@@ -17,7 +17,7 @@ corner_detail = 20
 expand_margin_left = 12.0
 expand_margin_right = 12.0
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 30
 font_data = ExtResource( 1 )
 
@@ -28,7 +28,7 @@ margin_right = 175.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 175, 300 )
 theme = ExtResource( 4 )
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -38,7 +38,7 @@ __meta__ = {
 anchor_right = 1.0
 margin_top = -30.0
 size_flags_horizontal = 2
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Winner!"
 align = 1
 __meta__ = {

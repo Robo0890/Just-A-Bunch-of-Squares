@@ -26,14 +26,14 @@ func _physics_process(delta):
 		"Lobby":
 			if ready_players.size() == $Manager.get_child_count() and $Manager.get_child_count() != 0:
 				game_start()
-
+				print(ready_players)
 		"Playing":
 			$Camera.zoom = lerp($Camera.zoom, Vector2(2,2), .1)
 			
 		"End":
 			$Camera.zoom = lerp($Camera.zoom, Vector2(1,1), .1)
 			if ready_players.size() == 0:
-				get_tree().change_scene("res://Worlds/Level.tscn")
+				reset()
 
 func game_start():
 	player_count = $Manager.get_child_count()
@@ -58,4 +58,7 @@ func change_gamemode(new_gamemode : String):
 	new_gamemode = new_gamemode.replace(" ", "_")
 	Game = get(new_gamemode).instance()
 	add_child(Game)
-	
+
+func reset():
+	yield(get_tree().create_timer(2),"timeout")
+	get_tree().change_scene("res://Worlds/Level.tscn")
