@@ -32,7 +32,6 @@ func _physics_process(delta):
 	set_all_players("max_jumps", null)
 	
 	match Level.game_state:
-		
 		"Playing": #If the game is playing, then run game_tick function
 			game_tick()
 
@@ -101,6 +100,7 @@ func get_player(id : int, what : String):
 
 #Format the number of seconds into minutes, seconds, and miliseconds (EX: 0:00:00)
 func format_time(input_seconds):
+	# warning-ignore:integer_division
 	var minutes = str(int(input_seconds) / 60)
 	var seconds = str(int(input_seconds - (int(minutes) * 60)))
 	var miliseconds = str(int((input_seconds - int(seconds)) * 100))

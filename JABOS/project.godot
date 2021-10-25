@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Just A Bunch of Squares"
-run/main_scene="res://Worlds/Level.tscn"
+run/main_scene="res://GUI/GUI Pieces/StartScreen.tscn"
 config/icon="res://Images/Face.png"
 
 [autoload]

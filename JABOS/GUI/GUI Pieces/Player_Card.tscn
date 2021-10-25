@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://GUI/Fonts/MomcakeBold-WyonA.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/checkmark.png" type="Texture" id=2]
@@ -22,6 +22,13 @@ size = 30
 font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.319318 ), -1.83695, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.205298, 1 )
+colors = PoolColorArray( 1, 0.843137, 0, 0, 1, 0.843137, 0, 1, 1, 1, 1, 0 )
 
 [node name="Player0" type="Panel"]
 margin_right = 175.0
@@ -110,3 +117,22 @@ stretch_mode = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Particles" type="Node2D" parent="."]
+visible = false
+position = Vector2( 87, 150 )
+
+[node name="Gold" type="CPUParticles2D" parent="Particles"]
+z_index = -1
+amount = 30
+lifetime = 2.0
+preprocess = 10.0
+emission_shape = 2
+emission_rect_extents = Vector2( 58, 100 )
+direction = Vector2( 0, 0 )
+gravity = Vector2( 0, 10 )
+angular_velocity = 5.0
+tangential_accel = 40.0
+scale_amount = 15.0
+scale_amount_curve = SubResource( 4 )
+color_ramp = SubResource( 5 )

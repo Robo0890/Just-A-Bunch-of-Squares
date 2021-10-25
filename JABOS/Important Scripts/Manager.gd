@@ -3,6 +3,7 @@ extends Node2D
 onready var Level = get_parent()
 onready var Player = preload("res://Player/Player.tscn")
 
+
 var active_players = []
 var connected_devices = []
 
@@ -31,11 +32,13 @@ func add_player(id, device):
 	new_player.device_type = device
 	add_child(new_player)
 	print("Added Player " + str(id) + " from device: " + str(device))
-	Level.get_child(3).get_child(0).player_join(new_player)
+	Level.GUI.player_join(new_player)
 
 func _physics_process(delta):
-	for x in get_children():
-		if x.ready and !Level.ready_players.has(x.player_id):
-			Level.ready_players.append(x.player_id)
-		if !x.ready and Level.ready_players.has(x.player_id):
-			Level.ready_players.erase(x.player_id)
+	match Level.game_state:
+		"Lobby":
+			for x in get_children():
+				if x.ready and !Level.ready_players.has(x.player_id):
+					Level.ready_players.append(x.player_id)
+				if !x.ready and Level.ready_players.has(x.player_id):
+					Level.ready_players.erase(x.player_id)

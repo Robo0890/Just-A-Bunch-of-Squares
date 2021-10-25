@@ -5,12 +5,15 @@ var ready_players = []
 var game_state = "Lobby"
 var gamemode = "Classic"
 
+var is_resetting = false
+
 var leaderboard_data = {}
 
 var player_count : int
 
 onready var Game_Object = get_tree().get_nodes_in_group("Game")[0]
 onready var Game_Camera = $Camera
+onready var GUI = $Control/GUI
 
 onready var Game : Object
 onready var Classic = preload("res://Gamemodes/Classic/Game.tscn")
@@ -21,18 +24,18 @@ func _ready():
 	change_gamemode("Classic")
 
 func _physics_process(delta):
-	
 	match game_state:
 		"Lobby":
+			$Camera.zoom = lerp($Camera.zoom, Vector2(1,1), .1)
 			if ready_players.size() == $Manager.get_child_count() and $Manager.get_child_count() != 0:
 				game_start()
-				print(ready_players)
 		"Playing":
 			$Camera.zoom = lerp($Camera.zoom, Vector2(2,2), .1)
 			
 		"End":
 			$Camera.zoom = lerp($Camera.zoom, Vector2(1,1), .1)
-			if ready_players.size() == 0:
+			$Camera.position = lerp($Camera.position, Vector2(512,300), .1)
+			if !is_resetting and ready_players.size() == $Manager.get_child_count() and $Manager.get_child_count() != 0:
 				reset()
 
 func game_start():
@@ -45,7 +48,7 @@ func game_start():
 		x.active = true
 	
 func end_game(leaderboard : Dictionary):
-	print(leaderboard)
+	ready_players = []
 	leaderboard_data = leaderboard
 	for x in $Manager.get_children():
 		x.active = false
@@ -60,5 +63,8 @@ func change_gamemode(new_gamemode : String):
 	add_child(Game)
 
 func reset():
-	yield(get_tree().create_timer(2),"timeout")
+	is_resetting = true
+	$Reset_Timer.start(1)
+
+func _on_Reset_Timer_timeout():
 	get_tree().change_scene("res://Worlds/Level.tscn")
