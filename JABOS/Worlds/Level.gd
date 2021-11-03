@@ -14,6 +14,7 @@ var player_count : int
 onready var Game_Object = get_tree().get_nodes_in_group("Game")[0]
 onready var Game_Camera = $Camera
 onready var GUI = $Control/GUI
+onready var Manager = $Manager
 
 onready var Game : Object
 onready var Classic = preload("res://Gamemodes/Classic/Game.tscn")
@@ -21,6 +22,8 @@ onready var Classic = preload("res://Gamemodes/Classic/Game.tscn")
 #onready var Space_Jump = preload("res://Gamemodes/Space Jump/Game.tscn")
 
 func _ready():
+	get_tree().debug_collisions_hint = true
+	
 	change_gamemode("Classic")
 	var load_data = Save.load_data("jabos_profile")
 	if load_data.size() > 0:

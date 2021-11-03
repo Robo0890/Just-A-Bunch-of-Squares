@@ -9,6 +9,9 @@ var data = {}
 var ready = false
 
 func _ready():
+	if Player.input_method == "Touch":
+		$Ok.texture_normal = load("res://GUI/Icons/gameicons/PNG/White/1x/up.png")
+	
 	$"MarginContainer/Info/Main Score".text = data.Main
 	$Winner.visible = data.Winner
 	$Particles/Gold.emitting = data.Winner

@@ -22,6 +22,7 @@ var jump_count = 0
 var active = false
 var time = 0
 
+var input_method = "Keyboard"
 var is_respawning = false
 var frozen = false
 var device_type = "Cloud"
@@ -42,6 +43,13 @@ func _ready():
 		add_input_map(InputEventKey, "movement_right", KEY_RIGHT)
 		add_input_map(InputEventKey, "ready", KEY_PERIOD)
 		add_input_map(InputEventKey, "flip", KEY_BACKSLASH)
+
+	if device_type == "Mobile":
+		add_input_map(InputEventKey, "jump", KEY_PAGEDOWN)
+		add_input_map(InputEventKey, "movement_left", KEY_PAGEDOWN)
+		add_input_map(InputEventKey, "movement_right", KEY_PAGEDOWN)
+		add_input_map(InputEventKey, "ready", KEY_PAGEDOWN)
+		add_input_map(InputEventKey, "flip", KEY_PAGEDOWN)
 	
 	if device_type.split(":")[0] == "Gamepad":
 		add_input_map(InputEventJoypadButton, "jump", JOY_XBOX_A)

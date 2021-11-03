@@ -13,26 +13,30 @@ func _input(event):
 			if event is InputEventKey:
 				if !connected_devices.has("keyboard1") and event.scancode == KEY_W:
 					connected_devices.append("keyboard1")
-					add_player(active_players.size(), "Keyboard1")
+					add_player(active_players.size(), "Keyboard1", "Keyboard")
 					
 				if !connected_devices.has("keyboard2") and event.scancode == KEY_UP:
 					connected_devices.append("keyboard2")
-					add_player(active_players.size(), "Keyboard2")
-					
+					add_player(active_players.size(), "Keyboard2", "Keyboard")
+
 			elif event is InputEventJoypadButton:
 				if !connected_devices.has("Gamepad:" + str(event.device)):
 					connected_devices.append("Gamepad:" + str(event.device))
-					add_player(active_players.size(), "Gamepad:" + str(event.device))
+					add_player(active_players.size(), "Gamepad:" + str(event.device), "Gamepad")
+					
+	
 			
 
-func add_player(id, device):
+func add_player(id, device, input_method):
 	active_players.append(id)
 	var new_player = Player.instance()
 	new_player.player_id = id
 	new_player.device_type = device
+	new_player.input_method = input_method
 	add_child(new_player)
 	print("Added Player " + str(id) + " from device: " + str(device))
 	Level.GUI.player_join(new_player)
+	return new_player
 
 func _physics_process(delta):
 	match Level.game_state:

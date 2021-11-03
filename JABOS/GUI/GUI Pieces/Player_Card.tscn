@@ -156,6 +156,7 @@ scale_amount_curve = SubResource( 4 )
 color_ramp = SubResource( 5 )
 
 [node name="Rubies" type="CPUParticles2D" parent="Particles"]
+visible = false
 position = Vector2( 0, 198.343 )
 z_index = 1
 emitting = false

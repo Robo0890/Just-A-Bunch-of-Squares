@@ -118,4 +118,9 @@ func _on_gamemode_selected(index):
 
 
 func _on_Mobile_Detection_pressed():
+	$"Bottom_UI/Mobile Contoller".Level = Level
 	$"Bottom_UI/Mobile Contoller".visible = true
+	Level.Manager.connected_devices.append("Mobile")
+	$"Bottom_UI/Mobile Contoller".player_id = Level.Manager.add_player(Level.Manager.active_players.size(), "Mobile", "Touch").player_id
+	$"Mobile Detection".queue_free()
+

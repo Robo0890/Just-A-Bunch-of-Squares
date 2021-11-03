@@ -1,6 +1,7 @@
 extends Panel
 
 var player_id = 0
+var Level : Node
 
 func _physics_process(delta):
 	pass
@@ -27,7 +28,13 @@ func _on_Ready_button_down():
 func _on_Ready_button_up():
 	Input.action_release("p" + str(player_id) + "ready")
 
-func _on_Flip_mouse_entered():
+func _on_Flip_button_down():
 	Input.action_press(("p" + str(player_id) + "flip"), 1)
-func _on_Flip_mouse_exited():
+func _on_Flip_button_up():
 	Input.action_release("p" + str(player_id) + "flip")
+
+
+func _on_Flip_mouse_entered():
+	_on_Flip_button_down()
+func _on_Flip_mouse_exited():
+	_on_Flip_button_up()

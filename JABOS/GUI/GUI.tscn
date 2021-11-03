@@ -356,6 +356,7 @@ margin_left = 412.0
 margin_top = -150.387
 margin_right = 512.0
 margin_bottom = -50.3866
+action_mode = 0
 texture_normal = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -549,7 +550,6 @@ texture_normal = ExtResource( 8 )
 anims/Options = SubResource( 8 )
 
 [node name="Mobile Detection" type="TouchScreenButton" parent="."]
-visible = false
 modulate = Color( 1, 1, 1, 0 )
 shape = SubResource( 9 )
 
@@ -562,13 +562,15 @@ shape = SubResource( 9 )
 [connection signal="button_up" from="Bottom_UI/Mobile Contoller/Buttons/Right/Ready" to="Bottom_UI/Mobile Contoller" method="_on_Ready_button_up"]
 [connection signal="button_down" from="Bottom_UI/Mobile Contoller/Buttons/Right/Jump" to="Bottom_UI/Mobile Contoller" method="_on_Jump_button_down"]
 [connection signal="button_up" from="Bottom_UI/Mobile Contoller/Buttons/Right/Jump" to="Bottom_UI/Mobile Contoller" method="_on_Jump_button_up"]
+[connection signal="button_down" from="Bottom_UI/Mobile Contoller/Buttons/Flip" to="Bottom_UI/Mobile Contoller" method="_on_Flip_button_down"]
+[connection signal="button_up" from="Bottom_UI/Mobile Contoller/Buttons/Flip" to="Bottom_UI/Mobile Contoller" method="_on_Flip_button_up"]
 [connection signal="mouse_entered" from="Bottom_UI/Mobile Contoller/Buttons/Flip" to="Bottom_UI/Mobile Contoller" method="_on_Flip_mouse_entered"]
 [connection signal="mouse_exited" from="Bottom_UI/Mobile Contoller/Buttons/Flip" to="Bottom_UI/Mobile Contoller" method="_on_Flip_mouse_exited"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click_select"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_on_GameType_item_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click"]
-[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click_select"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]
+[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click_select"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click"]
 [connection signal="pressed" from="Options/CenterContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="Mobile Detection" to="." method="_on_Mobile_Detection_pressed"]
