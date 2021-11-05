@@ -109,7 +109,7 @@ func format_time(input_seconds):
 	var minutes = str(int(input_seconds) / 60)
 	var seconds = str(int(input_seconds - (int(minutes) * 60)))
 	var miliseconds = str(int((input_seconds - int(seconds)) * 100))
-	miliseconds =  str(int(miliseconds) - int(minutes))
+	miliseconds =  str(int(miliseconds) - (int(minutes) * 6000))
 	
 	if int(seconds) < 10:
 		seconds = "0" + seconds

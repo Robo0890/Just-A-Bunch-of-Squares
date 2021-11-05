@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=1]
 [ext_resource path="res://GUI/Icons/gameicons-expansion/PNG/White/1x/cloud.png" type="Texture" id=2]
@@ -68,9 +68,6 @@ tracks/0/keys = {
 "points": PoolRealArray( -600, -0.25, 0, 0.25, 0, 70, -0.97, 8.78192, 0.25, 0 ),
 "times": PoolRealArray( 0, 1 )
 }
-
-[sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 512, 300 )
 
 [node name="GUI" type="Control"]
 anchor_right = 1.0
@@ -468,16 +465,11 @@ texture_normal = ExtResource( 8 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Options = SubResource( 8 )
 
-[node name="Mobile Detection" type="TouchScreenButton" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-shape = SubResource( 9 )
-
 [connection signal="pressed" from="Top_UI/Option_Button" to="." method="_on_Button_pressed"]
-[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_on_GameType_item_selected"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click_select"]
+[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_on_GameType_item_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click"]
-[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click_select"]
+[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click"]
 [connection signal="pressed" from="Options/CenterContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
-[connection signal="pressed" from="Mobile Detection" to="." method="_on_Mobile_Detection_pressed"]

@@ -8,7 +8,7 @@
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/exitLeft.png" type="Texture" id=6]
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=7]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 50 )
 
 [node name="MobileControls" type="Control"]
@@ -62,7 +62,7 @@ color = Color( 1, 1, 1, 0 )
 [node name="Left" type="TouchScreenButton" parent="Panel/Left/Left"]
 normal = ExtResource( 2 )
 pressed = ExtResource( 2 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 shape_visible = false
 action = "p4_movement_left"
 
@@ -76,7 +76,7 @@ color = Color( 1, 1, 1, 0 )
 [node name="Right" type="TouchScreenButton" parent="Panel/Left/Right"]
 normal = ExtResource( 1 )
 pressed = ExtResource( 1 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 shape_visible = false
 action = "p4_movement_rigt"
 
@@ -91,7 +91,7 @@ color = Color( 1, 1, 1, 0 )
 [node name="Quit" type="TouchScreenButton" parent="Panel/Left/Quit"]
 normal = ExtResource( 6 )
 pressed = ExtResource( 6 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 shape_visible = false
 action = "p4_movement_rigt"
 
@@ -118,7 +118,7 @@ color = Color( 1, 1, 1, 0 )
 [node name="Ready" type="TouchScreenButton" parent="Panel/Right/Ready"]
 normal = ExtResource( 5 )
 pressed = ExtResource( 5 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 shape_visible = false
 action = "p4_movement_rigt"
 
@@ -132,12 +132,12 @@ color = Color( 1, 1, 1, 0 )
 [node name="Jump" type="TouchScreenButton" parent="Panel/Right/Jump"]
 normal = ExtResource( 3 )
 pressed = ExtResource( 3 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 shape_visible = false
 
 [node name="Flip" type="TouchScreenButton" parent="Panel/Right/Jump/Jump"]
 position = Vector2( 0, -99.5895 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 shape_visible = false
 passby_press = true
 

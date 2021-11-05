@@ -16,6 +16,11 @@ onready var Shop = preload("res://Shop/Shop.tscn")
 
 var is_shop_visible = false
 
+func _input(event):
+	if event is InputEventScreenTouch:
+		if !Level.Manager.connected_devices.has("Mobile"):
+			activate_mobile()
+
 func _ready():
 	var popup = GamemodeBox.get_popup()
 	popup.add_separator("")
@@ -117,10 +122,9 @@ func _on_gamemode_selected(index):
 
 
 
-func _on_Mobile_Detection_pressed():
+func activate_mobile():
 	$"Bottom_UI/Mobile Controller".Level = Level
 	$"Bottom_UI/Mobile Controller".visible = true
 	Level.Manager.connected_devices.append("Mobile")
 	$"Bottom_UI/Mobile Controller".player_id = Level.Manager.add_player(Level.Manager.active_players.size(), "Mobile", "Touch").player_id
-	$"Mobile Detection".queue_free()
 

@@ -59,7 +59,7 @@ func _ready():
 		add_input_map(InputEventJoypadButton, "flip", JOY_R2)
 		
 func _physics_process(delta):
-	if $FloorDetector.is_colliding():
+	if $FloorDetector.is_colliding() and !is_respawning:
 		if $FloorDetector.get_collider().name == "Course":
 			spawnpoint = position
 	
