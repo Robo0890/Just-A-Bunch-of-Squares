@@ -1,11 +1,13 @@
 extends Control
 
-var splash = false
+var splash = true
 
 func _ready():
+	OS.set_window_title("Just A Bunch of Squares")
+	
 	if splash:
 		$Background/AnimationPlayer.play("EonSplash")
-		yield(get_tree().create_timer(.3),"timeout")
+		yield(get_tree().create_timer(1),"timeout")
 		$GameSound.play()
 	else:
 		_on_AnimationPlayer_animation_finished("EonSplash")
