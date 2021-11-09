@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Level Builder/End.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1963.68, 156.776 )
+
+[node name="Parts" type="Node2D"]
+
+[node name="Part0" type="Node2D" parent="."]
+
+[node name="Box1" type="CollisionShape2D" parent="Part0"]
+position = Vector2( 1027.53, 451.132 )
+shape = SubResource( 1 )
+
+[node name="End" parent="Part0" instance=ExtResource( 1 )]
+position = Vector2( 2998.05, 185.973 )
+
+[node name="Part1" type="Node2D" parent="."]
+
+[node name="Box1" type="CollisionShape2D" parent="Part1"]
+position = Vector2( 1027.53, 451.132 )
+shape = SubResource( 1 )
+
+[node name="End" parent="Part1" instance=ExtResource( 1 )]
+position = Vector2( 2998.05, 185.973 )

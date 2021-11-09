@@ -16,6 +16,23 @@ onready var Shop = preload("res://Shop/Shop.tscn")
 
 var is_shop_visible = false
 
+func get_gamemodes():
+	var path = "res://Gamemodes/"
+	var files = []
+	var dir = Directory.new()
+	dir.open(path)
+	dir.list_dir_begin()
+
+	while true:
+		var file = dir.get_next()
+		if file == "":
+			break
+		elif not file.begins_with("."):
+			files.append(file)
+	dir.list_dir_end()
+	return files
+
+
 func _input(event):
 	if event is InputEventScreenTouch:
 		if !Level.Manager.connected_devices.has("Mobile"):
@@ -23,12 +40,23 @@ func _input(event):
 
 func _ready():
 	var popup = GamemodeBox.get_popup()
+	var gamemode_list = get_gamemodes()
+	for x in gamemode_list:
+		if !Profile.disabled_gamemodes.has(x):
+			var path = "res://Gamemodes/" + x 
+			var new_item_name = x
+			var new_item_icon = load(path + "/Images/Icon.png")
+			popup.add_icon_item(new_item_icon, new_item_name)
+		
 	popup.add_separator("")
 	popup.add_item("Shop")
 	popup.set_item_icon(popup.get_item_count() - 1, load("res://GUI/Icons/gameicons/PNG/White/1x/basket.png"))
 	
 	for x in get_tree().get_nodes_in_group("Cloud_Only"):
 		x.visible = false
+		
+	
+	
 
 func _physics_process(delta):
 	$Top_UI/Panel.rect_size.y = (PlayerList.get_child_count() - 1) * 55

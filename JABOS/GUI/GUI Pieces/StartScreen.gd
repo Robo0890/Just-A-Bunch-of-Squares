@@ -1,11 +1,14 @@
 extends Control
 
-var focused = false
+var splash = false
 
 func _ready():
-	$Background/AnimationPlayer.play("EonSplash")
-	yield(get_tree().create_timer(.3),"timeout")
-	$GameSound.play()
+	if splash:
+		$Background/AnimationPlayer.play("EonSplash")
+		yield(get_tree().create_timer(.3),"timeout")
+		$GameSound.play()
+	else:
+		_on_AnimationPlayer_animation_finished("EonSplash")
 
 # warning-ignore:unused_argument
 func _on_AnimationPlayer_animation_finished(anim_name):

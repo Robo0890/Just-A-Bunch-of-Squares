@@ -24,7 +24,7 @@ onready var Classic = preload("res://Gamemodes/Classic/Game.tscn")
 func _ready():
 	get_tree().debug_collisions_hint = true
 	
-	change_gamemode("Classic")
+	change_gamemode(Profile.current_gamemode)
 	var load_data = Save.load_data("jabos_profile")
 	if load_data.size() > 0:
 		print(load_data)
@@ -74,10 +74,11 @@ func end_game(leaderboard : Dictionary):
 	game_state = "End"
 
 func change_gamemode(new_gamemode : String):
+	Profile.current_gamemode = new_gamemode
+	Game = load("res://Gamemodes/" + new_gamemode + "/Game.tscn").instance()
 	get_tree().get_nodes_in_group("Game")[0].queue_free()
 	gamemode = new_gamemode
 	new_gamemode = new_gamemode.replace(" ", "_")
-	Game = get(new_gamemode).instance()
 	add_child(Game)
 
 func reset():

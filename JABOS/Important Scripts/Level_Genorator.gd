@@ -1,26 +1,28 @@
 extends Node2D
 
 
-onready var Part = preload("res://Gamemodes/Classic/Parts.tscn")
+onready var Part : Node
 
 var gamemode = "Default"
 
 var random_part = 1
 var max_parts = 1
 
-func _ready():
-	var c = Part.instance()
+func start():
+	var c = load("res://Gamemodes/" + gamemode + "/Parts.tscn").instance()
 	max_parts = c.get_child_count()
 	c.queue_free()
+	
 
 func _physics_process(delta):
 	position = get_parent().Level.Game_Camera.transform.origin
 	$Course.position = Vector2(300,400) - position
-
+	
 	
 	
 func load_part(part):
-	var p = Part.instance()
+	Part = load("res://Gamemodes/" + gamemode + "/Parts.tscn").instance()
+	var p = Part
 	var boxes = p.get_node("Part" + str(part)).get_children()
 	for x in boxes:
 		x.get_parent().remove_child(x)

@@ -13,6 +13,7 @@ var is_singleplayer = false
 
 func _ready():
 	$Level_Genorator.gamemode = "Classic"
+	$Level_Genorator.start()
 
 func start():
 	$Level_Genorator.load_part(0)
@@ -69,10 +70,10 @@ func game_tick():
 		#Update the leaderboard stats
 		leaderboard(player.player_id, "Falls", player.falls)
 		leaderboard(player.player_id, "Jumps", player.jump_count)
-		leaderboard(player.player_id, "Main", format_time(player.time))
+		leaderboard(player.player_id, "Main", "Text?=" + format_time(player.player_data.time))
 # warning-ignore:integer_division
-		leaderboard(player.player_id, "Ruby", int(player.time) / 2)
-		leaderboard(player.player_id, "XP", int(player.time) * 2)
+		leaderboard(player.player_id, "Ruby", int(player.player_data.time) / 2)
+		leaderboard(player.player_id, "XP", int(player.player_data.time) * 2)
 
 		#If all players are dead, end the game
 		if players_left == 0:
@@ -118,4 +119,4 @@ func format_time(input_seconds):
 
 #Get the current score of a player by their id
 func get_score(player):
-	return format_time(get_player(player, "time"))
+	return leaderboard_data[player].Main

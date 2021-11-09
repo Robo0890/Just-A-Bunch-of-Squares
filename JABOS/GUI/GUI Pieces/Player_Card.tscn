@@ -98,8 +98,8 @@ stretch_mode = 4
 margin_top = 83.0
 margin_right = 175.0
 margin_bottom = 99.0
-custom_styles/separator = SubResource( 3 )
 custom_constants/separation = 16
+custom_styles/separator = SubResource( 3 )
 
 [node name="Main Score" type="Label" parent="MarginContainer/Info"]
 margin_top = 103.0
@@ -200,8 +200,8 @@ __meta__ = {
 [node name="Rubies" type="Button" parent="Rewards"]
 margin_right = 96.0
 margin_bottom = 50.0
-custom_styles/normal = SubResource( 8 )
 custom_colors/font_color = Color( 0.0784314, 1, 0, 1 )
+custom_styles/normal = SubResource( 8 )
 text = "+10"
 icon = ExtResource( 7 )
 __meta__ = {
@@ -212,8 +212,8 @@ __meta__ = {
 margin_top = 62.0
 margin_right = 96.0
 margin_bottom = 97.0
-custom_styles/normal = SubResource( 8 )
 custom_colors/font_color = Color( 0.0823529, 0.956863, 0.00784314, 1 )
+custom_styles/normal = SubResource( 8 )
 text = "XP +10"
 __meta__ = {
 "_edit_use_anchors_": false

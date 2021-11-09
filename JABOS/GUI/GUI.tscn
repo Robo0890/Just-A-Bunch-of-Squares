@@ -363,8 +363,6 @@ text = "Classic"
 icon = ExtResource( 15 )
 align = 1
 expand_icon = true
-items = [ "Classic", ExtResource( 15 ), false, 0, null ]
-selected = 0
 
 [node name="Power-Ups" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
 margin_top = 111.0
@@ -378,14 +376,12 @@ margin_left = 270.0
 margin_top = 111.0
 margin_right = 550.0
 margin_bottom = 156.0
-custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0.521569, 0.521569, 0.521569, 1 )
 custom_colors/font_color_hover = Color( 0.521569, 0.521569, 0.521569, 1 )
+custom_fonts/font = SubResource( 7 )
 text = "Comming Soon"
 
-[node name="GamePin" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer" groups=[
-"Cloud_Only",
-]]
+[node name="GamePin" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer" groups=["Cloud_Only"]]
 visible = false
 margin_top = 164.0
 margin_right = 296.0
@@ -393,9 +389,7 @@ margin_bottom = 209.0
 custom_fonts/font = ExtResource( 4 )
 text = "Game Pin: "
 
-[node name="Pin" type="Button" parent="Options/VBoxContainer/MarginContainer/GridContainer" groups=[
-"Cloud_Only",
-]]
+[node name="Pin" type="Button" parent="Options/VBoxContainer/MarginContainer/GridContainer" groups=["Cloud_Only"]]
 visible = false
 margin_top = 164.0
 margin_right = 296.0
@@ -405,9 +399,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer" groups=[
-"Cloud_Only",
-]]
+[node name="Name" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer" groups=["Cloud_Only"]]
 visible = false
 margin_top = 164.0
 margin_right = 214.0
@@ -415,9 +407,7 @@ margin_bottom = 209.0
 custom_fonts/font = ExtResource( 4 )
 text = "Name:"
 
-[node name="LineEdit" type="LineEdit" parent="Options/VBoxContainer/MarginContainer/GridContainer" groups=[
-"Cloud_Only",
-]]
+[node name="LineEdit" type="LineEdit" parent="Options/VBoxContainer/MarginContainer/GridContainer" groups=["Cloud_Only"]]
 visible = false
 margin_left = 270.0
 margin_top = 164.0
@@ -466,8 +456,8 @@ texture_normal = ExtResource( 8 )
 anims/Options = SubResource( 8 )
 
 [connection signal="pressed" from="Top_UI/Option_Button" to="." method="_on_Button_pressed"]
-[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click_select"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_on_GameType_item_selected"]
+[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click_select"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameType" to="." method="_ui_click"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click_select"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]

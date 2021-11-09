@@ -5,6 +5,10 @@ onready var Level = get_parent().get_parent()
 var player_id : int
 var spawnpoint = Vector2(0,0)
 
+var player_data = {
+	"time" : 0
+}
+
 var speed = 2
 var gravity = 39.29
 var velocity = Vector2(0,0)
@@ -20,7 +24,6 @@ const DEFAULT_MAX_JUMPS = 1
 var falls = 0
 var jump_count = 0
 var active = false
-var time = 0
 
 var input_method = "Keyboard"
 var is_respawning = false
@@ -74,7 +77,7 @@ func _physics_process(delta):
 			$CollisionShape.disabled = false
 	
 	if active:
-		time += .016
+		player_data.time += .016
 		
 	process_input()
 	if !frozen:
