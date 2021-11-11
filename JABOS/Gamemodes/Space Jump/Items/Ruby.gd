@@ -8,7 +8,7 @@ extends Sprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var show = bool(round(rand_range(0,1)))
+	var show = bool(round(rand_range(0,1) + .2))
 	if !show:
 		queue_free()
 
