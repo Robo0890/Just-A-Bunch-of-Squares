@@ -1,6 +1,6 @@
 extends Control
 
-var splash = true
+var splash = false
 
 func _ready():
 	OS.set_window_title("Just A Bunch of Squares")

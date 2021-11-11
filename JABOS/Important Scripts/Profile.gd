@@ -13,7 +13,7 @@ const DEFAULT_DATA = {
 
 var current_gamemode = "Classic"
 
-var disabled_gamemodes = ["Space Jump"]
+var disabled_gamemodes = []
 
 func _process(delta):
 	if data.xp >= xp_for_next_level():

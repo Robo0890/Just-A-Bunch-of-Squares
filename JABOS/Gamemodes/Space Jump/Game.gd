@@ -24,7 +24,7 @@ func start():
 		
 	for player in Players:
 		leaderboard_data[player.player_id] = {}
-		player.player_data["health"] = 100
+		player.player_data["collected"] = 0
 
 func _physics_process(delta):
 	#Move the edge indicator to the left border of the window
@@ -43,14 +43,9 @@ func _physics_process(delta):
 func game_tick():
 	
 	#Move the game camera
-	var move = 0
-	for x in get_tree().get_nodes_in_group("Player"):
-		if x.active:
-			move += x.position.x - Level.Game_Camera.position.x
-			move = (move / Level.player_count) / 100 + 32
-	Level.Game_Camera.position.x += (move/4) + (.0002 * Level.Game_Camera.position.x)
+	Level.Game_Camera.position.x += 10
 	
-	$ParallaxBackground/CPUParticles2D.gravity.x = -move
+	$ParallaxBackground/CPUParticles2D.gravity.x = -10
 	
 	#For each player, check if they have gone off screen
 	for player in Players:
@@ -59,8 +54,7 @@ func game_tick():
 			
 		#Using the edge indicator from above, determine wether a player is offscreen
 		if player.position.x <= $Edge.global_position.x - 512 and player.active:
-			player.kill(false) #Run kill() function on the offscreen player
-			players_left -= 1
+			player.position.x += 10 #Run kill() function on the offscreen player
 			
 			#If that player is the last one remaining:
 			if players_left == 0:
@@ -71,25 +65,26 @@ func game_tick():
 				leaderboard(player.player_id, "Winner", false)
 
 		#Update the leaderboard stats
-		leaderboard(player.player_id, "Falls", player.falls)
 		leaderboard(player.player_id, "Jumps", player.jump_count)
-		leaderboard(player.player_id, "Main", "ProgressBar?=" + str(player.player_data.health))
+		leaderboard(player.player_id, "Display", "ProgressBar?=" + str(player.player_data.collected) + "?=" + str(20))
 # warning-ignore:integer_division
-		leaderboard(player.player_id, "Ruby", int(player.player_data.time) / 2)
-		leaderboard(player.player_id, "XP", int(player.player_data.time) * 2)
+		leaderboard(player.player_id, "Ruby", player.player_data.collected)
+		leaderboard(player.player_id, "XP", player.player_data.collected * 4)
+		leaderboard(player.player_id, "Main", "Rubies:?=" + str(player.player_data.collected))
 		
-		player.player_data.health -= .1
+
 		
-		if player.player_data.health <= 0:
+		if player.player_data.collected >= 20:
 			player.kill(false)
 			players_left -= 1
 
 		#If all players are dead, end the game
-		if players_left == 0:
+		if players_left == Level.ready_players.size() - 1:
 			leaderboard(player.player_id, "Winner", true)
 			end()
 		else:
 			leaderboard(player.player_id, "Winner", false)
+		
 
 func end():
 	#Tell the Level scene that the game is over
@@ -131,5 +126,8 @@ func format_time(input_seconds):
 	return minutes + ":" + seconds + ":" + miliseconds
 
 #Get the current score of a player by their id
-func get_score(player):
-	return leaderboard_data[player].Main
+func get_display_score(player):
+	return leaderboard_data[player].Display
+	
+
+	

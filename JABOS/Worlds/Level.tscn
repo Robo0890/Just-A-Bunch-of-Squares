@@ -5,8 +5,8 @@
 [ext_resource path="res://Worlds/Level.gd" type="Script" id=3]
 [ext_resource path="res://Gamemodes/Classic/Game.tscn" type="PackedScene" id=4]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 173, 24 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 200, 23.569 )
 
 [node name="Level" type="Node"]
 script = ExtResource( 3 )
@@ -16,8 +16,8 @@ position = Vector2( 512, 360 )
 scale = Vector2( 2, 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Course"]
-position = Vector2( 0, 58 )
-shape = SubResource( 1 )
+position = Vector2( 0, 49.275 )
+shape = SubResource( 2 )
 
 [node name="Manager" type="Node2D" parent="."]
 position = Vector2( 512, 0 )

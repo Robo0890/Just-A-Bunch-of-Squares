@@ -70,7 +70,8 @@ func game_tick():
 		#Update the leaderboard stats
 		leaderboard(player.player_id, "Falls", player.falls)
 		leaderboard(player.player_id, "Jumps", player.jump_count)
-		leaderboard(player.player_id, "Main", "Text?=" + format_time(player.player_data.time))
+		leaderboard(player.player_id, "Display", "Text?=" + format_time(player.player_data.time) + "?=null")
+		leaderboard(player.player_id, "Main", "Time:?=" + format_time(player.player_data.time))
 # warning-ignore:integer_division
 		leaderboard(player.player_id, "Ruby", int(player.player_data.time) / 2)
 		leaderboard(player.player_id, "XP", int(player.player_data.time) * 2)
@@ -118,5 +119,5 @@ func format_time(input_seconds):
 	return minutes + ":" + seconds + ":" + miliseconds
 
 #Get the current score of a player by their id
-func get_score(player):
-	return leaderboard_data[player].Main
+func get_display_score(player):
+	return leaderboard_data[player].Display

@@ -18,10 +18,12 @@ func _process(delta):
 				
 				$Sprite.modulate = Player.modulate
 		"Playing":
-			var display_type = str(Game.get_score(Player.player_id)).split("?=")[0]
-			var display_value = str(Game.get_score(Player.player_id)).split("?=")[1]
+			var display_type = str(Game.get_display_score(Player.player_id)).split("?=")[0]
+			var display_value = str(Game.get_display_score(Player.player_id)).split("?=")[1]
+			var pram2 = str(Game.get_display_score(Player.player_id)).split("?=")[2]
 			match display_type:
 				"Text":
+					display_value = str(Game.get_display_score(Player.player_id)).split("?=")[1]
 					if Player.active:
 						modulate = Color(1,1,1,1)
 						self_modulate = Color.green
@@ -40,7 +42,8 @@ func _process(delta):
 						self_modulate = Color.red
 					$ProgressBar.visible = true
 					$ProgressBar.value = int(display_value)
-					text = "        " + display_value
+					$ProgressBar.max_value = int(pram2)
+					text = "        " + str(display_value) + "/" + str(pram2)
 						
 			
 

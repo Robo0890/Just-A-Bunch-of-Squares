@@ -97,33 +97,46 @@ stretch_mode = 4
 [node name="ContentSeperator" type="HSeparator" parent="MarginContainer/Info"]
 margin_top = 83.0
 margin_right = 175.0
-margin_bottom = 99.0
-custom_constants/separation = 16
+margin_bottom = 83.0
 custom_styles/separator = SubResource( 3 )
 
-[node name="Main Score" type="Label" parent="MarginContainer/Info"]
-margin_top = 103.0
+[node name="MainScoreLabel" type="Label" parent="MarginContainer/Info"]
+margin_top = 87.0
 margin_right = 175.0
-margin_bottom = 128.0
-text = "Main Score: 230"
+margin_bottom = 112.0
+text = "MainScore:"
+align = 1
+
+[node name="Main Score" type="Label" parent="MarginContainer/Info"]
+margin_top = 116.0
+margin_right = 175.0
+margin_bottom = 141.0
+text = "230"
 align = 1
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/Info"]
-margin_top = 132.0
+margin_top = 145.0
 margin_right = 175.0
-margin_bottom = 132.0
+margin_bottom = 145.0
 
 [node name="Subscore" type="Label" parent="MarginContainer/Info"]
-margin_top = 136.0
+margin_top = 149.0
 margin_right = 175.0
-margin_bottom = 161.0
+margin_bottom = 174.0
 text = "Subscore1 : 30"
 align = 1
 
-[node name="Bottom" type="HSeparator" parent="MarginContainer/Info"]
-margin_top = 165.0
+[node name="Subscore2" type="Label" parent="MarginContainer/Info"]
+margin_top = 178.0
 margin_right = 175.0
-margin_bottom = 165.0
+margin_bottom = 203.0
+text = "Subscore2 : 30"
+align = 1
+
+[node name="Bottom" type="HSeparator" parent="MarginContainer/Info"]
+margin_top = 207.0
+margin_right = 175.0
+margin_bottom = 207.0
 
 [node name="Ok" type="TextureButton" parent="."]
 anchor_top = 1.0

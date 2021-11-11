@@ -1,26 +1,138 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Level Builder/End.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Gamemodes/Space Jump/Items/Ruby.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1963.68, 156.776 )
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 250, 27.4355 )
+
 [node name="Parts" type="Node2D"]
 
 [node name="Part0" type="Node2D" parent="."]
+visible = false
 
 [node name="Box1" type="CollisionShape2D" parent="Part0"]
-position = Vector2( 1027.53, 451.132 )
+position = Vector2( -1963.13, 611.132 )
+shape = SubResource( 1 )
+
+[node name="Box2" type="CollisionShape2D" parent="Part0"]
+position = Vector2( 1903.78, 611.132 )
 shape = SubResource( 1 )
 
 [node name="End" parent="Part0" instance=ExtResource( 1 )]
-position = Vector2( 2998.05, 185.973 )
+position = Vector2( 304.989, 185.973 )
 
 [node name="Part1" type="Node2D" parent="."]
+visible = false
 
 [node name="Box1" type="CollisionShape2D" parent="Part1"]
-position = Vector2( 1027.53, 451.132 )
+position = Vector2( 1027.53, 611.132 )
 shape = SubResource( 1 )
 
 [node name="End" parent="Part1" instance=ExtResource( 1 )]
 position = Vector2( 2998.05, 185.973 )
+
+[node name="Box2" type="CollisionShape2D" parent="Part1"]
+position = Vector2( 312.989, -75.2266 )
+shape = SubResource( 2 )
+
+[node name="Box3" type="CollisionShape2D" parent="Part1"]
+position = Vector2( 1739.1, 88.848 )
+shape = SubResource( 2 )
+
+[node name="Box5" type="CollisionShape2D" parent="Part1"]
+position = Vector2( 2623.1, 176.848 )
+shape = SubResource( 2 )
+
+[node name="Box6" type="CollisionShape2D" parent="Part1"]
+position = Vector2( 423.1, 236.848 )
+shape = SubResource( 2 )
+
+[node name="Box4" type="CollisionShape2D" parent="Part1"]
+position = Vector2( 1130.69, 332.445 )
+shape = SubResource( 2 )
+
+[node name="Ruby" parent="Part1" instance=ExtResource( 2 )]
+position = Vector2( 1120, 220 )
+
+[node name="Ruby2" parent="Part1" instance=ExtResource( 2 )]
+position = Vector2( 1728, -28 )
+
+[node name="Ruby3" parent="Part1" instance=ExtResource( 2 )]
+position = Vector2( 2616, 56 )
+
+[node name="Part2" type="Node2D" parent="."]
+visible = false
+
+[node name="Box1" type="CollisionShape2D" parent="Part2"]
+position = Vector2( 1027.53, 611.132 )
+shape = SubResource( 1 )
+
+[node name="Box2" type="CollisionShape2D" parent="Part2"]
+position = Vector2( 687.616, 172.408 )
+shape = SubResource( 2 )
+
+[node name="Box5" type="CollisionShape2D" parent="Part2"]
+position = Vector2( 2079.62, 124.408 )
+shape = SubResource( 2 )
+
+[node name="Box4" type="CollisionShape2D" parent="Part2"]
+position = Vector2( 2733.73, -127.517 )
+shape = SubResource( 2 )
+
+[node name="Box3" type="CollisionShape2D" parent="Part2"]
+position = Vector2( 1481.32, 394.644 )
+shape = SubResource( 2 )
+
+[node name="End" parent="Part2" instance=ExtResource( 1 )]
+position = Vector2( 2998.05, 185.973 )
+
+[node name="Ruby4" parent="Part2" instance=ExtResource( 2 )]
+position = Vector2( 2092, -12 )
+
+[node name="Ruby5" parent="Part2" instance=ExtResource( 2 )]
+position = Vector2( 680, 56 )
+
+[node name="Ruby6" parent="Part2" instance=ExtResource( 2 )]
+position = Vector2( 2756, 336 )
+
+[node name="Part3" type="Node2D" parent="."]
+
+[node name="Box1" type="CollisionShape2D" parent="Part3"]
+position = Vector2( 1027.53, 611.132 )
+shape = SubResource( 1 )
+
+[node name="Box2" type="CollisionShape2D" parent="Part3"]
+position = Vector2( 179.647, 334.323 )
+shape = SubResource( 2 )
+
+[node name="Box3" type="CollisionShape2D" parent="Part3"]
+position = Vector2( 1078.12, 54.9403 )
+shape = SubResource( 2 )
+
+[node name="Box6" type="CollisionShape2D" parent="Part3"]
+position = Vector2( 2402.12, -181.06 )
+shape = SubResource( 2 )
+
+[node name="Box4" type="CollisionShape2D" parent="Part3"]
+position = Vector2( 1835.51, 287.343 )
+shape = SubResource( 2 )
+
+[node name="Box5" type="CollisionShape2D" parent="Part3"]
+position = Vector2( 2729.01, 213.68 )
+shape = SubResource( 2 )
+
+[node name="End" parent="Part3" instance=ExtResource( 1 )]
+position = Vector2( 2998.05, 185.973 )
+
+[node name="Ruby" parent="Part3" instance=ExtResource( 2 )]
+position = Vector2( 172, 208 )
+
+[node name="Ruby2" parent="Part3" instance=ExtResource( 2 )]
+position = Vector2( 1840, 176 )
+
+[node name="Ruby3" parent="Part3" instance=ExtResource( 2 )]
+position = Vector2( 2396, -296 )
