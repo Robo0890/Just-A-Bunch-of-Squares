@@ -3,15 +3,17 @@ extends Node
 var data = {
 	"ruby" : 0,
 	"level" : 1,
-	"xp" : 0
+	"xp" : 0,
+	"gamemode" : "Classic"
 }
 const DEFAULT_DATA = {
 	"ruby" : 30,
 	"level" : 1,
-	"xp" : 0
+	"xp" : 0,
+	"gamemode" : "Classic"
 }
 
-var current_gamemode = "Classic"
+var is_cloud_game = false
 
 var disabled_gamemodes = []
 

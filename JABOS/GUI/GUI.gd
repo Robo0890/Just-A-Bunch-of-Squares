@@ -4,7 +4,6 @@ onready var Level = get_parent().get_parent()
 
 onready var Options = $Options
 onready var Animator = $AnimationPlayer
-onready var NameBox = $Options/VBoxContainer/MarginContainer/GridContainer/LineEdit
 onready var PlayerList = $Top_UI/Panel/VBoxContainer
 
 onready var GamemodeBox = $Options/VBoxContainer/MarginContainer/GridContainer/GameMode
@@ -39,6 +38,10 @@ func _input(event):
 			activate_mobile()
 
 func _ready():
+
+	for x in get_tree().get_nodes_in_group("Cloud"):
+		x.visible = false
+	
 	var popup = GamemodeBox.get_popup()
 	var gamemode_list = get_gamemodes()
 	for x in gamemode_list:
@@ -65,6 +68,7 @@ func _physics_process(delta):
 			$Top_UI/Option_Button.hide()
 			$Top_UI/Panel/VBoxContainer/Join_Prompt.hide()
 			$Leaderboard.hide()
+			$Options.hide()
 		"Lobby":
 			$Top_UI.show()
 			$Leaderboard.hide()
@@ -110,6 +114,7 @@ func show_leaderboard():
 func _on_TextureButton_pressed():
 	Animator.play_backwards("Options")
 	UIAudio.play_sound("click2")
+	$Top_UI/Dummy.grab_focus()
 
 
 func _on_Button_pressed():
@@ -125,12 +130,6 @@ func _ui_click():
 func _ui_click_select(index):
 	UIAudio.play_sound("click4")
 	
-
-
-
-func _on_GameType_item_selected(index):
-	for x in get_tree().get_nodes_in_group("Cloud_Only"):
-		x.visible = index
 
 
 func _on_gamemode_selected(index):
@@ -155,4 +154,21 @@ func activate_mobile():
 	$"Bottom_UI/Mobile Controller".visible = true
 	Level.Manager.connected_devices.append("Mobile")
 	$"Bottom_UI/Mobile Controller".player_id = Level.Manager.add_player(Level.Manager.active_players.size(), "Mobile", "Touch").player_id
+
+
+
+func _on_CreateCloud_pressed():
+	return
+	Profile.is_cloud_game = !Profile.is_cloud_game
+	match Profile.is_cloud_game:
+		true:
+			for x in get_tree().get_nodes_in_group("Cloud"):
+				x.visible = true
+			$Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud.text = "Delete"
+			$Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud.icon = load("res://GUI/Icons/gameicons/PNG/White/1x/trashcan.png")
+		false:
+			for x in get_tree().get_nodes_in_group("Cloud"):
+				x.visible = true
+			$Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud.text = "Delete"
+			$Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud.icon = load("res://GUI/Icons/gameicons/PNG/White/1x/trashcan.png")
 

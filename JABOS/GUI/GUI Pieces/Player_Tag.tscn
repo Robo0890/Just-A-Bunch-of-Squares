@@ -5,13 +5,22 @@
 [ext_resource path="res://GUI/GUI Pieces/Player_Tag.gd" type="Script" id=3]
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=4]
 
-[node name="Player0" type="Label"]
+[node name="Player0" type="Control"]
 margin_right = 284.0
 margin_bottom = 45.0
+rect_min_size = Vector2( 284, 45 )
 theme = ExtResource( 4 )
-custom_fonts/font = ExtResource( 1 )
-text = "        Not Ready"
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+value = 98.0
+percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -21,12 +30,11 @@ position = Vector2( 31.9716, 22.6188 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-show_behind_parent = true
+[node name="Text" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-value = 98.0
-percent_visible = false
+custom_fonts/font = ExtResource( 1 )
+text = "        Not Ready"
 __meta__ = {
 "_edit_use_anchors_": false
 }

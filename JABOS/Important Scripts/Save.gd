@@ -22,5 +22,8 @@ func load_data(where: String):
 func pack_dict_to_string(dict : Dictionary):
 	var final_string = ""
 	for x in dict.keys():
-		final_string = final_string + ("\"" + x + "\"" + " : " + str(dict[x]) + ",\n")
+		if typeof(dict[x]) == TYPE_STRING:
+			final_string = final_string + ("\"" + x + "\"" + " : " + "\"" + str(dict[x]) + "\"" + ",\n")
+		else:
+			final_string = final_string + ("\"" + x + "\"" + " : " + str(dict[x]) + ",\n")
 	return final_string

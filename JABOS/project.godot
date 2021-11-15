@@ -164,9 +164,11 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Just A Bunch of Squares"
+config/name="JABOS"
 run/main_scene="res://GUI/GUI Pieces/StartScreen.tscn"
 config/icon="res://Images/Face.png"
+config/icon.Beta="res://Images/Beta.png"
+config/name.Beta="JABOS [Beta]"
 
 [autoload]
 

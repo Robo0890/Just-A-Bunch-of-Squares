@@ -1,4 +1,4 @@
-extends Label
+extends Control
 
 var Level : Node
 var Player : KinematicBody2D
@@ -10,11 +10,11 @@ func _process(delta):
 		"Lobby":
 			$ProgressBar.visible = false
 			if Player.ready:
-				text = "        Ready"
-				modulate = Color(1,1,1,1)
+				$Text.text = "        Ready"
+				$Text.modulate = Color(1,1,1,1)
 			else:
-				text = "        Not Ready"
-				modulate = Color(1,1,1,.5)
+				$Text.text = "        Not Ready"
+				$Text.modulate = Color(1,1,1,.5)
 				
 				$Sprite.modulate = Player.modulate
 		"Playing":
@@ -25,12 +25,10 @@ func _process(delta):
 				"Text":
 					display_value = str(Game.get_display_score(Player.player_id)).split("?=")[1]
 					if Player.active:
-						modulate = Color(1,1,1,1)
-						self_modulate = Color.green
+						$Text.modulate = Color.green
 					else:
-						modulate = Color(1,1,1,.5)
-						self_modulate = Color.red
-					text = "        " + display_value
+						$Text.modulate = Color.red
+					$Text.text = "        " + display_value
 					$ProgressBar.visible = false
 					
 				"ProgressBar":
@@ -43,7 +41,7 @@ func _process(delta):
 					$ProgressBar.visible = true
 					$ProgressBar.value = int(display_value)
 					$ProgressBar.max_value = int(pram2)
-					text = "        " + str(display_value) + "/" + str(pram2)
+					$Text.text = "        " + str(display_value) + "/" + str(pram2)
 						
 			
 
