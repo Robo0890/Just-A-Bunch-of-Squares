@@ -4,18 +4,29 @@ var data = {
 	"ruby" : 0,
 	"level" : 1,
 	"xp" : 0,
-	"gamemode" : "Classic"
+	"gamemode" : "Classic",
+	"Owned" : {
+		"Skins" : ["Default", "Robot"],
+		"Power_Ups" : [],
+		"Gamemodes" : ["Classic", "Space Jump"]
+	}
 }
 const DEFAULT_DATA = {
 	"ruby" : 30,
 	"level" : 1,
 	"xp" : 0,
-	"gamemode" : "Classic"
+	"gamemode" : "Classic",
+	"Owned" : {
+		"Skins" : ["Default", "Robot"],
+		"Power_Ups" : [],
+		"Gamemodes" : ["Classic", "Space Jump"]
+	}
 }
 
 var is_cloud_game = false
 
-var disabled_gamemodes = []
+
+var public_ip = "127.0.0.1"
 
 func _process(delta):
 	if data.xp >= xp_for_next_level():

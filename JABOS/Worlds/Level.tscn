@@ -39,4 +39,7 @@ rect_pivot_offset = Vector2( 512, 300 )
 [node name="Reset_Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="IPGetter" type="HTTPRequest" parent="."]
+
 [connection signal="timeout" from="Reset_Timer" to="." method="_on_Reset_Timer_timeout"]
+[connection signal="request_completed" from="IPGetter" to="." method="_on_IPGetter_request_completed"]

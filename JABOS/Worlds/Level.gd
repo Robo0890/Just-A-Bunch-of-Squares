@@ -22,8 +22,11 @@ onready var Classic = preload("res://Gamemodes/Classic/Game.tscn")
 #onready var Space_Jump = preload("res://Gamemodes/Space Jump/Game.tscn")
 
 func _ready():
+	Firebase.Auth.login_anonymous()
+	
 	get_tree().debug_collisions_hint = true
 	
+	$IPGetter.request("https://ipv4.icanhazip.com/", [], false, HTTPClient.METHOD_GET)
 
 	var load_data = Save.load_data("jabos_profile")
 	if load_data.size() > 0:
@@ -33,7 +36,14 @@ func _ready():
 		Profile.clear()
 		
 	change_gamemode(Profile.data.gamemode)
+	
+	var joincode = JavaScript.eval("""
+		var url_string = window.location.href;
+		var url = new URL(url_string);
+		url.searchParams.get("join");""")
 		
+	if joincode != null:
+		Firebase.Firestore.collection("CloudGames").get(str(joincode))
 
 func _physics_process(delta):
 	match game_state:
@@ -98,4 +108,10 @@ func _on_Reset_Timer_timeout():
 		InputMap.erase_action("p" + str(Player.player_id) + "movement_left")
 		InputMap.erase_action("p" + str(Player.player_id) + "movement_right")
 		InputMap.erase_action("p" + str(Player.player_id) + "flip")
+		InputMap.erase_action("p" + str(Player.player_id) + "ability")
 	get_tree().change_scene("res://Worlds/Level.tscn")
+
+
+func _on_IPGetter_request_completed(result, response_code, headers, body : PoolByteArray):
+	Profile.public_ip = body.get_string_from_ascii()
+	print(Profile.public_ip)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://GUI/Fonts/Title_Font.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Images/Face.png" type="Texture" id=2]
+[ext_resource path="res://Images/Skins/Robot.png" type="Texture" id=2]
 [ext_resource path="res://GUI/GUI Pieces/Player_Tag.gd" type="Script" id=3]
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=4]
+[ext_resource path="res://Images/Skins/mask.Robot.png" type="Texture" id=5]
 
 [node name="Player0" type="Control"]
 margin_right = 284.0
@@ -29,6 +30,11 @@ __meta__ = {
 position = Vector2( 31.9716, 22.6188 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
+
+[node name="SpriteMask" type="Sprite" parent="."]
+position = Vector2( 31.9716, 22.6188 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
 
 [node name="Text" type="Label" parent="."]
 anchor_right = 1.0

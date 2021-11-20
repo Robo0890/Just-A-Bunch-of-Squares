@@ -42,18 +42,21 @@ func _ready():
 	for x in get_tree().get_nodes_in_group("Cloud"):
 		x.visible = false
 	
+
+	
 	var popup = GamemodeBox.get_popup()
 	var gamemode_list = get_gamemodes()
+	
 	for x in gamemode_list:
-		if !Profile.disabled_gamemodes.has(x):
+		if Profile.data.Owned.Gamemodes.has(x):
 			var path = "res://Gamemodes/" + x 
 			var new_item_name = x
 			var new_item_icon = load(path + "/Images/Icon.png")
 			popup.add_icon_item(new_item_icon, new_item_name)
+			
 		
 	popup.add_separator("")
-	popup.add_item("Shop")
-	popup.set_item_icon(popup.get_item_count() - 1, load("res://GUI/Icons/gameicons/PNG/White/1x/basket.png"))
+	popup.add_icon_item(load("res://GUI/Icons/gameicons/PNG/White/1x/basket.png"), "Shop")
 	
 	for x in get_tree().get_nodes_in_group("Cloud_Only"):
 		x.visible = false
@@ -142,6 +145,9 @@ func _on_gamemode_selected(index):
 		var s = Shop.instance()
 		Level.GUI.get_parent().add_child(s)
 		is_shop_visible = true
+	
+	$Options/VBoxContainer/MarginContainer/GridContainer/GameMode.text = "Select"
+	$Options/VBoxContainer/MarginContainer/GridContainer/GameMode.icon = load("res://GUI/Icons/gameicons/PNG/White/1x/down.png")
 
 
 
@@ -157,8 +163,19 @@ func activate_mobile():
 
 
 
-func _on_CreateCloud_pressed():
-	return
+
+func _on_Pin_pressed():
+	JavaScript.eval("""
+	const shareData = {
+		title: "JABOS Cloud Invite",
+		url: "https://robo0890.github.io/Just-A-Bunch-of-Squares/Join?code=""" + $Options/VBoxContainer/MarginContainer/GridContainer/Pin.text +""""
+	}
+	navigator.share(shareData)
+	""")
+
+
+func _on_CreateCloud_item_selected(index):
+	
 	Profile.is_cloud_game = !Profile.is_cloud_game
 	match Profile.is_cloud_game:
 		true:
@@ -166,6 +183,19 @@ func _on_CreateCloud_pressed():
 				x.visible = true
 			$Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud.text = "Delete"
 			$Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud.icon = load("res://GUI/Icons/gameicons/PNG/White/1x/trashcan.png")
+			
+			randomize()
+			var random_pin = int(rand_range(1111,9999))
+			
+			var cloudgame = {
+				"ip" : Profile.public_ip,
+				"port" : str(random_pin) + "0"
+			}
+			$Options/VBoxContainer/MarginContainer/GridContainer/Pin.text = str(random_pin)
+			Firebase.Firestore.collection("CloudGames").add(str(random_pin), FirestoreDocument.dict2fields(cloudgame))
+
+
+			
 		false:
 			for x in get_tree().get_nodes_in_group("Cloud"):
 				x.visible = true

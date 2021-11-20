@@ -25,6 +25,10 @@ var falls = 0
 var jump_count = 0
 var active = false
 
+var color = Color.white
+var skin = "Default"
+var skin_id = 0
+
 var input_method = "Keyboard"
 var is_respawning = false
 var frozen = false
@@ -32,20 +36,31 @@ var device_type = "Cloud"
 var ready = false
 var jumps = 1
 
+#Skins
+const SKIN_DEFAULT = 0
+const SKIN_ROBOT = 1
+
+
+
+
 func _ready():
-	modulate = Color.from_hsv(.4 * (player_id), 1, 1)
+	change_skin(SKIN_DEFAULT)
+	
+	color = Color.from_hsv(.4 * (player_id), 1, 1)
 	if device_type == "Keyboard1":
 		add_input_map(InputEventKey, "jump", KEY_W)
 		add_input_map(InputEventKey, "movement_left", KEY_A)
 		add_input_map(InputEventKey, "movement_right", KEY_D)
 		add_input_map(InputEventKey, "ready", KEY_R)
 		add_input_map(InputEventKey, "flip", KEY_SHIFT)
+		add_input_map(InputEventKey, "ability", KEY_E)
 	if device_type == "Keyboard2":
 		add_input_map(InputEventKey, "jump", KEY_UP)
 		add_input_map(InputEventKey, "movement_left", KEY_LEFT)
 		add_input_map(InputEventKey, "movement_right", KEY_RIGHT)
-		add_input_map(InputEventKey, "ready", KEY_PERIOD)
-		add_input_map(InputEventKey, "flip", KEY_BACKSLASH)
+		add_input_map(InputEventKey, "ready", KEY_COMMA)
+		add_input_map(InputEventKey, "flip", KEY_PERIOD)
+		add_input_map(InputEventKey, "ability", KEY_M)
 
 	if device_type == "Mobile":
 		add_input_map(InputEventKey, "jump", KEY_PAGEDOWN)
@@ -53,6 +68,7 @@ func _ready():
 		add_input_map(InputEventKey, "movement_right", KEY_PAGEDOWN)
 		add_input_map(InputEventKey, "ready", KEY_PAGEDOWN)
 		add_input_map(InputEventKey, "flip", KEY_PAGEDOWN)
+		add_input_map(InputEventKey, "ability", KEY_PAGEDOWN)
 	
 	if device_type.split(":")[0] == "Gamepad":
 		add_input_map(InputEventJoypadButton, "jump", JOY_XBOX_A)
@@ -60,8 +76,12 @@ func _ready():
 		add_input_map(InputEventJoypadMotion, "movement_right", JOY_AXIS_0, 1.0)
 		add_input_map(InputEventJoypadButton, "ready", JOY_XBOX_Y)
 		add_input_map(InputEventJoypadButton, "flip", JOY_R2)
+		add_input_map(InputEventKey, "ability", JOY_XBOX_X)
 		
 func _physics_process(delta):
+	
+	$SpriteMask.modulate = color
+	
 	if $FloorDetector.is_colliding() and !is_respawning:
 		if $FloorDetector.get_collider().name == "Course":
 			spawnpoint = position
@@ -131,6 +151,16 @@ func process_input():
 		ready = !ready
 	if Input.is_action_pressed("p" + str(player_id) + "flip") and is_on_ceiling():
 		flip()
+		
+		
+	if Input.is_action_just_pressed("p" + str(player_id) + "ability"):
+		match Level.game_state:
+			"Lobby":
+				frozen = !frozen
+				$Wardrobe/CenterContainer/HBoxContainer/Skin.texture = load("res://Images/Skins/" + skin + ".png")
+				$Wardrobe.visible = !$Wardrobe.visible
+		
+		
 	
 func kill(is_respwan, add_fall = false):
 	if add_fall:
@@ -154,3 +184,9 @@ func flip():
 		flip()
 	else:
 		$CollisionShape.disabled = false
+		
+func change_skin(skin_id : int):
+	var skin_name = Profile.data.Owned.Skins[skin_id]
+	skin = skin_name
+	$Sprite.texture = load("res://Images/Skins/" + skin_name + ".png")
+	$SpriteMask.texture = load("res://Images/Skins/mask." + skin_name + ".png")

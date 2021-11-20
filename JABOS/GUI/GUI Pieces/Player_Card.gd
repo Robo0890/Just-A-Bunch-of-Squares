@@ -12,6 +12,10 @@ func _ready():
 	if Player.input_method == "Touch":
 		$Ok.texture_normal = load("res://GUI/Icons/gameicons/PNG/White/1x/up.png")
 		
+	$MarginContainer/Info/PlayerImage.texture = load("res://Images/Skins/" + Player.skin + ".png")
+	$MarginContainer/Info/ImageMask.texture = load("res://Images/Skins/mask." + Player.skin + ".png")
+	$MarginContainer/Info/ImageMask.modulate = Player.color
+	
 	$"MarginContainer/Info/Main Score".text = str(data.Main).split("?=")[1]
 	$Winner.visible = data.Winner
 	$Particles/Gold.emitting = data.Winner
@@ -43,7 +47,6 @@ func _ready():
 	$MarginContainer/Info/Subscore2.queue_free()
 	$MarginContainer/Info.move_child($MarginContainer/Info/Bottom, $MarginContainer/Info.get_child_count())
 
-	$MarginContainer/Info/PLayerImage.modulate = Player.modulate
 	yield(get_tree().create_timer(1),"timeout")
 	ready = true
 

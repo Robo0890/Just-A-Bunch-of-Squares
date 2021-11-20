@@ -6,6 +6,11 @@ var Game : Node2D
 
 func _process(delta):
 	Game = Level.Game
+	
+	$Sprite.texture = load("res://Images/Skins/" + Player.skin + ".png")
+	$SpriteMask.texture = load("res://Images/Skins/mask." + Player.skin + ".png")
+	
+	$SpriteMask.modulate = Player.color
 	match Level.game_state:
 		"Lobby":
 			$ProgressBar.visible = false
@@ -16,7 +21,6 @@ func _process(delta):
 				$Text.text = "        Not Ready"
 				$Text.modulate = Color(1,1,1,.5)
 				
-				$Sprite.modulate = Player.modulate
 		"Playing":
 			var display_type = str(Game.get_display_score(Player.player_id)).split("?=")[0]
 			var display_value = str(Game.get_display_score(Player.player_id)).split("?=")[1]

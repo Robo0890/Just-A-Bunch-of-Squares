@@ -1,12 +1,13 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://GUI/Fonts/MomcakeBold-WyonA.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/checkmark.png" type="Texture" id=2]
-[ext_resource path="res://Images/Face.png" type="Texture" id=3]
+[ext_resource path="res://Images/Skins/mask.Robot.png" type="Texture" id=3]
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=4]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/buttonA.png" type="Texture" id=5]
 [ext_resource path="res://GUI/GUI Pieces/Player_Card.gd" type="Script" id=6]
 [ext_resource path="res://GUI/Icons/customicons/x1/ruby.png" type="Texture" id=7]
+[ext_resource path="res://Images/Skins/Robot.png" type="Texture" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.588235 )
@@ -88,11 +89,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PLayerImage" type="TextureRect" parent="MarginContainer/Info"]
+[node name="PlayerImage" type="TextureRect" parent="MarginContainer/Info"]
 margin_right = 175.0
 margin_bottom = 79.0
-texture = ExtResource( 3 )
+texture = ExtResource( 8 )
 stretch_mode = 4
+
+[node name="ImageMask" type="Sprite" parent="MarginContainer/Info"]
+position = Vector2( 87.5, 39.5 )
+texture = ExtResource( 3 )
 
 [node name="ContentSeperator" type="HSeparator" parent="MarginContainer/Info"]
 margin_top = 83.0
