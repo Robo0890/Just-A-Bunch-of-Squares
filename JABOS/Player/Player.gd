@@ -174,7 +174,10 @@ func process_input():
 			skin = Profile.data.Owned.Skins[skin_id]
 			$Wardrobe/CenterContainer/HBoxContainer/Skin.texture_normal = load("res://Images/Skins/" + skin + ".png")
 		else:
-			skin_id = 0
+			if skin_id >= Profile.data.Owned.Skins.size():
+				skin_id = 0
+			if skin_id < 0:
+				skin_id = Profile.data.Owned.Skins.size() - 1
 			skin = Profile.data.Owned.Skins[skin_id]
 			$Wardrobe/CenterContainer/HBoxContainer/Skin.texture_normal = load("res://Images/Skins/" + skin + ".png")
 			

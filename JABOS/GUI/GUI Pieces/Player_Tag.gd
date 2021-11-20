@@ -22,6 +22,12 @@ func _process(delta):
 				$Text.modulate = Color(1,1,1,.5)
 				
 		"Playing":
+			
+			if Player.active:
+				modulate = Color(1,1,1,1)
+			else:
+				modulate = Color(1,1,1,.5)
+				
 			var display_type = str(Game.get_display_score(Player.player_id)).split("?=")[0]
 			var display_value = str(Game.get_display_score(Player.player_id)).split("?=")[1]
 			var pram2 = str(Game.get_display_score(Player.player_id)).split("?=")[2]
