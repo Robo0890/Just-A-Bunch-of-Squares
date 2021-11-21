@@ -36,6 +36,8 @@ var device_type = "Cloud"
 var ready = false
 var jumps = 1
 
+var in_wardrode = false
+
 #Skins
 const SKIN_DEFAULT = 0
 const SKIN_ROBOT = 1
@@ -82,6 +84,9 @@ func _physics_process(delta):
 	
 	$SpriteMask.modulate = color
 	
+	
+	
+	
 	if $FloorDetector.is_colliding() and !is_respawning:
 		if $FloorDetector.get_collider().name == "Course":
 			spawnpoint = position
@@ -98,7 +103,10 @@ func _physics_process(delta):
 	
 	if active:
 		player_data.time += .016
-		
+	
+	
+	$Wardrobe.visible = in_wardrode
+	
 	process_input()
 	if !frozen:
 		move_and_slide(velocity, Vector2.UP)
@@ -129,39 +137,57 @@ func jump():
 		jump_count += 1
 
 func process_input():
-	if Input.is_action_just_pressed("p" + str(player_id) + "jump") and jumps != 0:
-		jump()
-		jumps -= 1
-	elif !is_on_floor():
-		velocity.y += gravity
+	if !in_wardrode:
+		if Input.is_action_just_pressed("p" + str(player_id) + "jump") and jumps != 0:
+			jump()
+			jumps -= 1
+		elif !is_on_floor():
+			velocity.y += gravity
+		else:
+			velocity.y = 0
+			jumps = max_jumps
+		
+		if Input.is_action_pressed("p" + str(player_id) + "jump") and is_on_ceiling():
+			velocity.y = -10
+			
+		if Input.is_action_just_pressed("p" + str(player_id) + "jump") and is_on_wall():
+			jump()
+			jumps = max_jumps
+			
+		velocity.x = (speed * 500) * (Input.get_action_strength("p" + str(player_id) + "movement_right") - Input.get_action_strength("p" + str(player_id) + "movement_left"))
+		
+		if Input.is_action_just_pressed("p" + str(player_id) + "ready") and get_parent().get_parent().game_state == "Lobby":
+			ready = !ready
+		if Input.is_action_pressed("p" + str(player_id) + "flip") and is_on_ceiling():
+			flip()
+			
+			
+		if Input.is_action_just_pressed("p" + str(player_id) + "ability"):
+			match Level.game_state:
+				"Lobby":
+					in_wardrode = true
 	else:
-		velocity.y = 0
-		jumps = max_jumps
-	
-	if Input.is_action_pressed("p" + str(player_id) + "jump") and is_on_ceiling():
-		velocity.y = -10
+		velocity.x = 0
+		velocity.y += gravity
 		
-	if Input.is_action_just_pressed("p" + str(player_id) + "jump") and is_on_wall():
-		jump()
-		jumps = max_jumps
-		
-	velocity.x = (speed * 500) * (Input.get_action_strength("p" + str(player_id) + "movement_right") - Input.get_action_strength("p" + str(player_id) + "movement_left"))
-	
-	if Input.is_action_just_pressed("p" + str(player_id) + "ready") and get_parent().get_parent().game_state == "Lobby":
-		ready = !ready
-	if Input.is_action_pressed("p" + str(player_id) + "flip") and is_on_ceiling():
-		flip()
-		
-		
-	if Input.is_action_just_pressed("p" + str(player_id) + "ability"):
-		match Level.game_state:
-			"Lobby":
-				frozen = !frozen
-				$Wardrobe/CenterContainer/HBoxContainer/Skin.texture = load("res://Images/Skins/" + skin + ".png")
-				$Wardrobe.visible = !$Wardrobe.visible
+		if !skin_id == Profile.data.Owned.Skins.size():
+			skin = Profile.data.Owned.Skins[skin_id]
+			$Wardrobe/CenterContainer/HBoxContainer/Skin.texture_normal = load("res://Images/Skins/" + skin + ".png")
+		else:
+			skin_id = 0
+			skin = Profile.data.Owned.Skins[skin_id]
+			$Wardrobe/CenterContainer/HBoxContainer/Skin.texture_normal = load("res://Images/Skins/" + skin + ".png")
+			
+		if Input.is_action_just_pressed("p" + str(player_id) + "movement_right"):
+			skin_id += 1
+		if Input.is_action_just_pressed("p" + str(player_id) + "movement_left"):
+			skin_id -= 1
+			
+		if Input.is_action_just_pressed("p" + str(player_id) + "ability"):
+			in_wardrode = false
+			change_skin(skin_id)
 		
 		
-	
 func kill(is_respwan, add_fall = false):
 	if add_fall:
 		falls += 1
@@ -190,3 +216,16 @@ func change_skin(skin_id : int):
 	skin = skin_name
 	$Sprite.texture = load("res://Images/Skins/" + skin_name + ".png")
 	$SpriteMask.texture = load("res://Images/Skins/mask." + skin_name + ".png")
+
+
+func _on_Left_pressed():
+	skin_id -= 1
+
+
+func _on_Right_pressed():
+	skin_id += 1
+
+
+func _on_Skin_pressed():
+	in_wardrode = false
+	change_skin(skin_id)

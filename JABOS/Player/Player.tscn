@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Images/Skins/mask.Robot.png" type="Texture" id=2]
 [ext_resource path="res://Images/Skins/Robot.png" type="Texture" id=3]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/backward.png" type="Texture" id=4]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/forward.png" type="Texture" id=5]
+[ext_resource path="res://Images/Skins/Default.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 40 )
@@ -38,7 +39,6 @@ modulate = Color( 1, 1, 1, 0 )
 enabled = true
 
 [node name="Wardrobe" type="Panel" parent="."]
-visible = false
 show_behind_parent = true
 margin_left = -100.0
 margin_top = -150.0
@@ -74,11 +74,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Skin" type="TextureRect" parent="Wardrobe/CenterContainer/HBoxContainer"]
+[node name="Skin" type="TextureButton" parent="Wardrobe/CenterContainer/HBoxContainer"]
 margin_left = 54.0
 margin_right = 133.0
 margin_bottom = 79.0
-texture = ExtResource( 3 )
+texture_normal = ExtResource( 6 )
 
 [node name="Right" type="TextureButton" parent="Wardrobe/CenterContainer/HBoxContainer"]
 margin_left = 137.0
@@ -88,3 +88,7 @@ texture_normal = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[connection signal="pressed" from="Wardrobe/CenterContainer/HBoxContainer/Left" to="." method="_on_Left_pressed"]
+[connection signal="pressed" from="Wardrobe/CenterContainer/HBoxContainer/Skin" to="." method="_on_Skin_pressed"]
+[connection signal="pressed" from="Wardrobe/CenterContainer/HBoxContainer/Right" to="." method="_on_Right_pressed"]

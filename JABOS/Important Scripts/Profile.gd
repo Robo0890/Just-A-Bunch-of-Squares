@@ -6,7 +6,7 @@ var data = {
 	"xp" : 0,
 	"gamemode" : "Classic",
 	"Owned" : {
-		"Skins" : ["Default", "Robot"],
+		"Skins" : ["Default"],
 		"Power_Ups" : [],
 		"Gamemodes" : ["Classic", "Space Jump"]
 	}
@@ -17,7 +17,7 @@ const DEFAULT_DATA = {
 	"xp" : 0,
 	"gamemode" : "Classic",
 	"Owned" : {
-		"Skins" : ["Default", "Robot"],
+		"Skins" : ["Default", "Robot", "Cyborg", "Puppy"],
 		"Power_Ups" : [],
 		"Gamemodes" : ["Classic", "Space Jump"]
 	}

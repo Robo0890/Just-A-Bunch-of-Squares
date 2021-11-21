@@ -57,3 +57,8 @@ func _on_Flip_pressed():
 	Input.action_press("p" + str(player_id) + "flip",1)
 func _on_Flip_released():
 	Input.action_release("p" + str(player_id) + "flip")
+
+func _on_Skin_pressed():
+	Input.action_press("p" + str(player_id) + "ability",1)
+func _on_Skin_released():
+	Input.action_release("p" + str(player_id) + "ability")
