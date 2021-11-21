@@ -12,11 +12,13 @@ func _process(delta):
 	if visible:
 		match Level.game_state:
 			"Playing":
+				$Panel/Right/Wardrobe/Skin.visible = false
 				$Panel/Right/Ready/Ready.visible = false
 				$Panel/Left/Quit/Quit.visible = false
 			"Lobby":
 				$Panel/Right/Ready/Ready.visible = true
 				$Panel/Left/Quit/Quit.visible = true
+				$Panel/Right/Wardrobe/Skin.visible = true
 				$Panel2.visible = false
 			"End":
 				$Panel/Left/Left.visible = false

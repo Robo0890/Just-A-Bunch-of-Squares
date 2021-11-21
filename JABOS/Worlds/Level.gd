@@ -22,6 +22,7 @@ onready var Classic = preload("res://Gamemodes/Classic/Game.tscn")
 #onready var Space_Jump = preload("res://Gamemodes/Space Jump/Game.tscn")
 
 func _ready():
+	
 	Firebase.Auth.login_anonymous()
 	
 	get_tree().debug_collisions_hint = true
@@ -29,7 +30,7 @@ func _ready():
 	$IPGetter.request("https://ipv4.icanhazip.com/", [], false, HTTPClient.METHOD_GET)
 
 	var load_data = Save.load_data("jabos_profile")
-	if load_data.size() > 0:
+	if load_data.size() > 0 and load_data.has("version"):
 		print(load_data)
 		Profile.data = load_data
 	else:

@@ -78,7 +78,7 @@ func _ready():
 		add_input_map(InputEventJoypadMotion, "movement_right", JOY_AXIS_0, 1.0)
 		add_input_map(InputEventJoypadButton, "ready", JOY_XBOX_Y)
 		add_input_map(InputEventJoypadButton, "flip", JOY_R2)
-		add_input_map(InputEventKey, "ability", JOY_XBOX_X)
+		add_input_map(InputEventJoypadButton, "ability", JOY_XBOX_X)
 		
 func _physics_process(delta):
 	
@@ -170,7 +170,7 @@ func process_input():
 		velocity.x = 0
 		velocity.y += gravity
 		
-		if !skin_id == Profile.data.Owned.Skins.size():
+		if !skin_id >= Profile.data.Owned.Skins.size() and !skin_id < 0:
 			skin = Profile.data.Owned.Skins[skin_id]
 			$Wardrobe/CenterContainer/HBoxContainer/Skin.texture_normal = load("res://Images/Skins/" + skin + ".png")
 		else:

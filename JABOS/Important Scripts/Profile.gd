@@ -17,11 +17,14 @@ const DEFAULT_DATA = {
 	"xp" : 0,
 	"gamemode" : "Classic",
 	"Owned" : {
-		"Skins" : ["Default", "Robot", "Cyborg", "Puppy"],
+		"Skins" : ["Default", "Robot", "Cyborg", "Puppy", "Dinnerbone", "Shades"],
 		"Power_Ups" : [],
 		"Gamemodes" : ["Classic", "Space Jump"]
-	}
+	},
+	"version" : 1.5
 }
+
+const CURRENT_VERSION = 1.5
 
 var is_cloud_game = false
 
