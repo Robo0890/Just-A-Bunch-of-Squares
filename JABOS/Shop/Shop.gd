@@ -82,3 +82,8 @@ func _on_Skin_Buy_pressed():
 	Profile.data.ruby -= daily_skin.price
 	Save.save_data(Profile.data, "jabos_profile")
 	load_shop()
+
+
+func _on_Clear_pressed():
+	Profile.clear()
+	load_shop()
