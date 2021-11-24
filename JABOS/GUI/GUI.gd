@@ -38,12 +38,10 @@ func _input(event):
 			activate_mobile()
 
 func _ready():
-
-	for x in get_tree().get_nodes_in_group("Cloud"):
-		x.visible = false
 	
-
-	
+	if OS.get_name() != "HTML5":
+		$Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud.add_icon_item(load("res://GUI/Icons/gameicons-expansion/PNG/White/1x/cloud.png"), "Create")
+		
 	var popup = GamemodeBox.get_popup()
 	var gamemode_list = get_gamemodes()
 	
@@ -54,9 +52,6 @@ func _ready():
 			var new_item_icon = load(path + "/Images/Icon.png")
 			popup.add_icon_item(new_item_icon, new_item_name)
 			
-		
-	popup.add_separator("")
-	popup.add_icon_item(load("res://GUI/Icons/gameicons/PNG/White/1x/basket.png"), "Shop")
 	
 	for x in get_tree().get_nodes_in_group("Cloud_Only"):
 		x.visible = false
@@ -80,6 +75,7 @@ func _physics_process(delta):
 			$Top_UI/Panel/VBoxContainer/Join_Prompt.show()
 			$Leaderboard.hide()
 			XpBar.value = Profile.data.xp
+			$Options/VBoxContainer/MarginContainer/GridContainer/Pin.text = str(Level.Cloud.game_pin)
 		"End":
 			$Top_UI/Panel.hide()
 			if !$Leaderboard.visible:
@@ -137,19 +133,7 @@ func _ui_click_select(index):
 
 func _on_gamemode_selected(index):
 	var item_name = GamemodeBox.get_item_text(index)
-	if item_name != "Shop":
-		Level.change_gamemode(item_name)
-	else:
-		_on_TextureButton_pressed()
-		hide()
-		var s = Shop.instance()
-		Level.GUI.get_parent().add_child(s)
-		is_shop_visible = true
-	
-	$Options/VBoxContainer/MarginContainer/GridContainer/GameMode.text = "Select"
-	$Options/VBoxContainer/MarginContainer/GridContainer/GameMode.icon = load("res://GUI/Icons/gameicons/PNG/White/1x/down.png")
-
-
+	Level.change_gamemode(item_name)
 
 
 
@@ -174,31 +158,36 @@ func _on_Pin_pressed():
 	""")
 
 
+
+
 func _on_CreateCloud_item_selected(index):
-	
-	Profile.is_cloud_game = !Profile.is_cloud_game
-	match Profile.is_cloud_game:
-		true:
-			for x in get_tree().get_nodes_in_group("Cloud"):
-				x.visible = true
-			$Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud.text = "Delete"
-			$Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud.icon = load("res://GUI/Icons/gameicons/PNG/White/1x/trashcan.png")
-			
-			randomize()
-			var random_pin = int(rand_range(1111,9999))
-			
-			var cloudgame = {
-				"ip" : Profile.public_ip,
-				"port" : str(random_pin) + "0"
-			}
-			$Options/VBoxContainer/MarginContainer/GridContainer/Pin.text = str(random_pin)
-			Firebase.Firestore.collection("CloudGames").add(str(random_pin), FirestoreDocument.dict2fields(cloudgame))
+	$Options/VBoxContainer/MarginContainer/GridContainer/GamePin.show()
+	if index == 1:
+		Level.Cloud.create_game()
+		$Options/VBoxContainer/MarginContainer/GridContainer/JoinPin.hide()
+		$Options/VBoxContainer/MarginContainer/GridContainer/Pin.show()
+	if index == 0:
+		$Options/VBoxContainer/MarginContainer/GridContainer/Pin.hide()
+		$Options/VBoxContainer/MarginContainer/GridContainer/JoinPin.show()
 
 
-			
-		false:
-			for x in get_tree().get_nodes_in_group("Cloud"):
-				x.visible = true
-			$Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud.text = "Delete"
-			$Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud.icon = load("res://GUI/Icons/gameicons/PNG/White/1x/trashcan.png")
+func _on_JoinPin_text_entered(new_text):
+	$Options/VBoxContainer/MarginContainer/GridContainer/JoinPin/Loading.visible = true
+	Level.Cloud.join_game(new_text)
 
+func join_err(err):
+	$Options/VBoxContainer/MarginContainer/GridContainer/JoinPin/Loading.visible = false
+	if err == "Connected! ":
+		return
+	$Options/VBoxContainer/MarginContainer/GridContainer/JoinPin/Err.text = err
+	$Options/VBoxContainer/MarginContainer/GridContainer/JoinPin/Err.show()
+	yield(get_tree().create_timer(2), "timeout")
+	$Options/VBoxContainer/MarginContainer/GridContainer/JoinPin/Err.hide()
+
+
+func _on_Shop_pressed():
+	_on_TextureButton_pressed()
+	hide()
+	var s = Shop.instance()
+	Level.GUI.get_parent().add_child(s)
+	is_shop_visible = true

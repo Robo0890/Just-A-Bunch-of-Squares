@@ -16,6 +16,8 @@ onready var Game_Camera = $Camera
 onready var GUI = $Control/GUI
 onready var Manager = $Manager
 
+onready var Cloud = $CloudGame
+
 onready var Game : Object
 onready var Classic = preload("res://Gamemodes/Classic/Game.tscn")
 #onready var Floor_Is_Lava = preload("res://Gamemodes/Floor Is Lava/Game.tscn")
@@ -114,5 +116,5 @@ func _on_Reset_Timer_timeout():
 
 
 func _on_IPGetter_request_completed(result, response_code, headers, body : PoolByteArray):
-	Profile.public_ip = body.get_string_from_ascii()
+	Profile.public_ip = (body.get_string_from_ascii()).replace("\n", "")
 	print(Profile.public_ip)

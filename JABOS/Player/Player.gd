@@ -81,36 +81,34 @@ func _ready():
 		add_input_map(InputEventJoypadButton, "ability", JOY_XBOX_X)
 		
 func _physics_process(delta):
-	
-	$SpriteMask.modulate = color
-	
-	
-	
-	
-	if $FloorDetector.is_colliding() and !is_respawning:
-		if $FloorDetector.get_collider().name == "Course":
-			spawnpoint = position
-	
-	
-	if is_respawning:
-		$Sprite.modulate = Color(1,1,1,.2)
-		position.y += gravity
-		if position.distance_to(spawnpoint) <= 20:
-			$Sprite.modulate = Color.white
-			is_respawning = false
-			frozen = false
-			$CollisionShape.disabled = false
-	
-	if active:
-		player_data.time += .016
-	
-	
-	$Wardrobe.visible = in_wardrode
-	
-	process_input()
-	if !frozen:
-		move_and_slide(velocity, Vector2.UP)
-
+	if !device_type.split(":")[0] == "Cloud":
+		$SpriteMask.modulate = color
+		
+		if $FloorDetector.is_colliding() and !is_respawning:
+			if $FloorDetector.get_collider().name == "Course":
+				spawnpoint = position
+		
+		
+		if is_respawning:
+			$Sprite.modulate = Color(1,1,1,.2)
+			position.y += gravity
+			if position.distance_to(spawnpoint) <= 20:
+				$Sprite.modulate = Color.white
+				is_respawning = false
+				frozen = false
+				$CollisionShape.disabled = false
+		
+		if active:
+			player_data.time += .016
+		
+		
+		$Wardrobe.visible = in_wardrode
+		
+		process_input()
+		if !frozen:
+			move_and_slide(velocity, Vector2.UP)
+	else:
+		position.x = Level.Cloud.players[device_type.split(":")[1]].xpos
 
 func add_input_map(input_type, input_name, input_scancode, extra_info = 0):
 	var ev : InputEvent
@@ -173,12 +171,14 @@ func process_input():
 		if !skin_id >= Profile.data.Owned.Skins.size() and !skin_id < 0:
 			skin = Profile.data.Owned.Skins[skin_id]
 			$Wardrobe/CenterContainer/HBoxContainer/Skin.texture_normal = load("res://Images/Skins/" + skin + ".png")
+			$Wardrobe/Nametag/Name.text = skin
 		else:
 			if skin_id >= Profile.data.Owned.Skins.size():
 				skin_id = 0
 			if skin_id < 0:
 				skin_id = Profile.data.Owned.Skins.size() - 1
 			skin = Profile.data.Owned.Skins[skin_id]
+			$Wardrobe/Nametag/Name.text = skin
 			$Wardrobe/CenterContainer/HBoxContainer/Skin.texture_normal = load("res://Images/Skins/" + skin + ".png")
 			
 		if Input.is_action_just_pressed("p" + str(player_id) + "movement_right"):
@@ -214,6 +214,7 @@ func flip():
 	else:
 		$CollisionShape.disabled = false
 		
+# warning-ignore:shadowed_variable
 func change_skin(skin_id : int):
 	var skin_name = Profile.data.Owned.Skins[skin_id]
 	skin = skin_name

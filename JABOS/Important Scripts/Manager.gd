@@ -23,7 +23,8 @@ func _input(event):
 				if !connected_devices.has("Gamepad:" + str(event.device)):
 					connected_devices.append("Gamepad:" + str(event.device))
 					add_player(active_players.size(), "Gamepad:" + str(event.device), "Gamepad")
-					
+	if Level.Cloud.running:
+		Level.Cloud.rpc("add_player", get_tree().get_network_unique_id())
 	
 			
 
@@ -46,3 +47,14 @@ func _physics_process(delta):
 					Level.ready_players.append(x.player_id)
 				if !x.ready and Level.ready_players.has(x.player_id):
 					Level.ready_players.erase(x.player_id)
+
+func add_cloud_player(id):
+	active_players.append(active_players.size())
+	var new_player = Player.instance()
+	new_player.player_id = active_players.size()
+	new_player.device_type = "Cloud:" + str(id)
+	new_player.input_method = "Cloud"
+	add_child(new_player)
+	print("Added Player " + new_player.id + " from device: " + "cloud_connection")
+	Level.GUI.player_join(new_player)
+	return new_player

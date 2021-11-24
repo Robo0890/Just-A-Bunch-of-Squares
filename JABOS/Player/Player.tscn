@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Images/Skins/mask.Robot.png" type="Texture" id=2]
-[ext_resource path="res://Images/Skins/Robot.png" type="Texture" id=3]
+[ext_resource path="res://Images/Face.png" type="Texture" id=2]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/backward.png" type="Texture" id=4]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/forward.png" type="Texture" id=5]
 [ext_resource path="res://Images/Skins/Default.png" type="Texture" id=6]
+[ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 40 )
@@ -29,10 +29,9 @@ modulate = Color( 1, 1, 1, 0 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 
 [node name="SpriteMask" type="Sprite" parent="."]
-texture = ExtResource( 2 )
 
 [node name="FloorDetector" type="RayCast2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
@@ -45,6 +44,7 @@ margin_top = -150.0
 margin_right = 100.0
 margin_bottom = -50.0
 rect_min_size = Vector2( 200, 100 )
+theme = ExtResource( 7 )
 custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -85,6 +85,24 @@ margin_left = 137.0
 margin_right = 187.0
 margin_bottom = 79.0
 texture_normal = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Nametag" type="Panel" parent="Wardrobe"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -26.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="Wardrobe/Nametag"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Default"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

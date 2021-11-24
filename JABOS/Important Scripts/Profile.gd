@@ -17,7 +17,7 @@ const DEFAULT_DATA = {
 	"xp" : 0,
 	"gamemode" : "Classic",
 	"Owned" : {
-		"Skins" : ["Default", "Robot", "Cyborg", "Puppy", "Dinnerbone", "Shades"],
+		"Skins" : ["Default"],
 		"Power_Ups" : [],
 		"Gamemodes" : ["Classic", "Space Jump"]
 	},

@@ -1,7 +1,7 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=1]
-[ext_resource path="res://GUI/Icons/gameicons-expansion/PNG/White/1x/cloud.png" type="Texture" id=2]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/signal3.png" type="Texture" id=2]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/share1.png" type="Texture" id=3]
 [ext_resource path="res://GUI/Fonts/Title_Font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://GUI/Fonts/MomcakeBold-WyonA.otf" type="DynamicFontData" id=5]
@@ -11,6 +11,9 @@
 [ext_resource path="res://GUI/GUI.gd" type="Script" id=9]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/buttonA.png" type="Texture" id=10]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/multiplayer.png" type="Texture" id=11]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/signal1.png" type="Texture" id=12]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/signal2.png" type="Texture" id=13]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/basket.png" type="Texture" id=14]
 [ext_resource path="res://GUI/Icons/customicons/x1/ruby.png" type="Texture" id=16]
 [ext_resource path="res://Images/Face.png" type="Texture" id=17]
 [ext_resource path="res://GUI/GUI Pieces/MobileControls.tscn" type="PackedScene" id=18]
@@ -59,6 +62,14 @@ expand_margin_right = 12.0
 [sub_resource type="DynamicFont" id=7]
 size = 23
 font_data = ExtResource( 5 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "Loading",
+"speed": 4.0
+} ]
 
 [sub_resource type="Animation" id=8]
 tracks/0/type = "bezier"
@@ -331,7 +342,7 @@ margin_bottom = 60.0
 [node name="MarginContainer" type="MarginContainer" parent="Options/VBoxContainer"]
 margin_top = 75.0
 margin_right = 623.0
-margin_bottom = 536.0
+margin_bottom = 531.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_bottom = 214
@@ -339,7 +350,7 @@ custom_constants/margin_bottom = 214
 [node name="GridContainer" type="GridContainer" parent="Options/VBoxContainer/MarginContainer"]
 margin_left = 27.0
 margin_right = 595.0
-margin_bottom = 247.0
+margin_bottom = 242.0
 rect_min_size = Vector2( 566, 0 )
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -348,63 +359,81 @@ custom_constants/hseparation = 56
 columns = 2
 
 [node name="Mode" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
-margin_right = 232.0
+margin_right = 214.0
 margin_bottom = 45.0
 custom_fonts/font = ExtResource( 4 )
 text = "Gamemode:"
 
 [node name="GameMode" type="OptionButton" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
-margin_left = 288.0
-margin_right = 568.0
+margin_left = 270.0
+margin_right = 550.0
 margin_bottom = 45.0
 text = "Select"
 icon = ExtResource( 6 )
 align = 1
 expand_icon = true
 
-[node name="Power-Ups" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
+[node name="ShopLabel" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
+margin_top = 55.0
+margin_right = 214.0
+margin_bottom = 100.0
+custom_fonts/font = ExtResource( 4 )
+text = "Shop:"
+
+[node name="Shop" type="Button" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
+margin_left = 270.0
 margin_top = 53.0
-margin_right = 232.0
-margin_bottom = 98.0
+margin_right = 550.0
+margin_bottom = 103.0
+text = "SHop"
+icon = ExtResource( 14 )
+
+[node name="Power-Ups" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
+margin_top = 111.0
+margin_right = 214.0
+margin_bottom = 156.0
 custom_fonts/font = ExtResource( 4 )
 text = "Power-Ups:"
 
 [node name="PowerUps" type="Button" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
-margin_left = 288.0
-margin_top = 53.0
-margin_right = 568.0
-margin_bottom = 98.0
+margin_left = 270.0
+margin_top = 111.0
+margin_right = 550.0
+margin_bottom = 156.0
 custom_colors/font_color = Color( 0.521569, 0.521569, 0.521569, 1 )
 custom_colors/font_color_hover = Color( 0.521569, 0.521569, 0.521569, 1 )
 custom_fonts/font = SubResource( 7 )
 text = "Comming Soon"
 
 [node name="CloudGame" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
-margin_top = 108.0
-margin_right = 232.0
-margin_bottom = 153.0
+visible = false
+margin_top = 106.0
+margin_right = 280.0
+margin_bottom = 151.0
 custom_fonts/font = ExtResource( 4 )
 text = "Cloud Game:"
 
 [node name="CreateCloud" type="OptionButton" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
+visible = false
 margin_left = 288.0
 margin_top = 106.0
 margin_right = 568.0
 margin_bottom = 156.0
-text = "Create"
-icon = ExtResource( 2 )
-items = [ "Create", ExtResource( 2 ), false, 0, null, "Join", ExtResource( 11 ), false, 1, null ]
+text = "Join"
+icon = ExtResource( 11 )
+align = 1
+items = [ "Join", ExtResource( 11 ), false, 1, null ]
 selected = 0
 
 [node name="Blank" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
 margin_top = 164.0
-margin_right = 232.0
+margin_right = 214.0
 margin_bottom = 189.0
 
 [node name="Expander" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
-margin_left = 288.0
+margin_left = 270.0
 margin_top = 164.0
-margin_right = 568.0
+margin_right = 550.0
 margin_bottom = 189.0
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 0 )
@@ -412,13 +441,15 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
 text = "453453453453453453453453"
 
 [node name="GamePin" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer" groups=["Cloud"]]
-margin_top = 199.0
+visible = false
+margin_top = 197.0
 margin_right = 232.0
-margin_bottom = 244.0
+margin_bottom = 242.0
 custom_fonts/font = ExtResource( 4 )
 text = "Game Pin: "
 
 [node name="Pin" type="Button" parent="Options/VBoxContainer/MarginContainer/GridContainer" groups=["Cloud"]]
+visible = false
 margin_left = 288.0
 margin_top = 197.0
 margin_right = 568.0
@@ -428,6 +459,35 @@ icon = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="JoinPin" type="LineEdit" parent="Options/VBoxContainer/MarginContainer/GridContainer" groups=["Cloud"]]
+visible = false
+margin_top = 197.0
+margin_right = 232.0
+margin_bottom = 242.0
+text = "1234"
+max_length = 4
+context_menu_enabled = false
+selecting_enabled = false
+
+[node name="Err" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer/JoinPin"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 1, 0.156863, 0.156863, 1 )
+text = "Pin Invalid!"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Loading" type="AnimatedSprite" parent="Options/VBoxContainer/MarginContainer/GridContainer/JoinPin"]
+visible = false
+position = Vector2( -39.7715, 21.7784 )
+frames = SubResource( 10 )
+animation = "Loading"
+playing = true
 
 [node name="CenterContainer" type="CenterContainer" parent="Options"]
 anchor_left = 1.0
@@ -447,9 +507,11 @@ texture_normal = ExtResource( 8 )
 anims/Options = SubResource( 8 )
 
 [connection signal="pressed" from="Top_UI/Option_Button" to="." method="_on_Button_pressed"]
-[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click_select"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]
+[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click_select"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click"]
+[connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Shop" to="." method="_on_Shop_pressed"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud" to="." method="_on_CreateCloud_item_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Pin" to="." method="_on_Pin_pressed"]
+[connection signal="text_entered" from="Options/VBoxContainer/MarginContainer/GridContainer/JoinPin" to="." method="_on_JoinPin_text_entered"]
 [connection signal="pressed" from="Options/CenterContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
