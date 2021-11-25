@@ -35,6 +35,9 @@ func _ready():
 		
 	if joincode != null:
 		Firebase.Firestore.collection("CloudGames").get(str(joincode))
+		
+	if Profile.gift_link != "":
+		GUI._on_Shop_pressed()
 
 func _physics_process(delta):
 	match game_state:

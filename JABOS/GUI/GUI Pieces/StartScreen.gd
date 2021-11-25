@@ -17,6 +17,14 @@ func _ready():
 
 	OS.set_window_title("Just A Bunch of Squares")
 	
+	var giftcode = JavaScript.eval("""
+		var url_string = window.location.href;
+		var url = new URL(url_string);
+		url.searchParams.get("gift");""")
+		
+	if giftcode != null:
+		Profile.gift_link = str(giftcode)
+	
 	if splash:
 		$Background/AnimationPlayer.play("EonSplash")
 		yield(get_tree().create_timer(1),"timeout")

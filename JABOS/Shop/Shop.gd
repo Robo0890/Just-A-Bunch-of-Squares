@@ -35,6 +35,7 @@ func _ready():
 	$Loading.show()
 	$Body.hide()
 	$Head.hide()
+	
 	online_shop = Firebase.Firestore.collection("Shop")
 	online_shop.get(str(weekday))
 	var get_skins : FirestoreDocument = yield(online_shop, "get_document")
@@ -45,7 +46,12 @@ func _ready():
 	
 	daily_skin = online_shop.skin
 	
+	
 	load_shop()
+	
+	if Profile.gift_link != "":
+		_on_GiftCode_text_entered(Profile.gift_link)
+		Profile.gift_link = ""
 
 func load_shop():
 	
@@ -140,26 +146,26 @@ func _on_GiftCode_text_entered(new_text):
 		load_shop()
 		if gift.one_time:
 			collection.delete(new_text)
-
-
-
-func _on_Ok_pressed():
+	yield($Gift/VBoxContainer/Ok, "pressed")
 	$Gift.hide()
 	$Gift/VBoxContainer/Ruby.hide()
 	$Gift/VBoxContainer/Skin.hide()
 	$Body.show()
 	$Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode.text = ""
 
+
+
+
+
 func invalid_gift_code(q, w, e):
 	OS.alert("Code Invalid", "Oops!")
 
 
 func _on_GiftCode_focus_entered():
-	OS.show_virtual_keyboard()
-	"""if OS.has_virtual_keyboard():
-		$Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode.text = JavaScript.eval("prompt(\"Enter Code\")")
+	if OS.has_virtual_keyboard():
+		$Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode.text = JavaScript.eval("prompt(\"Enter Code:\")")
 		_on_GiftCode_text_entered($Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode.text)
-		"""
+		
 
 
 func _on_Profile_pressed():

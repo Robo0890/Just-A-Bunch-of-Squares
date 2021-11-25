@@ -281,6 +281,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Loading"]
 position = Vector2( 44, 50 )
 frames = SubResource( 1 )
+frame = 2
 playing = true
 
 [node name="Body" type="MarginContainer" parent="."]
@@ -557,7 +558,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="Gift/VBoxContainer/Ok" to="." method="_on_Ok_pressed"]
 [connection signal="pressed" from="Profile/Panel/MarginContainer/VBoxContainer/Clear" to="." method="_on_Clear_pressed"]
 [connection signal="pressed" from="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Buy" to="." method="_on_Skin_Buy_pressed"]
 [connection signal="pressed" from="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Clear" to="." method="_on_Clear_pressed"]

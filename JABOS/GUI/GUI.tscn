@@ -233,6 +233,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Bottom_UI" type="Control" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mobile Controller" parent="Bottom_UI" instance=ExtResource( 18 )]
+
 [node name="Top_UI" type="Control" parent="."]
 anchor_right = 1.0
 margin_right = -12.0
@@ -295,16 +305,6 @@ icon = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Bottom_UI" type="Control" parent="."]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Mobile Controller" parent="Bottom_UI" instance=ExtResource( 18 )]
 
 [node name="Options" type="Panel" parent="."]
 anchor_left = 0.5
@@ -487,7 +487,7 @@ visible = false
 position = Vector2( -39.7715, 21.7784 )
 frames = SubResource( 10 )
 animation = "Loading"
-frame = 1
+frame = 2
 playing = true
 
 [node name="CenterContainer" type="CenterContainer" parent="Options"]
@@ -508,8 +508,8 @@ texture_normal = ExtResource( 8 )
 anims/Options = SubResource( 8 )
 
 [connection signal="pressed" from="Top_UI/Option_Button" to="." method="_on_Button_pressed"]
-[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click_select"]
+[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Shop" to="." method="_on_Shop_pressed"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud" to="." method="_on_CreateCloud_item_selected"]

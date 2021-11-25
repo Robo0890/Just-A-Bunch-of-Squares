@@ -44,6 +44,7 @@ const CURRENT_VERSION = 1.5
 
 var is_cloud_game = false
 
+var gift_link = ""
 
 var public_ip = "127.0.0.1"
 
