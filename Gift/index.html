@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html prefix="og: https://ogp.me/ns#">
+	<head>
+		<!--Link preview card-->
+		<title>JABOS Invite</title>
+		<link rel="icon" href="https://robo0890.github.io/Just-A-Bunch-of-Squares/Join/Face.png"/>
+  		<meta property="og:title" content="JABOS Cloud Game Invite"/>
+		<meta property="og:description" content="You’ve been invited to play JABOS!"/>
+  		<meta property="og:type" content="website"/>
+ 		<meta property="og:url" content="https://robo0890.github.io/Just-A-Bunch-of-Squares/Join/invite.JPG"/>
+  		<meta property="og:image" content="https://robo0890.github.io/Just-A-Bunch-of-Squares/Join/invite.JPG"/>
+  		<meta property="og:image:width" content="1200"/>
+  		<meta property="og:image:height" content="600"/>
+  		<meta name="twitter:card" content="summary_large_image"/>
+  		<meta name="twitter:image" content="https://robo0890.github.io/Just-A-Bunch-of-Squares/Join/invite.JPG"/>
+  		<meta name="twitter:title" content="JABOS Invite"/>
+   		<meta name="twitter:description" content="You’ve been invited to play JABOS!"/>
+	</head>
+		<body>
+			<script>
+				/*Javascript code to change the url to the correct site*/
+				var url_string = window.location.href;
+				var url = new URL(url_string);
+				window.location.replace("https://robo0890.github.io/Just-A-Bunch-of-Squares?join=" + url.searchParams.get("code"));
+			</script>
+		</body>
+</html>
