@@ -138,19 +138,130 @@ __meta__ = {
 }
 
 [node name="Message" type="Label" parent="Gift/VBoxContainer"]
-margin_top = 134.0
+margin_top = 45.0
 margin_right = 362.0
-margin_bottom = 159.0
+margin_bottom = 70.0
 custom_fonts/font = ExtResource( 13 )
 text = "Happy Lauch Day!"
 align = 1
 
 [node name="Ok" type="Button" parent="Gift/VBoxContainer"]
-margin_top = 169.0
+margin_top = 80.0
 margin_right = 362.0
-margin_bottom = 219.0
+margin_bottom = 130.0
 text = "Thanks!"
 icon = ExtResource( 9 )
+
+[node name="Profile" type="MarginContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 50
+custom_constants/margin_top = 100
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Profile"]
+margin_left = 50.0
+margin_top = 100.0
+margin_right = 974.0
+margin_bottom = 550.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Profile/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 25
+custom_constants/margin_top = 25
+custom_constants/margin_left = 25
+custom_constants/margin_bottom = 25
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Profile/Panel/MarginContainer"]
+margin_left = 25.0
+margin_top = 25.0
+margin_right = 899.0
+margin_bottom = 425.0
+custom_constants/separation = 25
+
+[node name="Label" type="Label" parent="Profile/Panel/MarginContainer/VBoxContainer"]
+margin_right = 874.0
+margin_bottom = 25.0
+text = "Profile"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureButton" parent="Profile/Panel/MarginContainer/VBoxContainer"]
+margin_top = 50.0
+margin_right = 874.0
+margin_bottom = 129.0
+rect_min_size = Vector2( 79, 79 )
+texture_normal = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="Profile/Panel/MarginContainer/VBoxContainer"]
+margin_top = 154.0
+margin_right = 874.0
+margin_bottom = 154.0
+
+[node name="Stats" type="GridContainer" parent="Profile/Panel/MarginContainer/VBoxContainer"]
+margin_top = 179.0
+margin_right = 874.0
+margin_bottom = 262.0
+custom_constants/hseparation = 490
+columns = 2
+
+[node name="Jumps" type="Label" parent="Profile/Panel/MarginContainer/VBoxContainer/Stats"]
+margin_right = 213.0
+margin_bottom = 25.0
+text = "Total Jumps: 34,134"
+
+[node name="Falls" type="Label" parent="Profile/Panel/MarginContainer/VBoxContainer/Stats"]
+margin_left = 703.0
+margin_right = 873.0
+margin_bottom = 25.0
+text = "Total Falls: 342"
+align = 2
+
+[node name="Games" type="Label" parent="Profile/Panel/MarginContainer/VBoxContainer/Stats"]
+margin_top = 29.0
+margin_right = 213.0
+margin_bottom = 54.0
+text = "Games Played: 56"
+
+[node name="Skins" type="Label" parent="Profile/Panel/MarginContainer/VBoxContainer/Stats"]
+margin_left = 703.0
+margin_top = 29.0
+margin_right = 873.0
+margin_bottom = 54.0
+text = "Skins Owned: 5"
+align = 2
+
+[node name="Favorite" type="Label" parent="Profile/Panel/MarginContainer/VBoxContainer/Stats"]
+margin_top = 58.0
+margin_right = 213.0
+margin_bottom = 83.0
+text = "Favorite Skin: Puppy"
+
+[node name="HSeparator2" type="HSeparator" parent="Profile/Panel/MarginContainer/VBoxContainer"]
+margin_top = 287.0
+margin_right = 874.0
+margin_bottom = 287.0
+
+[node name="Clear" type="Button" parent="Profile/Panel/MarginContainer/VBoxContainer"]
+modulate = Color( 1, 0.176471, 0.176471, 1 )
+margin_top = 312.0
+margin_right = 874.0
+margin_bottom = 362.0
+text = "Clear Data (No Undo)"
+icon = ExtResource( 10 )
 
 [node name="Loading" type="Panel" parent="."]
 visible = false
@@ -170,10 +281,10 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Loading"]
 position = Vector2( 44, 50 )
 frames = SubResource( 1 )
-frame = 1
 playing = true
 
 [node name="Body" type="MarginContainer" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 50
@@ -191,8 +302,8 @@ margin_right = 974.0
 margin_bottom = 550.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Body/Panel"]
-margin_right = 924.0
-margin_bottom = 450.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_constants/margin_right = 25
 custom_constants/margin_top = 25
 custom_constants/margin_left = 25
@@ -245,6 +356,15 @@ margin_bottom = 25.0
 text = "Daily Skin"
 align = 1
 
+[node name="Deal" type="Label" parent="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin"]
+visible = false
+margin_top = 39.0
+margin_right = 162.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.331776, 1, 0, 1 )
+text = "20% off!"
+align = 1
+
 [node name="TextureRect" type="TextureRect" parent="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin"]
 margin_top = 39.0
 margin_right = 162.0
@@ -284,15 +404,6 @@ margin_bottom = 285.0
 rect_min_size = Vector2( 162, 0 )
 text = "Data"
 icon = ExtResource( 10 )
-
-[node name="Deal" type="Label" parent="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin"]
-visible = false
-margin_top = 235.0
-margin_right = 162.0
-margin_bottom = 260.0
-custom_colors/font_color = Color( 0.331776, 1, 0, 1 )
-text = "20% off!"
-align = 1
 
 [node name="HSeparator" type="HSeparator" parent="Body/Panel/MarginContainer/HSplitContainer/Skins"]
 margin_top = 239.0
@@ -424,7 +535,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="Head/HBoxContainer/Profile"]
+[node name="Profile" type="Button" parent="Head/HBoxContainer/Profile"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/hover = SubResource( 2 )
@@ -447,8 +558,10 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="Gift/VBoxContainer/Ok" to="." method="_on_Ok_pressed"]
+[connection signal="pressed" from="Profile/Panel/MarginContainer/VBoxContainer/Clear" to="." method="_on_Clear_pressed"]
 [connection signal="pressed" from="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Buy" to="." method="_on_Skin_Buy_pressed"]
 [connection signal="pressed" from="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Clear" to="." method="_on_Clear_pressed"]
 [connection signal="focus_entered" from="Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode" to="." method="_on_GiftCode_focus_entered"]
 [connection signal="text_entered" from="Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode" to="." method="_on_GiftCode_text_entered"]
 [connection signal="pressed" from="Head/HBoxContainer/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Head/HBoxContainer/Profile/Profile" to="." method="_on_Profile_pressed"]

@@ -118,7 +118,7 @@ color = Color( 1, 1, 1, 0 )
 
 [node name="Skin" type="TouchScreenButton" parent="Panel/Right/Wardrobe"]
 normal = ExtResource( 8 )
-pressed = ExtResource( 3 )
+pressed = ExtResource( 8 )
 shape = SubResource( 1 )
 shape_visible = false
 

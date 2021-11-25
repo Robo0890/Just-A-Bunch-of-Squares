@@ -1,7 +1,7 @@
 extends Node
 
 var data = {
-	"ruby" : 0,
+	"ruby" : 30,
 	"level" : 1,
 	"xp" : 0,
 	"gamemode" : "Classic",
@@ -9,8 +9,17 @@ var data = {
 		"Skins" : ["Default"],
 		"Power_Ups" : [],
 		"Gamemodes" : ["Classic", "Space Jump"]
-	}
+	},
+	"stats" : {
+		"jumps" : 0,
+		"falls" : 0,
+		"games" : 0,
+		"skins_owned" : 1,
+		"favorite" : "Default"
+	},
+	"version" : 0.0
 }
+
 const DEFAULT_DATA = {
 	"ruby" : 30,
 	"level" : 1,
@@ -21,7 +30,14 @@ const DEFAULT_DATA = {
 		"Power_Ups" : [],
 		"Gamemodes" : ["Classic", "Space Jump"]
 	},
-	"version" : 1.5
+	"stats" : {
+		"jumps" : 0,
+		"falls" : 0,
+		"games" : 0,
+		"skins_owned" : 1,
+		"favorite" : "Default"
+	},
+	"version" : 0.0
 }
 
 const CURRENT_VERSION = 1.5

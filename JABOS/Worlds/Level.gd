@@ -24,20 +24,8 @@ onready var Classic = preload("res://Gamemodes/Classic/Game.tscn")
 #onready var Space_Jump = preload("res://Gamemodes/Space Jump/Game.tscn")
 
 func _ready():
-	
-	Firebase.Auth.login_anonymous()
-	
-	get_tree().debug_collisions_hint = true
-	
 	$IPGetter.request("https://ipv4.icanhazip.com/", [], false, HTTPClient.METHOD_GET)
-
-	var load_data = Save.load_data("jabos_profile")
-	if load_data.size() > 0 and load_data.has("version"):
-		print(load_data)
-		Profile.data = load_data
-	else:
-		Profile.clear()
-		
+	
 	change_gamemode(Profile.data.gamemode)
 	
 	var joincode = JavaScript.eval("""
@@ -81,6 +69,7 @@ func game_start():
 		x.active = true
 	
 func end_game(leaderboard : Dictionary):
+	Profile.data.stats.games += 1
 	ready_players = []
 	leaderboard_data = leaderboard
 	for x in $Manager.get_children():

@@ -1,8 +1,20 @@
 extends Control
 
-var splash = false
+var splash = true
 
 func _ready():
+	$Update.hide()
+	Firebase.Auth.login_anonymous()
+	get_tree().debug_collisions_hint = true
+	
+	var load_data = Save.load_data("jabos_profile")
+	if load_data.size() > 0:
+		print(load_data)
+		for x in load_data:
+			Profile.data[x] = load_data[x]
+	else:
+		Profile.clear()
+
 	OS.set_window_title("Just A Bunch of Squares")
 	
 	if splash:
@@ -15,7 +27,13 @@ func _ready():
 # warning-ignore:unused_argument
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "EonSplash":
-		get_tree().change_scene("res://Worlds/Level.tscn")
+		
+		if Profile.data.version < Profile.CURRENT_VERSION:
+			$Update.show()
+			yield($Update/MarginContainer/VBoxContainer/HSplitContainer/TLDR/Button, "pressed")
+			$Update.hide()
+	Profile.data.version = Profile.CURRENT_VERSION
+	get_tree().change_scene("res://Worlds/Level.tscn")
 
 
 func _on_TouchScreenButton_pressed():

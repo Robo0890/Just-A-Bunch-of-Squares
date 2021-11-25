@@ -39,6 +39,11 @@ func _ready():
 			label.name = score
 			label.text = score + ": " + str(data[score])
 			$MarginContainer/Info.add_child(label)
+			match score:
+				"Jumps":
+					Profile.data.stats.jumps += data[score]
+				"Falls":
+					Profile.data.stats.falls += data[score]
 		if score == "Ruby":
 			Profile.data.ruby += data.Ruby
 		if score == "XP":
@@ -46,6 +51,7 @@ func _ready():
 	$MarginContainer/Info/Subscore.queue_free()
 	$MarginContainer/Info/Subscore2.queue_free()
 	$MarginContainer/Info.move_child($MarginContainer/Info/Bottom, $MarginContainer/Info.get_child_count())
+
 
 	yield(get_tree().create_timer(1),"timeout")
 	ready = true

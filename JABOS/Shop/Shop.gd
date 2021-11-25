@@ -30,7 +30,8 @@ func _ready():
 			weekday = "friday"
 		6:
 			weekday = "saturday"
-
+	
+	$Profile.hide()
 	$Loading.show()
 	$Body.hide()
 	$Head.hide()
@@ -43,32 +44,38 @@ func _ready():
 	online_shop = get_skins.doc_fields
 	
 	daily_skin = online_shop.skin
-	$Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/SkinName.text = daily_skin.name
-	$Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Buy.text = str(daily_skin.price)
-	$Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/TextureRect.texture = load("res://Images/Skins/" + daily_skin.name + ".png")
 	
 	load_shop()
 
 func load_shop():
 	
-	#***Daily Skin***
+#   ***Daily Skin***
+	$Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/SkinName.text = daily_skin.name
+	$Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Buy.text = str(daily_skin.price)
+	$Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/TextureRect.texture = load("res://Images/Skins/" + daily_skin.name + ".png")
+	
 	if daily_skin.price == 0:
 		$Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Buy.text = "Free!"
 		$Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Buy.add_color_override("font_color", Color.green)
 	
 	if Profile.data.ruby - daily_skin.price < 0:
 		$Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Buy.disabled = true
+	else:
+		$Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Buy.disabled = false
 	
 	if Profile.data.Owned.Skins.has(daily_skin.name):
 		$Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Buy.hide()
 		$Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Owned.show()
+	else:
+		$Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Buy.show()
+		$Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Owned.hide()
 		
 	if daily_skin.has("deal"):
 		$Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Deal.show()
 		$Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Deal.text = daily_skin.deal
 	
 	
-	#***Head***
+#   ***Head***
 	$Head/HBoxContainer/Rubies.text = str(Profile.data.ruby)
 	$Head/HBoxContainer/Profile/HBoxContainer/ProgressBar/Level/Label.text = "Level " + str(Profile.data.level)
 	$Head/HBoxContainer/Profile/HBoxContainer/ProgressBar.max_value = Profile.xp_for_next_level()
@@ -78,10 +85,15 @@ func load_shop():
 
 
 func _on_Back_pressed():
-	GUI.is_shop_visible = false
-	GUI.show()
-	GUI.GamemodeBox.select(0)
-	queue_free()
+	if $Body.visible:
+		GUI.is_shop_visible = false
+		GUI.show()
+		GUI.GamemodeBox.select(0)
+		queue_free()
+	else:
+		$Head/HBoxContainer/Back.text = "Shop"
+		$Profile.hide()
+		$Body.show()
 
 
 
@@ -95,6 +107,7 @@ func _on_Skin_Buy_pressed():
 func _on_Clear_pressed():
 	Profile.clear()
 	load_shop()
+	_on_Back_pressed()
 
 
 func _on_GiftCode_text_entered(new_text):
@@ -115,6 +128,7 @@ func _on_GiftCode_text_entered(new_text):
 				$Gift/VBoxContainer/Skin/Panel/Label.text = gift.data.name + " Skin"
 				if !Profile.data.Owned.Skins.has(gift.data.name):
 					Profile.data.Owned.Skins.append(gift.data.name)
+					
 				else:
 					gift.one_time = false
 			"ruby":
@@ -146,3 +160,15 @@ func _on_GiftCode_focus_entered():
 		$Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode.text = JavaScript.eval("prompt(\"Enter Code\")")
 		_on_GiftCode_text_entered($Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode.text)
 		"""
+
+
+func _on_Profile_pressed():
+	Profile.data.stats.skins_owned = Profile.data.Owned.Skins.size()
+	$Profile/Panel/MarginContainer/VBoxContainer/Stats/Jumps.text = "Total Jumps: " + str(Profile.data.stats.jumps)
+	$Profile/Panel/MarginContainer/VBoxContainer/Stats/Falls.text = "Total Falls: " + str(Profile.data.stats.falls)
+	$Profile/Panel/MarginContainer/VBoxContainer/Stats/Games.text = "Games Played: " + str(Profile.data.stats.games)
+	$Profile/Panel/MarginContainer/VBoxContainer/Stats/Skins.text = "Skins Owned: " + str(Profile.data.stats.skins_owned)
+	$Profile/Panel/MarginContainer/VBoxContainer/Stats/Favorite.text = "Favorite Skin: " + str(Profile.data.stats.favorite)
+	$Body.hide()
+	$Profile.show()
+	$Head/HBoxContainer/Back.text = "Profile"
