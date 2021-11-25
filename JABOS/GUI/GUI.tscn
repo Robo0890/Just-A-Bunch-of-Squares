@@ -342,15 +342,15 @@ margin_bottom = 60.0
 [node name="MarginContainer" type="MarginContainer" parent="Options/VBoxContainer"]
 margin_top = 75.0
 margin_right = 623.0
-margin_bottom = 531.0
+margin_bottom = 478.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_bottom = 214
 
 [node name="GridContainer" type="GridContainer" parent="Options/VBoxContainer/MarginContainer"]
-margin_left = 27.0
-margin_right = 595.0
-margin_bottom = 242.0
+margin_left = 28.0
+margin_right = 594.0
+margin_bottom = 189.0
 rect_min_size = Vector2( 566, 0 )
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -487,6 +487,7 @@ visible = false
 position = Vector2( -39.7715, 21.7784 )
 frames = SubResource( 10 )
 animation = "Loading"
+frame = 2
 playing = true
 
 [node name="CenterContainer" type="CenterContainer" parent="Options"]
@@ -507,8 +508,8 @@ texture_normal = ExtResource( 8 )
 anims/Options = SubResource( 8 )
 
 [connection signal="pressed" from="Top_UI/Option_Button" to="." method="_on_Button_pressed"]
-[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click_select"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]
+[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click_select"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Shop" to="." method="_on_Shop_pressed"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud" to="." method="_on_CreateCloud_item_selected"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/backward.png" type="Texture" id=1]
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/siganl1.png" type="Texture" id=8]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/checkmark.png" type="Texture" id=9]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/trashcan.png" type="Texture" id=10]
+[ext_resource path="res://GUI/Icons/customicons/x2/ruby.png" type="Texture" id=11]
+[ext_resource path="res://GUI/Fonts/Small_Font.tres" type="DynamicFont" id=12]
+[ext_resource path="res://GUI/Fonts/Body_Font.tres" type="DynamicFont" id=13]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -30,6 +33,125 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Gift" type="Panel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -181.0
+margin_top = -78.0
+margin_right = 181.0
+margin_bottom = 84.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Gift"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Gift/VBoxContainer"]
+margin_right = 362.0
+margin_bottom = 25.0
+text = "Gift from Eon Entertainment!"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="Gift/VBoxContainer"]
+margin_top = 35.0
+margin_right = 362.0
+margin_bottom = 35.0
+
+[node name="Skin" type="TextureRect" parent="Gift/VBoxContainer"]
+visible = false
+margin_top = 45.0
+margin_right = 362.0
+margin_bottom = 124.0
+texture = ExtResource( 4 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Gift/VBoxContainer/Skin"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -48.0
+margin_top = -17.0
+margin_right = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Gift/VBoxContainer/Skin/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 12 )
+text = "Default Skin"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ruby" type="TextureRect" parent="Gift/VBoxContainer"]
+visible = false
+margin_top = 43.0
+margin_right = 362.0
+margin_bottom = 122.0
+rect_min_size = Vector2( 0, 79 )
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Gift/VBoxContainer/Ruby"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = -8.5
+margin_right = 48.0
+margin_bottom = 8.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Gift/VBoxContainer/Ruby/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 12 )
+text = "+ 230"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Message" type="Label" parent="Gift/VBoxContainer"]
+margin_top = 134.0
+margin_right = 362.0
+margin_bottom = 159.0
+custom_fonts/font = ExtResource( 13 )
+text = "Happy Lauch Day!"
+align = 1
+
+[node name="Ok" type="Button" parent="Gift/VBoxContainer"]
+margin_top = 169.0
+margin_right = 362.0
+margin_bottom = 219.0
+text = "Thanks!"
+icon = ExtResource( 9 )
+
 [node name="Loading" type="Panel" parent="."]
 visible = false
 anchor_left = 0.5
@@ -48,7 +170,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Loading"]
 position = Vector2( 44, 50 )
 frames = SubResource( 1 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Body" type="MarginContainer" parent="."]
@@ -68,66 +190,76 @@ margin_top = 100.0
 margin_right = 974.0
 margin_bottom = 550.0
 
-[node name="Label" type="Label" parent="Body/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Body/Panel"]
+margin_right = 924.0
+margin_bottom = 450.0
+custom_constants/margin_right = 25
+custom_constants/margin_top = 25
+custom_constants/margin_left = 25
+custom_constants/margin_bottom = 25
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Body/Panel/MarginContainer"]
 visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -184.0
-margin_top = -12.5
-margin_right = 184.0
-margin_bottom = 12.5
+margin_left = 25.0
+margin_top = 212.0
+margin_right = 899.0
+margin_bottom = 237.0
 text = "No content is currently avaliable"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSplitContainer" type="HSplitContainer" parent="Body/Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="HSplitContainer" type="HSplitContainer" parent="Body/Panel/MarginContainer"]
+margin_left = 25.0
+margin_top = 25.0
+margin_right = 899.0
+margin_bottom = 425.0
 split_offset = 73
 dragger_visibility = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Skins" type="VBoxContainer" parent="Body/Panel/HSplitContainer"]
-margin_top = 114.0
-margin_right = 924.0
-margin_bottom = 335.0
+[node name="Skins" type="VBoxContainer" parent="Body/Panel/MarginContainer/HSplitContainer"]
+margin_top = 49.0
+margin_right = 235.0
+margin_bottom = 351.0
 size_flags_vertical = 4
+custom_constants/separation = 18
 
-[node name="DailySkin" type="VBoxContainer" parent="Body/Panel/HSplitContainer/Skins"]
-margin_left = 381.0
-margin_right = 543.0
+[node name="DailySkin" type="VBoxContainer" parent="Body/Panel/MarginContainer/HSplitContainer/Skins"]
+margin_left = 36.0
+margin_right = 198.0
 margin_bottom = 221.0
 size_flags_horizontal = 4
 size_flags_vertical = 2
 custom_constants/separation = 14
 
-[node name="Label" type="Label" parent="Body/Panel/HSplitContainer/Skins/DailySkin"]
+[node name="Label" type="Label" parent="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin"]
 margin_right = 162.0
 margin_bottom = 25.0
 text = "Daily Skin"
 align = 1
 
-[node name="TextureRect" type="TextureRect" parent="Body/Panel/HSplitContainer/Skins/DailySkin"]
+[node name="TextureRect" type="TextureRect" parent="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin"]
 margin_top = 39.0
 margin_right = 162.0
 margin_bottom = 118.0
 texture = ExtResource( 4 )
 stretch_mode = 4
 
-[node name="SkinName" type="Label" parent="Body/Panel/HSplitContainer/Skins/DailySkin"]
+[node name="SkinName" type="Label" parent="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin"]
 margin_top = 132.0
 margin_right = 162.0
 margin_bottom = 157.0
 text = "Default"
 align = 1
 
-[node name="Buy" type="Button" parent="Body/Panel/HSplitContainer/Skins/DailySkin"]
+[node name="Buy" type="Button" parent="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin"]
 margin_top = 171.0
 margin_right = 162.0
 margin_bottom = 221.0
@@ -135,7 +267,7 @@ rect_min_size = Vector2( 162, 0 )
 text = "200"
 icon = ExtResource( 3 )
 
-[node name="Owned" type="Button" parent="Body/Panel/HSplitContainer/Skins/DailySkin"]
+[node name="Owned" type="Button" parent="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin"]
 visible = false
 margin_top = 171.0
 margin_right = 162.0
@@ -144,7 +276,8 @@ rect_min_size = Vector2( 162, 0 )
 text = "Owned"
 icon = ExtResource( 9 )
 
-[node name="Clear" type="Button" parent="Body/Panel/HSplitContainer/Skins/DailySkin"]
+[node name="Clear" type="Button" parent="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin"]
+visible = false
 margin_top = 235.0
 margin_right = 162.0
 margin_bottom = 285.0
@@ -152,25 +285,45 @@ rect_min_size = Vector2( 162, 0 )
 text = "Data"
 icon = ExtResource( 10 )
 
-[node name="Deal" type="Label" parent="Body/Panel/HSplitContainer/Skins/DailySkin"]
+[node name="Deal" type="Label" parent="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin"]
 visible = false
 margin_top = 235.0
 margin_right = 162.0
 margin_bottom = 260.0
+custom_colors/font_color = Color( 0.331776, 1, 0, 1 )
 text = "20% off!"
 align = 1
 
-[node name="Power-Ups" type="GridContainer" parent="Body/Panel/HSplitContainer"]
-visible = false
-margin_left = 247.0
-margin_right = 924.0
-margin_bottom = 450.0
+[node name="HSeparator" type="HSeparator" parent="Body/Panel/MarginContainer/HSplitContainer/Skins"]
+margin_top = 239.0
+margin_right = 235.0
+margin_bottom = 239.0
 
-[node name="Error" type="Label" parent="Body/Panel/HSplitContainer/Power-Ups"]
-visible = false
-margin_right = 368.0
-margin_bottom = 25.0
-text = "No content is currently avaliable"
+[node name="GiftCode" type="LineEdit" parent="Body/Panel/MarginContainer/HSplitContainer/Skins"]
+margin_top = 257.0
+margin_right = 235.0
+margin_bottom = 302.0
+max_length = 10
+context_menu_enabled = false
+selecting_enabled = false
+placeholder_text = "Gift Code"
+caret_blink = true
+
+[node name="MainContent" type="Control" parent="Body/Panel/MarginContainer/HSplitContainer"]
+margin_left = 247.0
+margin_right = 874.0
+margin_bottom = 400.0
+
+[node name="Error" type="Label" parent="Body/Panel/MarginContainer/HSplitContainer/MainContent"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -184.0
+margin_top = -12.5
+margin_right = 184.0
+margin_bottom = 12.5
+text = "More Stuff Comming soon!"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -293,6 +446,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="Body/Panel/HSplitContainer/Skins/DailySkin/Buy" to="." method="_on_Skin_Buy_pressed"]
-[connection signal="pressed" from="Body/Panel/HSplitContainer/Skins/DailySkin/Clear" to="." method="_on_Clear_pressed"]
+[connection signal="pressed" from="Gift/VBoxContainer/Ok" to="." method="_on_Ok_pressed"]
+[connection signal="pressed" from="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Buy" to="." method="_on_Skin_Buy_pressed"]
+[connection signal="pressed" from="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Clear" to="." method="_on_Clear_pressed"]
+[connection signal="focus_entered" from="Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode" to="." method="_on_GiftCode_focus_entered"]
+[connection signal="text_entered" from="Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode" to="." method="_on_GiftCode_text_entered"]
 [connection signal="pressed" from="Head/HBoxContainer/Back" to="." method="_on_Back_pressed"]
