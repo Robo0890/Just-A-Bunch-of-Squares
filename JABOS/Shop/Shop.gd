@@ -113,7 +113,10 @@ func _on_GiftCode_text_entered(new_text):
 				$Gift/VBoxContainer/Skin.texture = load("res://Images/Skins/" + gift.data.name + ".png")
 				$Gift/VBoxContainer/Skin.show()
 				$Gift/VBoxContainer/Skin/Panel/Label.text = gift.data.name + " Skin"
-				Profile.data.Owned.Skins.append(gift.data.name)
+				if !Profile.data.Owned.Skins.has(gift.data.name):
+					Profile.data.Owned.Skins.append(gift.data.name)
+				else:
+					gift.one_time = false
 			"ruby":
 				$Gift/VBoxContainer/Ruby/Panel/Label.text = "+ " + str(gift.data.amount)
 				$Gift/VBoxContainer/Ruby.show()
@@ -138,5 +141,8 @@ func invalid_gift_code(q, w, e):
 
 
 func _on_GiftCode_focus_entered():
-	$Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode.text = JavaScript.eval("prompt(\"Enter Code\")")
-	_on_GiftCode_text_entered($Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode.text)
+	OS.show_virtual_keyboard()
+	"""if OS.has_virtual_keyboard():
+		$Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode.text = JavaScript.eval("prompt(\"Enter Code\")")
+		_on_GiftCode_text_entered($Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode.text)
+		"""
