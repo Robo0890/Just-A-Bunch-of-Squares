@@ -16,7 +16,11 @@ func load_data(where: String):
 	file.open(where ,File.READ)
 	var data = file.get_as_text()
 	file.close()
-	var return_data = parse_json(data) as Dictionary
+	var return_data
+	if data[0] == "{":
+		return_data = parse_json(data) as Dictionary
+	else:
+		return_data = parse_json("{" + data + "}") as Dictionary
 	return return_data
 
 func pack_dict_to_string(dict : Dictionary):
