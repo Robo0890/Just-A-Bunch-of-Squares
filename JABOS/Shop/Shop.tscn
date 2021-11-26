@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/backward.png" type="Texture" id=1]
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=2]
@@ -18,6 +18,20 @@
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/plus.png" type="Texture" id=16]
 [ext_resource path="res://GUI/Icons/customicons/x1/Player.png" type="Texture" id=17]
 [ext_resource path="res://Images/Skins/Default.png" type="Texture" id=18]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0.588235 )
+border_width_right = 10
+border_color = Color( 0, 0, 0, 0.780392 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+expand_margin_left = 24.0
+expand_margin_right = 28.0
+expand_margin_top = 12.0
+expand_margin_bottom = 12.0
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -157,7 +171,7 @@ margin_bottom = 130.0
 text = "Thanks!"
 icon = ExtResource( 9 )
 
-[node name="GiftEditor" type="Panel" parent="."]
+[node name="GiftEditor" type="Control" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -171,8 +185,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Panel" type="Panel" parent="GiftEditor"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="VBoxContainer" type="VBoxContainer" parent="GiftEditor"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 10
@@ -292,7 +313,6 @@ expand_icon = true
 margin_top = 229.0
 margin_right = 362.0
 margin_bottom = 274.0
-min_value = 1.0
 max_value = 230.0
 value = 230.0
 align = 1
@@ -306,6 +326,7 @@ text = "Send"
 icon = ExtResource( 9 )
 
 [node name="Code" type="VBoxContainer" parent="GiftEditor"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 12
@@ -342,18 +363,28 @@ icon = ExtResource( 15 )
 margin_top = 148.0
 margin_right = 362.0
 margin_bottom = 173.0
-text = "Or enter code in shop"
+text = "Or Copy the code below:"
 align = 1
 
-[node name="HSeparator2" type="HSeparator" parent="GiftEditor/Code"]
+[node name="Copy" type="LineEdit" parent="GiftEditor/Code"]
 margin_top = 185.0
 margin_right = 362.0
-margin_bottom = 185.0
+margin_bottom = 230.0
+text = "3725720451"
+align = 1
+max_length = 10
+editable = false
+virtual_keyboard_enabled = false
+
+[node name="HSeparator2" type="HSeparator" parent="GiftEditor/Code"]
+margin_top = 242.0
+margin_right = 362.0
+margin_bottom = 242.0
 
 [node name="NewGift" type="Button" parent="GiftEditor/Code"]
-margin_top = 197.0
+margin_top = 254.0
 margin_right = 362.0
-margin_bottom = 247.0
+margin_bottom = 304.0
 text = "New Gift"
 icon = ExtResource( 16 )
 
@@ -486,7 +517,6 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Loading"]
 position = Vector2( 44, 50 )
 frames = SubResource( 1 )
-frame = 2
 playing = true
 
 [node name="Body" type="MarginContainer" parent="."]
@@ -779,10 +809,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="focus_entered" from="GiftEditor/VBoxContainer/Title" to="GiftEditor" method="_on_Title_focus_entered"]
 [connection signal="text_changed" from="GiftEditor/VBoxContainer/Title" to="GiftEditor" method="_on_Title_text_changed"]
+[connection signal="focus_entered" from="GiftEditor/VBoxContainer/Message" to="GiftEditor" method="_on_Message_focus_entered"]
 [connection signal="text_changed" from="GiftEditor/VBoxContainer/Message" to="GiftEditor" method="_on_Message_text_changed"]
 [connection signal="item_selected" from="GiftEditor/VBoxContainer/GiftType" to="GiftEditor" method="_on_GiftType_item_selected"]
 [connection signal="item_selected" from="GiftEditor/VBoxContainer/SelectSkin" to="GiftEditor" method="_on_SelectSkin_item_selected"]
+[connection signal="focus_entered" from="GiftEditor/VBoxContainer/RubyAmount" to="GiftEditor" method="_on_RubyAmount_focus_entered"]
 [connection signal="value_changed" from="GiftEditor/VBoxContainer/RubyAmount" to="GiftEditor" method="_on_RubyAmount_value_changed"]
 [connection signal="pressed" from="GiftEditor/VBoxContainer/Done" to="GiftEditor" method="_on_Done_pressed"]
 [connection signal="pressed" from="GiftEditor/Code/Button" to="GiftEditor" method="_on_Button_pressed"]

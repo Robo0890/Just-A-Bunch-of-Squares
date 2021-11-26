@@ -1,4 +1,4 @@
-extends Panel
+extends Control
 
 var gift_data = {
 	"title" : "Title",
@@ -27,6 +27,10 @@ func _ready():
 	}
 }
 
+	$VBoxContainer/RubyAmount.value = int(Profile.data.ruby / 2)
+	$VBoxContainer/GiftType.disabled = false
+	$VBoxContainer/SelectSkin.clear()
+	$VBoxContainer/GiftType.select(1)
 	$VBoxContainer/Title.text = "Title"
 	$VBoxContainer/Message.text = "Message"
 	$VBoxContainer.show()
@@ -50,6 +54,11 @@ func _physics_process(delta):
 
 func _on_GiftType_item_selected(index):
 	if index == GIFT_SKIN:
+		if Profile.data.Owned.Skins.size() == 1:
+			OS.alert("You do not have any skins to give!")
+			$VBoxContainer/GiftType.select(1)
+			_on_GiftType_item_selected(1)
+			return
 		gift_data.data = {
 			"type" : "skin",
 			"name" : Profile.data.Owned.Skins[$VBoxContainer/SelectSkin.selected]
@@ -83,12 +92,15 @@ func _on_Done_pressed():
 	Save.save_data(Profile.data, "jabos_profile")
 	randomize()
 	random_code = int(rand_range(1111111111,9999999999))
-	Firebase.Firestore.collection("Gifts").add(str(random_code))
+	#Firebase.Firestore.collection("Gifts").add(str(random_code))
 	Firebase.Firestore.collection("Gifts").update(str(random_code), gift_data)
 	
 	$VBoxContainer.hide()
 	$Code.show()
 	$Code/Button.text = str(random_code)
+	$Code/Copy.text = str(random_code)
+	
+	get_parent().load_shop()
 
 func _on_SelectSkin_item_selected(index):
 	gift_data.data = {
@@ -127,3 +139,22 @@ func _on_Button_pressed():
 func _on_NewGift_pressed():
 	_ready()
 	show()
+
+
+func _on_Message_focus_entered():
+	if OS.has_virtual_keyboard():
+		$VBoxContainer/Message.text = JavaScript.eval("prompt(\"Message:\")")
+		_on_Message_text_changed($VBoxContainer/Message.text)
+		
+
+
+func _on_Title_focus_entered():
+	if OS.has_virtual_keyboard():
+		$VBoxContainer/Title.text = JavaScript.eval("prompt(\"Title:\")")
+		_on_Title_text_changed($VBoxContainer/Title.text)
+
+
+func _on_RubyAmount_focus_entered():
+	if OS.has_virtual_keyboard():
+		$VBoxContainer/RubyAmount.value = int(JavaScript.eval("prompt(\"Title:\")"))
+		_on_RubyAmount_value_changed($VBoxContainer/RubyAmount.value)

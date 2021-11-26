@@ -8,7 +8,7 @@ var active_players = []
 var connected_devices = []
 
 func _input(event):
-	if Level.game_state == "Lobby":
+	if Level.game_state == "Lobby" and !Level.GUI.is_shop_visible:
 		if event.is_action("join"):
 			if event is InputEventKey:
 				if !connected_devices.has("keyboard1") and event.scancode == KEY_W:
