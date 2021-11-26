@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/backward.png" type="Texture" id=1]
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=2]
@@ -13,6 +13,11 @@
 [ext_resource path="res://GUI/Icons/customicons/x2/ruby.png" type="Texture" id=11]
 [ext_resource path="res://GUI/Fonts/Small_Font.tres" type="DynamicFont" id=12]
 [ext_resource path="res://GUI/Fonts/Body_Font.tres" type="DynamicFont" id=13]
+[ext_resource path="res://Shop/GiftEditor.gd" type="Script" id=14]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/share2.png" type="Texture" id=15]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/plus.png" type="Texture" id=16]
+[ext_resource path="res://GUI/Icons/customicons/x1/Player.png" type="Texture" id=17]
+[ext_resource path="res://Images/Skins/Default.png" type="Texture" id=18]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -151,6 +156,206 @@ margin_right = 362.0
 margin_bottom = 130.0
 text = "Thanks!"
 icon = ExtResource( 9 )
+
+[node name="GiftEditor" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -181.0
+margin_top = -167.0
+margin_right = 181.0
+margin_bottom = 167.0
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GiftEditor"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="LineEdit" parent="GiftEditor/VBoxContainer"]
+margin_right = 362.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 13 )
+text = "Gift"
+
+[node name="HSeparator" type="HSeparator" parent="GiftEditor/VBoxContainer"]
+margin_top = 35.0
+margin_right = 362.0
+margin_bottom = 35.0
+
+[node name="Skin" type="TextureRect" parent="GiftEditor/VBoxContainer"]
+visible = false
+margin_top = 45.0
+margin_right = 362.0
+margin_bottom = 124.0
+texture = ExtResource( 4 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="GiftEditor/VBoxContainer/Skin"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -48.0
+margin_top = -17.0
+margin_right = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GiftEditor/VBoxContainer/Skin/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 12 )
+text = "Default Skin"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ruby" type="TextureRect" parent="GiftEditor/VBoxContainer"]
+margin_top = 45.0
+margin_right = 362.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 0, 79 )
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="GiftEditor/VBoxContainer/Ruby"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = -8.5
+margin_right = 48.0
+margin_bottom = 8.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GiftEditor/VBoxContainer/Ruby/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 12 )
+text = "+ 230"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Message" type="LineEdit" parent="GiftEditor/VBoxContainer"]
+margin_top = 134.0
+margin_right = 362.0
+margin_bottom = 159.0
+custom_fonts/font = ExtResource( 13 )
+text = "Message"
+
+[node name="GiftType" type="OptionButton" parent="GiftEditor/VBoxContainer"]
+margin_top = 169.0
+margin_right = 362.0
+margin_bottom = 219.0
+text = "Rubies"
+icon = ExtResource( 3 )
+align = 1
+items = [ "Skin", ExtResource( 17 ), false, 0, null, "Rubies", ExtResource( 3 ), false, 1, null ]
+selected = 1
+
+[node name="SelectSkin" type="OptionButton" parent="GiftEditor/VBoxContainer"]
+visible = false
+margin_top = 289.0
+margin_right = 362.0
+margin_bottom = 339.0
+rect_min_size = Vector2( 0, 50 )
+icon = ExtResource( 18 )
+align = 1
+expand_icon = true
+
+[node name="RubyAmount" type="SpinBox" parent="GiftEditor/VBoxContainer"]
+margin_top = 229.0
+margin_right = 362.0
+margin_bottom = 274.0
+min_value = 1.0
+max_value = 230.0
+value = 230.0
+align = 1
+prefix = "Amount:"
+
+[node name="Done" type="Button" parent="GiftEditor/VBoxContainer"]
+margin_top = 284.0
+margin_right = 362.0
+margin_bottom = 334.0
+text = "Send"
+icon = ExtResource( 9 )
+
+[node name="Code" type="VBoxContainer" parent="GiftEditor"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GiftEditor/Code"]
+margin_right = 362.0
+margin_bottom = 25.0
+text = "Gift Packaged!"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="GiftEditor/Code"]
+margin_top = 37.0
+margin_right = 362.0
+margin_bottom = 37.0
+
+[node name="SendLink" type="Label" parent="GiftEditor/Code"]
+margin_top = 49.0
+margin_right = 362.0
+margin_bottom = 74.0
+text = "Send Link:"
+align = 1
+
+[node name="Button" type="Button" parent="GiftEditor/Code"]
+margin_top = 86.0
+margin_right = 362.0
+margin_bottom = 136.0
+text = "3725720451"
+icon = ExtResource( 15 )
+
+[node name="SendCode" type="Label" parent="GiftEditor/Code"]
+margin_top = 148.0
+margin_right = 362.0
+margin_bottom = 173.0
+text = "Or enter code in shop"
+align = 1
+
+[node name="HSeparator2" type="HSeparator" parent="GiftEditor/Code"]
+margin_top = 185.0
+margin_right = 362.0
+margin_bottom = 185.0
+
+[node name="NewGift" type="Button" parent="GiftEditor/Code"]
+margin_top = 197.0
+margin_right = 362.0
+margin_bottom = 247.0
+text = "New Gift"
+icon = ExtResource( 16 )
 
 [node name="Profile" type="MarginContainer" parent="."]
 visible = false
@@ -426,17 +631,33 @@ margin_left = 247.0
 margin_right = 874.0
 margin_bottom = 400.0
 
-[node name="Error" type="Label" parent="Body/Panel/MarginContainer/HSplitContainer/MainContent"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Body/Panel/MarginContainer/HSplitContainer/MainContent"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -184.0
-margin_top = -12.5
-margin_right = 184.0
-margin_bottom = 12.5
+margin_left = -138.0
+margin_top = -32.0
+margin_right = 138.0
+margin_bottom = 32.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Error" type="Label" parent="Body/Panel/MarginContainer/HSplitContainer/MainContent/VBoxContainer"]
+margin_right = 276.0
+margin_bottom = 25.0
 text = "More Stuff Comming soon!"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Send" type="Button" parent="Body/Panel/MarginContainer/HSplitContainer/MainContent/VBoxContainer"]
+margin_top = 29.0
+margin_right = 276.0
+margin_bottom = 64.0
+text = "Send Gift"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -558,10 +779,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="text_changed" from="GiftEditor/VBoxContainer/Title" to="GiftEditor" method="_on_Title_text_changed"]
+[connection signal="text_changed" from="GiftEditor/VBoxContainer/Message" to="GiftEditor" method="_on_Message_text_changed"]
+[connection signal="item_selected" from="GiftEditor/VBoxContainer/GiftType" to="GiftEditor" method="_on_GiftType_item_selected"]
+[connection signal="item_selected" from="GiftEditor/VBoxContainer/SelectSkin" to="GiftEditor" method="_on_SelectSkin_item_selected"]
+[connection signal="value_changed" from="GiftEditor/VBoxContainer/RubyAmount" to="GiftEditor" method="_on_RubyAmount_value_changed"]
+[connection signal="pressed" from="GiftEditor/VBoxContainer/Done" to="GiftEditor" method="_on_Done_pressed"]
+[connection signal="pressed" from="GiftEditor/Code/Button" to="GiftEditor" method="_on_Button_pressed"]
+[connection signal="pressed" from="GiftEditor/Code/NewGift" to="GiftEditor" method="_on_NewGift_pressed"]
 [connection signal="pressed" from="Profile/Panel/MarginContainer/VBoxContainer/Clear" to="." method="_on_Clear_pressed"]
 [connection signal="pressed" from="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Buy" to="." method="_on_Skin_Buy_pressed"]
 [connection signal="pressed" from="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Clear" to="." method="_on_Clear_pressed"]
 [connection signal="focus_entered" from="Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode" to="." method="_on_GiftCode_focus_entered"]
 [connection signal="text_entered" from="Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode" to="." method="_on_GiftCode_text_entered"]
+[connection signal="pressed" from="Body/Panel/MarginContainer/HSplitContainer/MainContent/VBoxContainer/Send" to="." method="_on_Send_pressed"]
 [connection signal="pressed" from="Head/HBoxContainer/Back" to="." method="_on_Back_pressed"]
 [connection signal="pressed" from="Head/HBoxContainer/Profile/Profile" to="." method="_on_Profile_pressed"]

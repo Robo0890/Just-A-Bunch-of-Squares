@@ -4,6 +4,7 @@ extends Control
 onready var Level = get_parent().get_parent()
 onready var GUI = Level.GUI
 
+
 var online_shop
 
 #Daily Skin
@@ -31,6 +32,7 @@ func _ready():
 		6:
 			weekday = "saturday"
 	
+	$GiftEditor.hide()
 	$Profile.hide()
 	$Loading.show()
 	$Body.hide()
@@ -91,15 +93,20 @@ func load_shop():
 
 
 func _on_Back_pressed():
-	if $Body.visible:
-		GUI.is_shop_visible = false
-		GUI.show()
-		GUI.GamemodeBox.select(0)
-		queue_free()
-	else:
-		$Head/HBoxContainer/Back.text = "Shop"
-		$Profile.hide()
-		$Body.show()
+	match $Head/HBoxContainer/Back.text:
+		"Shop":
+			GUI.is_shop_visible = false
+			GUI.show()
+			GUI.GamemodeBox.select(0)
+			queue_free()
+		"Profile":
+			$Head/HBoxContainer/Back.text = "Shop"
+			$Profile.hide()
+			$Body.show()
+		"Send Gift":
+			$Body.show()
+			$GiftEditor.hide()
+			$Head/HBoxContainer/Back.text = "Shop"
 
 
 
@@ -178,3 +185,10 @@ func _on_Profile_pressed():
 	$Body.hide()
 	$Profile.show()
 	$Head/HBoxContainer/Back.text = "Profile"
+
+
+func _on_Send_pressed():
+	$Body.hide()
+	$GiftEditor.show()
+	$Head/HBoxContainer/Back.text = "Send Gift"
+
