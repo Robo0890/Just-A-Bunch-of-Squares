@@ -515,6 +515,7 @@ visible = false
 position = Vector2( -39.7715, 21.7784 )
 frames = SubResource( 10 )
 animation = "Loading"
+frame = 1
 playing = true
 
 [node name="CenterContainer" type="CenterContainer" parent="Options"]
