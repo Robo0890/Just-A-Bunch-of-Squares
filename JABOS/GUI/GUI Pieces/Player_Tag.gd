@@ -5,6 +5,8 @@ var Player : KinematicBody2D
 var Game : Node2D
 
 func _process(delta):
+	if Player.removing:
+		queue_free()
 	Game = Level.Game
 	
 	$Sprite.texture = load("res://Images/Skins/" + Player.skin + ".png")

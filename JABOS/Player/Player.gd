@@ -28,6 +28,8 @@ var active = false
 var color = Color.white
 var skin = "Default"
 var skin_id = 0
+var skin_img = load("res://Images/Face.png")
+var skin_img_mask = load("res://Images/Face.png")
 
 var input_method = "Keyboard"
 var is_respawning = false
@@ -35,6 +37,8 @@ var frozen = false
 var device_type = "Cloud"
 var ready = false
 var jumps = 1
+
+var removing = false
 
 var in_wardrode = false
 
@@ -47,8 +51,8 @@ const SKIN_ROBOT = 1
 
 func _ready():
 	change_skin(SKIN_DEFAULT)
-	
-	color = Color.from_hsv(.4 * (player_id), 1, 1)
+	if color == Color.white:
+		color = Color.from_hsv(.4 * (player_id), 1, 1)
 	if device_type == "Keyboard1":
 		add_input_map(InputEventKey, "jump", KEY_W)
 		add_input_map(InputEventKey, "movement_left", KEY_A)
@@ -81,34 +85,35 @@ func _ready():
 		add_input_map(InputEventJoypadButton, "ability", JOY_XBOX_X)
 		
 func _physics_process(delta):
-	if !device_type.split(":")[0] == "Cloud":
-		$SpriteMask.modulate = color
-		
-		if $FloorDetector.is_colliding() and !is_respawning:
-			if $FloorDetector.get_collider().name == "Course":
-				spawnpoint = position
-		
-		
-		if is_respawning:
-			$Sprite.modulate = Color(1,1,1,.2)
-			position.y += gravity
-			if position.distance_to(spawnpoint) <= 20:
-				$Sprite.modulate = Color.white
-				is_respawning = false
-				frozen = false
-				$CollisionShape.disabled = false
-		
-		if active:
-			player_data.time += .016
-		
-		
-		$Wardrobe.visible = in_wardrode
-		
-		process_input()
-		if !frozen:
-			move_and_slide(velocity, Vector2.UP)
-	else:
-		position.x = Level.Cloud.players[device_type.split(":")[1]].xpos
+	if !removing:
+		if !device_type.split(":")[0] == "Cloud":
+			$SpriteMask.modulate = color
+			
+			if $FloorDetector.is_colliding() and !is_respawning:
+				if $FloorDetector.get_collider().name == "Course":
+					spawnpoint = position
+			
+			
+			if is_respawning:
+				$Sprite.modulate = Color(1,1,1,.2)
+				position.y += gravity
+				if position.distance_to(spawnpoint) <= 20:
+					$Sprite.modulate = Color.white
+					is_respawning = false
+					frozen = false
+					$CollisionShape.disabled = false
+			
+			if active:
+				player_data.time += .016
+			
+			
+			$Wardrobe.visible = in_wardrode
+			
+			process_input()
+			if !frozen:
+				move_and_slide(velocity, Vector2.UP)
+		else:
+			position.x = Level.Cloud.players[device_type.split(":")[1]].xpos
 
 func add_input_map(input_type, input_name, input_scancode, extra_info = 0):
 	var ev : InputEvent
@@ -220,7 +225,10 @@ func change_skin(skin_id : int):
 	skin = skin_name
 	$Sprite.texture = load("res://Images/Skins/" + skin_name + ".png")
 	$SpriteMask.texture = load("res://Images/Skins/mask." + skin_name + ".png")
-
+	skin_img = load("res://Images/Skins/" + skin_name + ".png")
+	skin_img_mask = load("res://Images/Skins/mask." + skin_name + ".png")
+	
+	Profile.global_preserve[player_id].skin = skin_id
 
 func _on_Left_pressed():
 	skin_id -= 1
@@ -233,3 +241,20 @@ func _on_Right_pressed():
 func _on_Skin_pressed():
 	in_wardrode = false
 	change_skin(skin_id)
+	
+func remove():
+	removing = true
+	visible = false
+	Profile.global_preserve.erase(player_id)
+	Level.ready_players.erase(player_id)
+	Level.Manager.active_players.erase(player_id)
+	Level.Manager.connected_devices.erase(device_type)
+	Level.Manager.next_player_id = player_id
+	InputMap.erase_action("p" + str(player_id) + "jump")
+	InputMap.erase_action("p" + str(player_id) + "ready")
+	InputMap.erase_action("p" + str(player_id) + "movement_left")
+	InputMap.erase_action("p" + str(player_id) + "movement_right")
+	InputMap.erase_action("p" + str(player_id) + "flip")
+	InputMap.erase_action("p" + str(player_id) + "ability")
+	yield(get_tree().create_timer(1),"timeout")
+	queue_free()

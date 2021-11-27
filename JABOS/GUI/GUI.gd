@@ -5,12 +5,14 @@ onready var Level = get_parent().get_parent()
 onready var Options = $Options
 onready var Animator = $AnimationPlayer
 onready var PlayerList = $Top_UI/Panel/VBoxContainer
+onready var PlayerManagerList = $PlayerManager/MarginContainer/VBoxContainer/Players
 
 onready var GamemodeBox = $Options/VBoxContainer/MarginContainer/GridContainer/GameMode
 onready var XpBar = $Leaderboard/Control/Profile/Profile/HBoxContainer/ProgressBar
 
 onready var PlayerTag = preload("res://GUI/GUI Pieces/Player_Tag.tscn")
 onready var PlayerCard = preload("res://GUI/GUI Pieces/Player_Card.tscn")
+onready var PlayerManager = preload("res://GUI/GUI Pieces/Player_Manager.tscn")
 onready var Shop = preload("res://Shop/Shop.tscn")
 
 var is_shop_visible = false
@@ -34,7 +36,7 @@ func get_gamemodes():
 
 func _input(event):
 	if event is InputEventScreenTouch:
-		if !Level.Manager.connected_devices.has("Mobile"):
+		if !Level.Manager.connected_devices.has("Mobile") and Level.Manager.ready:
 			activate_mobile()
 
 func _ready():
@@ -93,6 +95,11 @@ func _physics_process(delta):
 
 
 func player_join(player):
+	if player.input_method == "Touch":
+		$"Bottom_UI/Mobile Controller".Level = Level
+		$"Bottom_UI/Mobile Controller".visible = true
+		$"Bottom_UI/Mobile Controller".player_id = player.player_id
+
 	var p = PlayerTag.instance()
 	p.name = "Player_" + str(player.player_id)
 	p.Player = player
@@ -100,6 +107,13 @@ func player_join(player):
 	p.Game = Level.Game
 	PlayerList.add_child(p)
 	PlayerList.move_child($Top_UI/Panel/VBoxContainer/Join_Prompt, PlayerList.get_child_count())
+
+	var m = PlayerManager.instance()
+	m.Player = p.Player
+	m.name = "Player" + str(p.Player.player_id)
+	PlayerManagerList.add_child(m)
+	
+
 
 func show_leaderboard():
 	for player in Level.Game.Players:
@@ -140,10 +154,8 @@ func _on_gamemode_selected(index):
 
 
 func activate_mobile():
-	$"Bottom_UI/Mobile Controller".Level = Level
-	$"Bottom_UI/Mobile Controller".visible = true
 	Level.Manager.connected_devices.append("Mobile")
-	$"Bottom_UI/Mobile Controller".player_id = Level.Manager.add_player(Level.Manager.active_players.size(), "Mobile", "Touch").player_id
+	Level.Manager.add_player(Level.Manager.active_players.size(), "Mobile", "Touch")
 
 
 
@@ -191,3 +203,16 @@ func _on_Shop_pressed():
 	var s = Shop.instance()
 	Level.GUI.get_parent().add_child(s)
 	is_shop_visible = true
+
+
+func _on_Close_pressed():
+	$PlayerManager.hide()
+	$Options.show()
+	Animator.play("Options")
+	UIAudio.play_sound("click1")
+	
+
+
+func _on_Players_pressed():
+	$Options.hide()
+	$PlayerManager.show()

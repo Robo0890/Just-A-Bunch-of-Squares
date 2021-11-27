@@ -42,10 +42,10 @@ const DEFAULT_DATA = {
 
 const CURRENT_VERSION = 1.5
 
+var global_preserve = {}
+
 var is_cloud_game = false
-
 var gift_link = ""
-
 var public_ip = "127.0.0.1"
 
 func _process(delta):
