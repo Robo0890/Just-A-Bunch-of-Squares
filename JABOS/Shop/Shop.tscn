@@ -206,6 +206,7 @@ margin_right = 362.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 13 )
 text = "Gift"
+virtual_keyboard_enabled = false
 
 [node name="HSeparator" type="HSeparator" parent="GiftEditor/VBoxContainer"]
 margin_top = 35.0
@@ -288,6 +289,7 @@ margin_right = 362.0
 margin_bottom = 159.0
 custom_fonts/font = ExtResource( 13 )
 text = "Message"
+virtual_keyboard_enabled = false
 
 [node name="GiftType" type="OptionButton" parent="GiftEditor/VBoxContainer"]
 margin_top = 169.0
@@ -652,6 +654,7 @@ margin_right = 235.0
 margin_bottom = 302.0
 max_length = 10
 context_menu_enabled = false
+virtual_keyboard_enabled = false
 selecting_enabled = false
 placeholder_text = "Gift Code"
 caret_blink = true

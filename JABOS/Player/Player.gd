@@ -109,7 +109,8 @@ func _physics_process(delta):
 			
 			$Wardrobe.visible = in_wardrode
 			
-			process_input()
+			if Level.GUI.ui_focus == "none":
+				process_input()
 			if !frozen:
 				move_and_slide(velocity, Vector2.UP)
 		else:

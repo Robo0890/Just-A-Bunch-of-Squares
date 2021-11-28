@@ -26,7 +26,7 @@ func _ready():
 
 
 func _input(event):
-	if Level.game_state == "Lobby" and !Level.GUI.is_shop_visible and ready:
+	if Level.game_state == "Lobby" and Level.GUI.ui_focus == "none" and ready:
 		if event.is_action("join"):
 			if event is InputEventKey:
 				if !connected_devices.has("Keyboard1") and event.scancode == KEY_W:

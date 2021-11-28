@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=1]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/signal3.png" type="Texture" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://GUI/Icons/customicons/x1/ruby.png" type="Texture" id=16]
 [ext_resource path="res://Images/Face.png" type="Texture" id=17]
 [ext_resource path="res://GUI/GUI Pieces/MobileControls.tscn" type="PackedScene" id=18]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/checkmark.png" type="Texture" id=19]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.319318 ), -1.83695, 0.0, 0, 0 ]
@@ -97,8 +98,8 @@ corner_detail = 20
 [node name="GUI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 0.44545
-margin_bottom = 0.445435
+margin_top = 1.44545
+margin_bottom = 1.44543
 theme = ExtResource( 1 )
 script = ExtResource( 9 )
 __meta__ = {
@@ -453,6 +454,25 @@ margin_bottom = 214.0
 text = "Manage"
 icon = ExtResource( 15 )
 
+[node name="Mobile" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
+visible = false
+margin_top = 224.0
+margin_right = 214.0
+margin_bottom = 269.0
+custom_fonts/font = ExtResource( 4 )
+text = "Touch:"
+
+[node name="Touch" type="OptionButton" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
+visible = false
+margin_top = 222.0
+margin_right = 280.0
+margin_bottom = 272.0
+text = "Enabled"
+icon = ExtResource( 19 )
+align = 1
+items = [ "Enabled", ExtResource( 19 ), false, 0, null, "Disabled", ExtResource( 8 ), false, 1, null ]
+selected = 0
+
 [node name="Blank" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
 margin_top = 222.0
 margin_right = 214.0
@@ -515,7 +535,6 @@ visible = false
 position = Vector2( -39.7715, 21.7784 )
 frames = SubResource( 10 )
 animation = "Loading"
-frame = 1
 playing = true
 
 [node name="CenterContainer" type="CenterContainer" parent="Options"]
@@ -585,6 +604,7 @@ margin_bottom = 54.0
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Shop" to="." method="_on_Shop_pressed"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud" to="." method="_on_CreateCloud_item_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Players" to="." method="_on_Players_pressed"]
+[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/Touch" to="." method="_on_Touch_item_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Pin" to="." method="_on_Pin_pressed"]
 [connection signal="text_entered" from="Options/VBoxContainer/MarginContainer/GridContainer/JoinPin" to="." method="_on_JoinPin_text_entered"]
 [connection signal="pressed" from="Options/CenterContainer/TextureButton" to="." method="_on_TextureButton_pressed"]

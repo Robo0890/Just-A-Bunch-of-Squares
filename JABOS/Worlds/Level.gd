@@ -46,8 +46,10 @@ func _physics_process(delta):
 				if player.position.y >= 1200:
 					player.kill(true, true)
 			
-			if GUI.is_shop_visible:
+			if GUI.ui_focus == "Shop":
 				$Camera.position = lerp($Camera.position, Vector2(1024,300), .1)
+			elif GUI.ui_focus == "Options":
+				$Camera.position = lerp($Camera.position, Vector2(512,100), .1)
 			else:
 				$Camera.position = lerp($Camera.position, Vector2(512,300), .1)
 			$Camera.zoom = lerp($Camera.zoom, Vector2(1,1), .1)

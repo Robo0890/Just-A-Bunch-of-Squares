@@ -15,7 +15,9 @@ onready var PlayerCard = preload("res://GUI/GUI Pieces/Player_Card.tscn")
 onready var PlayerManager = preload("res://GUI/GUI Pieces/Player_Manager.tscn")
 onready var Shop = preload("res://Shop/Shop.tscn")
 
-var is_shop_visible = false
+var Shop_Obj : Control
+
+var ui_focus = "none"
 
 func get_gamemodes():
 	var path = "res://Gamemodes/"
@@ -36,8 +38,26 @@ func get_gamemodes():
 
 func _input(event):
 	if event is InputEventScreenTouch:
-		if !Level.Manager.connected_devices.has("Mobile") and Level.Manager.ready:
+		if !Level.Manager.connected_devices.has("Mobile") and Level.Manager.ready and !Profile.touch_disabled:
 			activate_mobile()
+	if event.is_action("options"):
+		if !event.pressed:
+			match ui_focus == "Options":
+				false:
+					_on_Button_pressed()
+				true:
+					_on_TextureButton_pressed()
+	if event.is_action("ui_cancel"):
+		if !event.pressed:
+			match ui_focus:
+				"Options":
+					_on_TextureButton_pressed()
+				"Manage":
+					_on_Close_pressed()
+				"Shop":
+					Shop_Obj._on_Back_pressed()
+					_on_TextureButton_pressed()
+					
 
 func _ready():
 	
@@ -62,6 +82,11 @@ func _ready():
 	
 
 func _physics_process(delta):
+	
+	if Level.Manager.connected_devices.has("Mobile"):
+		$Options/VBoxContainer/MarginContainer/GridContainer/Touch.visible = true
+		$Options/VBoxContainer/MarginContainer/GridContainer/Mobile.visible = true
+	
 	$Top_UI/Panel.rect_size.y = (PlayerList.get_child_count() - 1) * 55
 	match Level.game_state:
 		"Playing":
@@ -125,14 +150,17 @@ func show_leaderboard():
 		$Leaderboard/Cards.add_child(c)
 
 func _on_TextureButton_pressed():
+	ui_focus = "none"
 	Animator.play_backwards("Options")
 	UIAudio.play_sound("click2")
 	$Top_UI/Dummy.grab_focus()
 
 
 func _on_Button_pressed():
+	ui_focus = "Options"
 	Animator.play("Options")
 	UIAudio.play_sound("click1")
+	$Options/VBoxContainer/MarginContainer/GridContainer/GameMode.grab_focus()
 
 
 
@@ -202,17 +230,28 @@ func _on_Shop_pressed():
 	hide()
 	var s = Shop.instance()
 	Level.GUI.get_parent().add_child(s)
-	is_shop_visible = true
+	Shop_Obj = s
+	ui_focus = "Shop"
 
 
 func _on_Close_pressed():
 	$PlayerManager.hide()
 	$Options.show()
-	Animator.play("Options")
+	Animator.play_backwards("Options")
 	UIAudio.play_sound("click1")
+	ui_focus = "none"
 	
 
 
 func _on_Players_pressed():
 	$Options.hide()
 	$PlayerManager.show()
+	ui_focus = "Manage"
+	$PlayerManager/MarginContainer/VBoxContainer/Close.grab_focus()
+
+
+func _on_Touch_item_selected(index):
+	Profile.touch_disabled = bool(index)
+	$"Bottom_UI/Mobile Controller".visible = !Profile.touch_disabled
+	print(Profile.touch_disabled)
+	

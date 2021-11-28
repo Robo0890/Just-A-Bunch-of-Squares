@@ -13,6 +13,7 @@ func _on_pressed():
 	$Editor.show()
 	$Editor/Manage.show()
 	$Editor/Manage/Color.modulate = Player.color
+	$Editor/Manage/Done.grab_focus()
 
 
 
@@ -20,12 +21,13 @@ func _on_Done_pressed():
 	$Editor.hide()
 	$Mask.modulate = Player.color
 	$Editor/Color/Player/Mask.modulate = Player.color
+	grab_focus()
 
 
 func _on_Color_pressed():
 	$Editor/Manage.hide()
 	$Editor/Color.show()
-	
+	$Editor/Color/EditColor/HSlider.grab_focus()
 
 
 
@@ -39,6 +41,7 @@ func _on_Color_Done_pressed():
 	$Editor/Manage.show()
 	$Editor/Color.hide()
 	$Editor/Manage/Color.modulate = Player.color
+	$Editor/Manage/Done.grab_focus()
 
 func _process(delta):
 	$Editor/Color/Player.texture = Player.skin_img

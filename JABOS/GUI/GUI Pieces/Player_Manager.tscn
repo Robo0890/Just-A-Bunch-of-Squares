@@ -80,7 +80,7 @@ __meta__ = {
 [node name="Done" type="Button" parent="Editor/Manage"]
 margin_left = 175.0
 margin_right = 310.0
-margin_bottom = 79.0
+margin_bottom = 85.0
 text = "Done"
 icon = ExtResource( 3 )
 
@@ -88,7 +88,7 @@ icon = ExtResource( 3 )
 modulate = Color( 1, 0, 0, 1 )
 margin_left = 360.0
 margin_right = 579.0
-margin_bottom = 79.0
+margin_bottom = 85.0
 text = "Edit Color"
 icon = ExtResource( 1 )
 
@@ -96,7 +96,7 @@ icon = ExtResource( 1 )
 modulate = Color( 1, 0, 0, 1 )
 margin_left = 629.0
 margin_right = 801.0
-margin_bottom = 79.0
+margin_bottom = 85.0
 text = "Remove"
 icon = ExtResource( 5 )
 
@@ -113,14 +113,18 @@ __meta__ = {
 [node name="Done" type="Button" parent="Editor/Color"]
 margin_left = 7.0
 margin_right = 142.0
-margin_bottom = 79.0
+margin_bottom = 85.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath("../EditColor/HSlider")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath("../EditColor/HSlider")
 text = "Done"
 icon = ExtResource( 3 )
 
 [node name="Player" type="TextureRect" parent="Editor/Color"]
 margin_left = 166.0
 margin_right = 245.0
-margin_bottom = 79.0
+margin_bottom = 85.0
 texture = ExtResource( 4 )
 
 [node name="Mask" type="TextureRect" parent="Editor/Color/Player"]
@@ -135,7 +139,7 @@ __meta__ = {
 [node name="EditColor" type="TextureRect" parent="Editor/Color"]
 margin_left = 269.0
 margin_right = 969.0
-margin_bottom = 79.0
+margin_bottom = 85.0
 rect_min_size = Vector2( 700, 0 )
 texture = SubResource( 14 )
 expand = true
@@ -146,6 +150,9 @@ __meta__ = {
 [node name="HSlider" type="HSlider" parent="Editor/Color/EditColor"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+focus_neighbour_top = NodePath("../../Done")
+focus_neighbour_bottom = NodePath("../../Done")
+step = 5.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

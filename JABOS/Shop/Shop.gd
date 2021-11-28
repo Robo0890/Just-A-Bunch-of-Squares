@@ -14,6 +14,8 @@ var daily_skin
 var weekday
 
 func _ready():
+	$Head/HBoxContainer/Back.grab_focus()
+	
 	var time = OS.get_datetime()
 	var dayofweek = time["weekday"]
 	match dayofweek:
@@ -95,9 +97,10 @@ func load_shop():
 func _on_Back_pressed():
 	match $Head/HBoxContainer/Back.text:
 		"Shop":
-			GUI.is_shop_visible = false
+			GUI.ui_focus = "Options"
 			GUI.show()
 			GUI.GamemodeBox.select(0)
+			GUI.GamemodeBox.grab_focus()
 			queue_free()
 		"Profile":
 			$Head/HBoxContainer/Back.text = "Shop"
