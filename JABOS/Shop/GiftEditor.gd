@@ -156,5 +156,6 @@ func _on_Title_focus_entered():
 
 func _on_RubyAmount_focus_entered():
 	if OS.has_virtual_keyboard():
-		$VBoxContainer/RubyAmount.value = int(JavaScript.eval("prompt(\"Title:\")"))
-		_on_RubyAmount_value_changed($VBoxContainer/RubyAmount.value)
+		var value = int(JavaScript.eval("prompt(\"Amount:\")"))
+		$VBoxContainer/RubyAmount.text = "Amount: " + str(value)
+		_on_RubyAmount_value_changed(value)

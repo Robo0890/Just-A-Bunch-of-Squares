@@ -60,7 +60,7 @@ margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 color = Color( 1, 1, 1, 0 )
 
-[node name="Left" type="TouchScreenButton" parent="Panel/Left/Left"]
+[node name="Left" type="TouchScreenButton" parent="Panel/Left/Left" groups=["mobile_button"]]
 normal = ExtResource( 2 )
 pressed = ExtResource( 2 )
 shape = SubResource( 1 )
@@ -74,7 +74,7 @@ margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 color = Color( 1, 1, 1, 0 )
 
-[node name="Right" type="TouchScreenButton" parent="Panel/Left/Right"]
+[node name="Right" type="TouchScreenButton" parent="Panel/Left/Right" groups=["mobile_button"]]
 normal = ExtResource( 1 )
 pressed = ExtResource( 1 )
 shape = SubResource( 1 )
@@ -116,7 +116,7 @@ margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 color = Color( 1, 1, 1, 0 )
 
-[node name="Skin" type="TouchScreenButton" parent="Panel/Right/Wardrobe"]
+[node name="Skin" type="TouchScreenButton" parent="Panel/Right/Wardrobe" groups=["mobile_button"]]
 normal = ExtResource( 8 )
 pressed = ExtResource( 8 )
 shape = SubResource( 1 )
@@ -129,7 +129,7 @@ margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 color = Color( 1, 1, 1, 0 )
 
-[node name="Ready" type="TouchScreenButton" parent="Panel/Right/Ready"]
+[node name="Ready" type="TouchScreenButton" parent="Panel/Right/Ready" groups=["mobile_button"]]
 normal = ExtResource( 5 )
 pressed = ExtResource( 5 )
 shape = SubResource( 1 )
@@ -143,7 +143,7 @@ margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 color = Color( 1, 1, 1, 0 )
 
-[node name="Jump" type="TouchScreenButton" parent="Panel/Right/Jump"]
+[node name="Jump" type="TouchScreenButton" parent="Panel/Right/Jump" groups=["mobile_button"]]
 normal = ExtResource( 3 )
 pressed = ExtResource( 3 )
 shape = SubResource( 1 )

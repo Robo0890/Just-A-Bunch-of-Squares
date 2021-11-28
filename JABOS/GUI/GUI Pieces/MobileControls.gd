@@ -9,6 +9,18 @@ func _ready():
 	
 func _process(delta):
 
+	for x in get_tree().get_nodes_in_group("mobile_button"):
+		if !x.pressed:
+			match x.name:
+				"Left":
+					_on_Left_released()
+				"Right":
+					_on_Right_released()
+				"Jump":
+					_on_Jump_released()
+				"Flip":
+					_on_Flip_released()
+
 	if visible:
 		match Level.game_state:
 			"Playing":

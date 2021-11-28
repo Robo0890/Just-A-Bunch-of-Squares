@@ -311,14 +311,12 @@ icon = ExtResource( 18 )
 align = 1
 expand_icon = true
 
-[node name="RubyAmount" type="SpinBox" parent="GiftEditor/VBoxContainer"]
+[node name="RubyAmount" type="LineEdit" parent="GiftEditor/VBoxContainer"]
 margin_top = 229.0
 margin_right = 362.0
 margin_bottom = 274.0
-max_value = 230.0
-value = 230.0
+text = "Amount: 230"
 align = 1
-prefix = "Amount:"
 
 [node name="Done" type="Button" parent="GiftEditor/VBoxContainer"]
 margin_top = 284.0
@@ -519,6 +517,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Loading"]
 position = Vector2( 44, 50 )
 frames = SubResource( 1 )
+frame = 1
 playing = true
 
 [node name="Body" type="MarginContainer" parent="."]
@@ -819,7 +818,6 @@ __meta__ = {
 [connection signal="item_selected" from="GiftEditor/VBoxContainer/GiftType" to="GiftEditor" method="_on_GiftType_item_selected"]
 [connection signal="item_selected" from="GiftEditor/VBoxContainer/SelectSkin" to="GiftEditor" method="_on_SelectSkin_item_selected"]
 [connection signal="focus_entered" from="GiftEditor/VBoxContainer/RubyAmount" to="GiftEditor" method="_on_RubyAmount_focus_entered"]
-[connection signal="value_changed" from="GiftEditor/VBoxContainer/RubyAmount" to="GiftEditor" method="_on_RubyAmount_value_changed"]
 [connection signal="pressed" from="GiftEditor/VBoxContainer/Done" to="GiftEditor" method="_on_Done_pressed"]
 [connection signal="pressed" from="GiftEditor/Code/Button" to="GiftEditor" method="_on_Button_pressed"]
 [connection signal="pressed" from="GiftEditor/Code/NewGift" to="GiftEditor" method="_on_NewGift_pressed"]
