@@ -32,6 +32,7 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="SpriteMask" type="Sprite" parent="."]
+texture = ExtResource( 2 )
 
 [node name="FloorDetector" type="RayCast2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )

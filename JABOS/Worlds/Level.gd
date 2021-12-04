@@ -45,16 +45,20 @@ func _physics_process(delta):
 			for player in $Manager.get_children():
 				if player.position.y >= 1200:
 					player.kill(true, true)
-			
-			if GUI.ui_focus == "Shop":
-				$Camera.position = lerp($Camera.position, Vector2(1024,300), .1)
-			elif GUI.ui_focus == "Options":
-				$Camera.position = lerp($Camera.position, Vector2(512,100), .1)
-			else:
-				$Camera.position = lerp($Camera.position, Vector2(512,300), .1)
+			match GUI.ui_focus:
+				"Shop":
+					$Camera.position = lerp($Camera.position, Vector2(1024,0), .1)
+				"Options":
+					$Camera.position = lerp($Camera.position, Vector2(1024,300), .1)
+				"none":
+					$Camera.position = lerp($Camera.position, Vector2(512,300), .1)
+				"Manage":
+					$Camera.position = lerp($Camera.position, Vector2(512,450), .1)
+
 			$Camera.zoom = lerp($Camera.zoom, Vector2(1,1), .1)
 			if ready_players.size() == $Manager.get_child_count() and $Manager.get_child_count() != 0:
 				game_start()
+				
 		"Playing":
 			$Camera.zoom = lerp($Camera.zoom, Vector2(2,2), .1)
 			

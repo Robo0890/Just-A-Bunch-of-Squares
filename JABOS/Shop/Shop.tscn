@@ -172,6 +172,7 @@ text = "Thanks!"
 icon = ExtResource( 9 )
 
 [node name="GiftEditor" type="Control" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -500,7 +501,6 @@ text = "Clear Data (No Undo)"
 icon = ExtResource( 10 )
 
 [node name="Loading" type="Panel" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -517,8 +517,21 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Loading"]
 position = Vector2( 44, 50 )
 frames = SubResource( 1 )
-frame = 1
 playing = true
+
+[node name="Cancel" type="Button" parent="Loading"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -58.0
+margin_top = 63.0
+margin_right = 58.0
+margin_bottom = 17.5
+text = "Cancel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Body" type="MarginContainer" parent="."]
 visible = false
@@ -818,10 +831,12 @@ __meta__ = {
 [connection signal="item_selected" from="GiftEditor/VBoxContainer/GiftType" to="GiftEditor" method="_on_GiftType_item_selected"]
 [connection signal="item_selected" from="GiftEditor/VBoxContainer/SelectSkin" to="GiftEditor" method="_on_SelectSkin_item_selected"]
 [connection signal="focus_entered" from="GiftEditor/VBoxContainer/RubyAmount" to="GiftEditor" method="_on_RubyAmount_focus_entered"]
+[connection signal="text_entered" from="GiftEditor/VBoxContainer/RubyAmount" to="GiftEditor" method="_on_RubyAmount_text_entered"]
 [connection signal="pressed" from="GiftEditor/VBoxContainer/Done" to="GiftEditor" method="_on_Done_pressed"]
 [connection signal="pressed" from="GiftEditor/Code/Button" to="GiftEditor" method="_on_Button_pressed"]
 [connection signal="pressed" from="GiftEditor/Code/NewGift" to="GiftEditor" method="_on_NewGift_pressed"]
 [connection signal="pressed" from="Profile/Panel/MarginContainer/VBoxContainer/Clear" to="." method="_on_Clear_pressed"]
+[connection signal="pressed" from="Loading/Cancel" to="." method="_on_Cancel_pressed"]
 [connection signal="pressed" from="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Buy" to="." method="_on_Skin_Buy_pressed"]
 [connection signal="pressed" from="Body/Panel/MarginContainer/HSplitContainer/Skins/DailySkin/Clear" to="." method="_on_Clear_pressed"]
 [connection signal="focus_entered" from="Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode" to="." method="_on_GiftCode_focus_entered"]

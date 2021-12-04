@@ -4,6 +4,7 @@ extends Control
 onready var Level = get_parent().get_parent()
 onready var GUI = Level.GUI
 
+var collection = Firebase.Firestore.collection("Gifts")
 
 var online_shop
 
@@ -14,6 +15,8 @@ var daily_skin
 var weekday
 
 func _ready():
+	collection.connect("error", self, "invalid_gift_code")
+	
 	$Head/HBoxContainer/Back.grab_focus()
 	
 	var time = OS.get_datetime()
@@ -100,7 +103,7 @@ func _on_Back_pressed():
 			GUI.ui_focus = "Options"
 			GUI.show()
 			GUI.GamemodeBox.select(0)
-			GUI.GamemodeBox.grab_focus()
+			GUI._on_Button_pressed()
 			queue_free()
 		"Profile":
 			$Head/HBoxContainer/Back.text = "Shop"
@@ -127,9 +130,7 @@ func _on_Clear_pressed():
 
 
 func _on_GiftCode_text_entered(new_text):
-	var collection = Firebase.Firestore.collection("Gifts")
 	collection.get(new_text)
-	collection.connect("error", self, "invalid_gift_code")
 	var gift : Dictionary = yield(collection, "get_document").doc_fields
 	
 	if gift != null:
@@ -172,7 +173,7 @@ func invalid_gift_code(q, w, e):
 
 
 func _on_GiftCode_focus_entered():
-	if OS.has_virtual_keyboard():
+	if OS.has_touchscreen_ui_hint():
 		$Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode.text = JavaScript.eval("prompt(\"Enter Code:\")")
 		_on_GiftCode_text_entered($Body/Panel/MarginContainer/HSplitContainer/Skins/GiftCode.text)
 		
@@ -195,3 +196,9 @@ func _on_Send_pressed():
 	$GiftEditor.show()
 	$Head/HBoxContainer/Back.text = "Send Gift"
 
+
+
+
+
+func _on_Cancel_pressed():
+	_on_Back_pressed()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/arrowRight.png" type="Texture" id=1]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/arrowLeft.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/exitLeft.png" type="Texture" id=6]
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=7]
 [ext_resource path="res://GUI/Icons/customicons/x2/Player.png" type="Texture" id=8]
+[ext_resource path="res://GUI/Icons/customicons/x2/Slam.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 50 )
@@ -122,6 +123,20 @@ pressed = ExtResource( 8 )
 shape = SubResource( 1 )
 shape_visible = false
 
+[node name="Ability" type="ColorRect" parent="Panel/Right"]
+visible = false
+margin_left = 716.0
+margin_right = 816.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="Skin" type="TouchScreenButton" parent="Panel/Right/Ability" groups=["mobile_button"]]
+normal = ExtResource( 9 )
+pressed = ExtResource( 9 )
+shape = SubResource( 1 )
+shape_visible = false
+
 [node name="Ready" type="ColorRect" parent="Panel/Right"]
 margin_left = 820.0
 margin_right = 920.0
@@ -163,6 +178,8 @@ passby_press = true
 [connection signal="released" from="Panel/Left/Quit/Quit" to="." method="_on_Quit_released"]
 [connection signal="pressed" from="Panel/Right/Wardrobe/Skin" to="." method="_on_Skin_pressed"]
 [connection signal="released" from="Panel/Right/Wardrobe/Skin" to="." method="_on_Skin_released"]
+[connection signal="pressed" from="Panel/Right/Ability/Skin" to="." method="_on_Skin_pressed"]
+[connection signal="released" from="Panel/Right/Ability/Skin" to="." method="_on_Skin_released"]
 [connection signal="pressed" from="Panel/Right/Ready/Ready" to="." method="_on_Ready_pressed"]
 [connection signal="released" from="Panel/Right/Ready/Ready" to="." method="_on_Ready_released"]
 [connection signal="pressed" from="Panel/Right/Jump/Jump" to="." method="_on_Jump_pressed"]

@@ -46,7 +46,7 @@ func game_tick():
 	for x in get_tree().get_nodes_in_group("Player"):
 		if x.active:
 			move += x.position.x - Level.Game_Camera.position.x
-			move = (move / Level.player_count) / 100 + 32
+			move = (move / Level.player_count) / 75 + 32
 	Level.Game_Camera.position.x += (move/4) + (.0002 * Level.Game_Camera.position.x)
 
 	#For each player, check if they have gone off screen

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=1]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/signal3.png" type="Texture" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Images/Face.png" type="Texture" id=17]
 [ext_resource path="res://GUI/GUI Pieces/MobileControls.tscn" type="PackedScene" id=18]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/checkmark.png" type="Texture" id=19]
+[ext_resource path="res://Images/Gear.png" type="Texture" id=20]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.319318 ), -1.83695, 0.0, 0, 0 ]
@@ -73,6 +74,62 @@ animations = [ {
 "speed": 4.0
 } ]
 
+[sub_resource type="Animation" id=12]
+resource_name = "Gears"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Gear1:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Gear2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 360.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Gear1:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Gear2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
 [sub_resource type="Animation" id=8]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Options:rect_position:y")
@@ -100,6 +157,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 1.44545
 margin_bottom = 1.44543
+rect_pivot_offset = Vector2( -753.289, -600 )
 theme = ExtResource( 1 )
 script = ExtResource( 9 )
 __meta__ = {
@@ -535,6 +593,7 @@ visible = false
 position = Vector2( -39.7715, 21.7784 )
 frames = SubResource( 10 )
 animation = "Loading"
+frame = 2
 playing = true
 
 [node name="CenterContainer" type="CenterContainer" parent="Options"]
@@ -550,6 +609,29 @@ __meta__ = {
 margin_right = 50.0
 margin_bottom = 50.0
 texture_normal = ExtResource( 8 )
+
+[node name="Gears" type="Node2D" parent="Options"]
+show_behind_parent = true
+position = Vector2( 309.135, 234.202 )
+scale = Vector2( 1.5, 1.5 )
+z_index = -1
+
+[node name="Gear1" type="Sprite" parent="Options/Gears"]
+light_mask = 32
+position = Vector2( -46.5663, 22.6761 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 20 )
+
+[node name="Gear2" type="Sprite" parent="Options/Gears"]
+light_mask = 32
+position = Vector2( 55.4887, -45.4059 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 20 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Options/Gears"]
+autoplay = "Gears"
+anims/Gears = SubResource( 12 )
+anims/RESET = SubResource( 13 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Options = SubResource( 8 )
@@ -598,8 +680,8 @@ margin_right = 976.0
 margin_bottom = 54.0
 
 [connection signal="pressed" from="Top_UI/Option_Button" to="." method="_on_Button_pressed"]
-[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click_select"]
+[connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Shop" to="." method="_on_Shop_pressed"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud" to="." method="_on_CreateCloud_item_selected"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Gamemodes/Classic/Game.gd" type="Script" id=1]
 [ext_resource path="res://Important Scripts/Level_Genorator.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Images/cloud.png" type="Texture" id=3]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.00653595 )
@@ -9,6 +10,13 @@ colors = PoolColorArray( 0.24939, 0.826969, 0.886719, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.519126, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.517647, 1, 1, 1, 0 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 200, 23.569 )
 
 [node name="Game" type="Node2D" groups=["Game"]]
 script = ExtResource( 1 )
@@ -27,4 +35,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="ParallaxBackground"]
+position = Vector2( 1024, 203.725 )
+amount = 10
+lifetime = 50.0
+preprocess = 50.0
+texture = ExtResource( 3 )
+emission_shape = 2
+emission_rect_extents = Vector2( 0, 100 )
+gravity = Vector2( -10, 0 )
+scale_amount = 0.5
+color_ramp = SubResource( 5 )
+
 [node name="Level_Genorator" parent="." instance=ExtResource( 2 )]
+
+[node name="Course" type="StaticBody2D" parent="."]
+light_mask = 32
+position = Vector2( 512, 360 )
+scale = Vector2( 2, 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Course"]
+position = Vector2( 0, 49.275 )
+shape = SubResource( 4 )

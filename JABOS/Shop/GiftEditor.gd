@@ -27,7 +27,7 @@ func _ready():
 	}
 }
 
-	$VBoxContainer/RubyAmount.value = int(Profile.data.ruby / 2)
+	$VBoxContainer/RubyAmount.text = "Amount: " + str(Profile.data.ruby / 2)
 	$VBoxContainer/GiftType.disabled = false
 	$VBoxContainer/SelectSkin.clear()
 	$VBoxContainer/GiftType.select(1)
@@ -35,7 +35,6 @@ func _ready():
 	$VBoxContainer/Message.text = "Message"
 	$VBoxContainer.show()
 	$Code.hide()
-	$VBoxContainer/RubyAmount.max_value = Profile.data.ruby
 	if Profile.data.Owned.Skins.size() != 1:
 		$VBoxContainer/GiftType.disabled = false
 		for x in Profile.data.Owned.Skins:
@@ -78,7 +77,7 @@ func _on_GiftType_item_selected(index):
 		$VBoxContainer/Ruby.show()
 		$VBoxContainer/SelectSkin.hide()
 		$VBoxContainer/RubyAmount.show()
-		_on_RubyAmount_value_changed($VBoxContainer/RubyAmount.value)
+		#_on_RubyAmount_value_changed($VBoxContainer/RubyAmount.value)
 
 
 func _on_Done_pressed():
@@ -110,12 +109,6 @@ func _on_SelectSkin_item_selected(index):
 	$VBoxContainer/Skin.texture = load("res://Images/Skins/" + gift_data.data.name + ".png")
 	$VBoxContainer/Skin/Panel/Label.text = gift_data.data.name
 
-func _on_RubyAmount_value_changed(value):
-	gift_data.data = {
-			"type" : "ruby",
-			"amount" : value
-		}
-	$VBoxContainer/Ruby/Panel/Label.text = "+ " + str(gift_data.data.amount)
 
 
 func _on_Title_text_changed(new_text):
@@ -142,20 +135,29 @@ func _on_NewGift_pressed():
 
 
 func _on_Message_focus_entered():
-	if OS.has_virtual_keyboard():
+	if OS.has_touchscreen_ui_hint():
 		$VBoxContainer/Message.text = JavaScript.eval("prompt(\"Message:\")")
 		_on_Message_text_changed($VBoxContainer/Message.text)
 		
 
 
 func _on_Title_focus_entered():
-	if OS.has_virtual_keyboard():
+	if OS.has_touchscreen_ui_hint():
 		$VBoxContainer/Title.text = JavaScript.eval("prompt(\"Title:\")")
 		_on_Title_text_changed($VBoxContainer/Title.text)
 
 
 func _on_RubyAmount_focus_entered():
-	if OS.has_virtual_keyboard():
+	if OS.has_touchscreen_ui_hint():
 		var value = int(JavaScript.eval("prompt(\"Amount:\")"))
 		$VBoxContainer/RubyAmount.text = "Amount: " + str(value)
-		_on_RubyAmount_value_changed(value)
+		#_on_RubyAmount_value_changed(value)
+
+
+func _on_RubyAmount_text_entered(new_text):
+	var value = int(new_text.split(": ")[1])
+	gift_data.data = {
+			"type" : "ruby",
+			"amount" : value
+		}
+	$VBoxContainer/Ruby/Panel/Label.text = "+ " + str(gift_data.data.amount)

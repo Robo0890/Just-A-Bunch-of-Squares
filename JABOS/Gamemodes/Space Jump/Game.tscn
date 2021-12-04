@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Gamemodes/Space Jump/Game.gd" type="Script" id=1]
 [ext_resource path="res://Important Scripts/Level_Genorator.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.543046, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 200, 23.569 )
 
 [node name="Game" type="Node2D" groups=["Game"]]
 script = ExtResource( 1 )
@@ -37,3 +40,11 @@ scale_amount = 5.0
 color_ramp = SubResource( 2 )
 
 [node name="Level_Genorator" parent="." instance=ExtResource( 2 )]
+
+[node name="Course" type="StaticBody2D" parent="."]
+position = Vector2( 512, 360 )
+scale = Vector2( 2, 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Course"]
+position = Vector2( 0, 49.275 )
+shape = SubResource( 4 )

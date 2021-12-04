@@ -237,9 +237,9 @@ func _on_Shop_pressed():
 func _on_Close_pressed():
 	$PlayerManager.hide()
 	$Options.show()
-	Animator.play_backwards("Options")
+	Animator.play("Options")
 	UIAudio.play_sound("click1")
-	ui_focus = "none"
+	ui_focus = "Options"
 	
 
 
