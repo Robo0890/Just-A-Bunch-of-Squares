@@ -1,22 +1,75 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Gamemodes/Classic/Game.gd" type="Script" id=1]
 [ext_resource path="res://Important Scripts/Level_Genorator.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Images/cloud.png" type="Texture" id=3]
+[ext_resource path="res://Images/Tree.png" type="Texture" id=4]
 
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0.00653595 )
-colors = PoolColorArray( 0.24939, 0.826969, 0.886719, 1 )
+offsets = PoolRealArray( 0.578378 )
+colors = PoolColorArray( 0.611801, 0.917586, 0.949219, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
 
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.519126, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.858824, 1, 1, 1, 0 )
+
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.519126, 1 )
-colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.517647, 1, 1, 1, 0 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.360784, 1, 1, 1, 0 )
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.543046, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 200, 23.569 )
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Tree:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.3, 0.3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Tree:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 134.405, -83.0449 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Tree"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Tree:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.3, 0.3 ), Vector2( 0.3, 0.29 ), Vector2( 0.3, 0.3 ) ]
+}
 
 [node name="Game" type="Node2D" groups=["Game"]]
 script = ExtResource( 1 )
@@ -35,7 +88,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="ParallaxBackground"]
+[node name="Clouds" type="CPUParticles2D" parent="ParallaxBackground"]
 position = Vector2( 1024, 203.725 )
 amount = 10
 lifetime = 50.0
@@ -45,7 +98,32 @@ emission_shape = 2
 emission_rect_extents = Vector2( 0, 100 )
 gravity = Vector2( -10, 0 )
 scale_amount = 0.5
+color_ramp = SubResource( 7 )
+
+[node name="Clouds2" type="CPUParticles2D" parent="ParallaxBackground"]
+position = Vector2( 1024, 112.908 )
+amount = 10
+lifetime = 50.0
+preprocess = 50.0
+texture = ExtResource( 3 )
+emission_shape = 2
+emission_rect_extents = Vector2( 0, 100 )
+gravity = Vector2( -5, 0 )
+scale_amount = 0.25
 color_ramp = SubResource( 5 )
+
+[node name="Snow" type="CPUParticles2D" parent="ParallaxBackground"]
+position = Vector2( 512, 300 )
+amount = 200
+lifetime = 5.0
+preprocess = 10.0
+local_coords = false
+emission_shape = 2
+emission_rect_extents = Vector2( 1024, 600 )
+spread = 0.0
+gravity = Vector2( 0, 24 )
+scale_amount = 5.0
+color_ramp = SubResource( 6 )
 
 [node name="Level_Genorator" parent="." instance=ExtResource( 2 )]
 
@@ -57,3 +135,14 @@ scale = Vector2( 2, 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Course"]
 position = Vector2( 0, 49.275 )
 shape = SubResource( 4 )
+
+[node name="Tree" type="Sprite" parent="Course"]
+position = Vector2( 134.405, -83.0449 )
+scale = Vector2( 0.3, 0.3 )
+z_index = -5
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Course"]
+autoplay = "Tree"
+anims/RESET = SubResource( 8 )
+anims/Tree = SubResource( 9 )

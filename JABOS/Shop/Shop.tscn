@@ -52,6 +52,51 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Debug" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 77.0
+custom_colors/font_outline_modulate = Color( 0.941176, 0.941176, 0.941176, 1 )
+custom_colors/font_color_shadow = Color( 0.470588, 0.470588, 0.470588, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_constants/shadow_as_outline = 2
+custom_fonts/font = ExtResource( 13 )
+text = "{
+	\"ruby\": 11821,
+	\"level\": 14,
+	\"xp\": 395,
+	\"gamemode\": \"Classic\",
+	\"Owned\": {
+		\"Skins\": [
+			\"Default\",
+			\"Shades\",
+			\"Bored\",
+			\"Robot\"
+		],
+		\"Power_Ups\": [
+
+		],
+		\"Gamemodes\": [
+			\"Classic\",
+			\"Space Jump\"
+		]
+	},
+	\"stats\": {
+		\"jumps\": 169,
+		\"falls\": 11,
+		\"games\": 42,
+		\"skins_owned\": 1,
+		\"favorite\": \"Default\"
+	},
+	\"version\": 1.5
+}"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Gift" type="Panel" parent="."]
 visible = false
 anchor_left = 0.5
@@ -517,6 +562,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Loading"]
 position = Vector2( 44, 50 )
 frames = SubResource( 1 )
+frame = 1
 playing = true
 
 [node name="Cancel" type="Button" parent="Loading"]

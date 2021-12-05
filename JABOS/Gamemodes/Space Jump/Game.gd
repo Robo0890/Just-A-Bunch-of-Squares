@@ -45,7 +45,7 @@ func game_tick():
 	#Move the game camera
 	Level.Game_Camera.position.x += 10
 	
-	$ParallaxBackground/CPUParticles2D.gravity.x = -10
+	$ParallaxBackground/Stars.gravity.x = -10
 	
 	#For each player, check if they have gone off screen
 	for player in Players:
@@ -54,7 +54,7 @@ func game_tick():
 			
 		#Using the edge indicator from above, determine wether a player is offscreen
 		if player.position.x <= $Edge.global_position.x - 512 and player.active:
-			player.position.x += 10 #Run kill() function on the offscreen player
+			player.position.x += 100 #Run kill() function on the offscreen player
 			
 			#If that player is the last one remaining:
 			if players_left == 0:
@@ -89,7 +89,7 @@ func game_tick():
 func end():
 	#Tell the Level scene that the game is over
 	Level.end_game(leaderboard_data)
-	$ParallaxBackground/CPUParticles2D.gravity.x = 0
+	$ParallaxBackground/Stars.gravity.x = 0
 
 #Set player leaderboard stat
 func leaderboard(who : int, key : String, value):

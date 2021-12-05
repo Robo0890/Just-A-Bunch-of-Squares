@@ -17,6 +17,8 @@ var weekday
 func _ready():
 	collection.connect("error", self, "invalid_gift_code")
 	
+	$Debug.text = str(Profile.data)
+	
 	$Head/HBoxContainer/Back.grab_focus()
 	
 	var time = OS.get_datetime()
@@ -41,13 +43,14 @@ func _ready():
 	$Profile.hide()
 	$Loading.show()
 	$Body.hide()
-	$Head.hide()
+	$Head.show()
+	load_head()
 	
 	online_shop = Firebase.Firestore.collection("Shop")
 	online_shop.get(str(weekday))
 	var get_skins : FirestoreDocument = yield(online_shop, "get_document")
 	$Loading.hide()
-	$Body.show()
+	#$Body.show()
 	$Head.show()
 	online_shop = get_skins.doc_fields
 	
@@ -89,13 +92,14 @@ func load_shop():
 	
 	
 #   ***Head***
+	load_head()
+
+func load_head():
 	$Head/HBoxContainer/Rubies.text = str(Profile.data.ruby)
 	$Head/HBoxContainer/Profile/HBoxContainer/ProgressBar/Level/Label.text = "Level " + str(Profile.data.level)
 	$Head/HBoxContainer/Profile/HBoxContainer/ProgressBar.max_value = Profile.xp_for_next_level()
 	$Head/HBoxContainer/Profile/HBoxContainer/ProgressBar.value = Profile.data.xp
 	$Head/HBoxContainer/Profile/HBoxContainer/ProgressBar/Level/XP.text = "XP " + str(Profile.data.xp) + "/" + str(Profile.xp_for_next_level())
-
-
 
 func _on_Back_pressed():
 	match $Head/HBoxContainer/Back.text:
