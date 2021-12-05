@@ -50,7 +50,7 @@ func _ready():
 	online_shop.get(str(weekday))
 	var get_skins : FirestoreDocument = yield(online_shop, "get_document")
 	$Loading.hide()
-	#$Body.show()
+	$Body.show()
 	$Head.show()
 	online_shop = get_skins.doc_fields
 	
