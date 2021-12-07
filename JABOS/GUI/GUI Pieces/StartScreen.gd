@@ -4,7 +4,6 @@ var splash = true
 
 func _ready():
 	$Update.hide()
-	Firebase.Auth.login_anonymous()
 	get_tree().debug_collisions_hint = true
 	
 	var load_data = Save.load_data("jabos_profile")

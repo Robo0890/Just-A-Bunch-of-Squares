@@ -305,16 +305,16 @@ func _pooled_request(task : FirestoreTask) -> void:
 		task._on_request_completed(HTTPRequest.RESULT_CANT_CONNECT, 404, PoolStringArray(), PoolByteArray())
 		return
 	
-	if not auth and not Firebase.emulating:
+	"""if not auth and not Firebase.emulating:
 		Firebase._print("Unauthenticated request issued...")
 		Firebase.Auth.login_anonymous()
 		var result : Array = yield(Firebase.Auth, "auth_request")
 		if result[0] != 1:
 			_check_auth_error(result[0], result[1])
-		Firebase._print("Client connected as Anonymous")
+		Firebase._print("Client connected as Anonymous")"""
 	
-	if not Firebase.emulating:
-		task._headers = PoolStringArray([_AUTHORIZATION_HEADER + auth.idtoken])
+	"""if not Firebase.emulating:
+		task._headers = PoolStringArray([_AUTHORIZATION_HEADER + auth.idtoken])"""
 	
 	var http_request : HTTPRequest
 	for request in _http_request_pool:

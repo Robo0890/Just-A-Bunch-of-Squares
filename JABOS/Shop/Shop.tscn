@@ -53,6 +53,7 @@ __meta__ = {
 }
 
 [node name="Debug" type="Label" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 77.0
@@ -562,7 +563,6 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Loading"]
 position = Vector2( 44, 50 )
 frames = SubResource( 1 )
-frame = 1
 playing = true
 
 [node name="Cancel" type="Button" parent="Loading"]

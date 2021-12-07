@@ -215,6 +215,7 @@ func signup_with_email_and_password(email : String, password : String) -> void:
 		request(_base_url + _signup_request_url, _headers, true, HTTPClient.METHOD_POST, JSON.print(_login_request_body))
 
 
+
 # Called with Firebase.Auth.anonymous_login()
 # A successful request is indicated by a 200 OK HTTP status code. 
 # The response contains the Firebase ID token and refresh token associated with the anonymous user.

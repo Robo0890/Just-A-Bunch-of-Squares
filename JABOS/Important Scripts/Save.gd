@@ -17,6 +17,9 @@ func load_data(where: String):
 	var data = file.get_as_text()
 	file.close()
 	var return_data
+	if data == "":
+		return_data = Profile.DEFAULT_DATA
+		return return_data
 	if data[0] == "{":
 		return_data = parse_json(data) as Dictionary
 	else:

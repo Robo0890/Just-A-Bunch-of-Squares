@@ -101,18 +101,18 @@ func _get_request_url() -> String:
 func _process_request(task : FirestoreTask, document_id : String, url : String, fields := "") -> void:
 	task.connect("task_error", self, "_on_error")
 	
-	if not auth:
+	"""if not auth:
 		Firebase._print("Unauthenticated request issued...")
 		Firebase.Auth.login_anonymous()
 		var result : Array = yield(Firebase.Auth, "auth_request")
 		if result[0] != 1:
 			Firebase.Firestore._check_auth_error(result[0], result[1])
 			return null
-		Firebase._print("Client authenticated as Anonymous User.")
+		Firebase._print("Client authenticated as Anonymous User.")"""
 	
 	task._url = url
 	task._fields = fields
-	task._headers = PoolStringArray([_AUTHORIZATION_HEADER + auth.idtoken])
+	#task._headers = PoolStringArray([_AUTHORIZATION_HEADER + auth.idtoken])
 	if _request_queues.has(document_id) and not _request_queues[document_id].empty():
 		_request_queues[document_id].append(task)
 	else:
