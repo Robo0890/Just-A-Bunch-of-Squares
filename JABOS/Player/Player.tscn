@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Images/Face.png" type="Texture" id=2]
+[ext_resource path="res://Images/kenney_particle_pack/circle_05.png" type="Texture" id=3]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/backward.png" type="Texture" id=4]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/forward.png" type="Texture" id=5]
 [ext_resource path="res://Images/Skins/Default.png" type="Texture" id=6]
@@ -32,8 +33,14 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="SpriteMask" type="Sprite" parent="."]
-self_modulate = Color( 2, 2, 2, 1 )
+modulate = Color( 0.921569, 0, 0, 1 )
 texture = ExtResource( 2 )
+
+[node name="Glow" type="Sprite" parent="SpriteMask"]
+modulate = Color( 1, 1, 1, 0.376471 )
+show_behind_parent = true
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
 
 [node name="FloorDetector" type="RayCast2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )

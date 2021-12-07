@@ -228,9 +228,9 @@ func change_skin(skin_id : int):
 	skin_img_mask = load("res://Images/Skins/mask." + skin_name + ".png")
 	
 	if glowing_skins.has(skin_name):
-		$SpriteMask.self_modulate = Color(2, 2, 2)
+		$SpriteMask/Glow.visible = true
 	else:
-		$SpriteMask.self_modulate = Color(1, 1, 1)
+		$SpriteMask/Glow.visible = false
 		
 	Profile.global_preserve[player_id].skin = skin_id
 
