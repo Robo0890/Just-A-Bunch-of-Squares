@@ -27,7 +27,7 @@ func _ready():
 	}
 }
 
-	$VBoxContainer/RubyAmount.text = "Amount: " + str(Profile.data.ruby / 2)
+	_on_RubyAmount_changed(str(Profile.data.ruby / 2))
 	$VBoxContainer/GiftType.disabled = false
 	$VBoxContainer/SelectSkin.clear()
 	$VBoxContainer/GiftType.select(1)
@@ -77,7 +77,7 @@ func _on_GiftType_item_selected(index):
 		$VBoxContainer/Ruby.show()
 		$VBoxContainer/SelectSkin.hide()
 		$VBoxContainer/RubyAmount.show()
-		#_on_RubyAmount_value_changed($VBoxContainer/RubyAmount.value)
+		_on_RubyAmount_changed($VBoxContainer/RubyAmount.text.split(": ")[1])
 
 
 func _on_Done_pressed():
@@ -100,6 +100,7 @@ func _on_Done_pressed():
 	$Code/Copy.text = str(random_code)
 	
 	get_parent().load_shop()
+	$Code/NewGift.grab_focus()
 
 func _on_SelectSkin_item_selected(index):
 	gift_data.data = {
@@ -150,14 +151,33 @@ func _on_Title_focus_entered():
 func _on_RubyAmount_focus_entered():
 	if OS.has_touchscreen_ui_hint():
 		var value = int(JavaScript.eval("prompt(\"Amount:\")"))
-		$VBoxContainer/RubyAmount.text = "Amount: " + str(value)
-		#_on_RubyAmount_value_changed(value)
+		_on_RubyAmount_changed(value)
+	else:
+		$VBoxContainer/RubyAmount.text = ""
 
 
-func _on_RubyAmount_text_entered(new_text):
-	var value = int(new_text.split(": ")[1])
+func _on_RubyAmount_changed(new_text):
+	var value = int(new_text)
+	if value < 0:
+		OS.alert("Hold up... Does that really make any sense?")
+		value = 0
+		
+	if value > Profile.data.ruby:
+		OS.alert("You don't have " + str(value) + " rubies.")
+		value = Profile.data.ruby
+	$VBoxContainer/RubyAmount.text = "Amount: " + str(value)
 	gift_data.data = {
 			"type" : "ruby",
 			"amount" : value
 		}
 	$VBoxContainer/Ruby/Panel/Label.text = "+ " + str(gift_data.data.amount)
+	$VBoxContainer/Done.grab_focus()
+
+
+func _on_RubyAmount_focus_exited():
+	_on_RubyAmount_changed(gift_data.data.amount)
+
+
+func _on_Copy_pressed():
+	OS.clipboard = $Code/Copy.text
+	OS.alert("Copied to clipboard!")

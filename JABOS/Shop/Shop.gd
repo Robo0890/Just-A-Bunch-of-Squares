@@ -199,6 +199,7 @@ func _on_Send_pressed():
 	$Body.hide()
 	$GiftEditor.show()
 	$Head/HBoxContainer/Back.text = "Send Gift"
+	$GiftEditor/VBoxContainer/GiftType.grab_focus()
 
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/backward.png" type="Texture" id=1]
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/plus.png" type="Texture" id=16]
 [ext_resource path="res://GUI/Icons/customicons/x1/Player.png" type="Texture" id=17]
 [ext_resource path="res://Images/Skins/Default.png" type="Texture" id=18]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/import.png" type="Texture" id=19]
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0, 0, 0, 0.588235 )
@@ -218,7 +219,6 @@ text = "Thanks!"
 icon = ExtResource( 9 )
 
 [node name="GiftEditor" type="Control" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -241,6 +241,7 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GiftEditor"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 10
@@ -251,6 +252,7 @@ __meta__ = {
 [node name="Title" type="LineEdit" parent="GiftEditor/VBoxContainer"]
 margin_right = 362.0
 margin_bottom = 25.0
+focus_neighbour_top = NodePath(".")
 custom_fonts/font = ExtResource( 13 )
 text = "Gift"
 virtual_keyboard_enabled = false
@@ -369,11 +371,11 @@ align = 1
 margin_top = 284.0
 margin_right = 362.0
 margin_bottom = 334.0
+focus_neighbour_bottom = NodePath(".")
 text = "Send"
 icon = ExtResource( 9 )
 
 [node name="Code" type="VBoxContainer" parent="GiftEditor"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 12
@@ -413,25 +415,22 @@ margin_bottom = 173.0
 text = "Or Copy the code below:"
 align = 1
 
-[node name="Copy" type="LineEdit" parent="GiftEditor/Code"]
+[node name="Copy" type="Button" parent="GiftEditor/Code"]
 margin_top = 185.0
 margin_right = 362.0
-margin_bottom = 230.0
+margin_bottom = 235.0
 text = "3725720451"
-align = 1
-max_length = 10
-editable = false
-virtual_keyboard_enabled = false
+icon = ExtResource( 19 )
 
 [node name="HSeparator2" type="HSeparator" parent="GiftEditor/Code"]
-margin_top = 242.0
+margin_top = 247.0
 margin_right = 362.0
-margin_bottom = 242.0
+margin_bottom = 247.0
 
 [node name="NewGift" type="Button" parent="GiftEditor/Code"]
-margin_top = 254.0
+margin_top = 259.0
 margin_right = 362.0
-margin_bottom = 304.0
+margin_bottom = 309.0
 text = "New Gift"
 icon = ExtResource( 16 )
 
@@ -547,6 +546,7 @@ text = "Clear Data (No Undo)"
 icon = ExtResource( 10 )
 
 [node name="Loading" type="Panel" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -877,9 +877,11 @@ __meta__ = {
 [connection signal="item_selected" from="GiftEditor/VBoxContainer/GiftType" to="GiftEditor" method="_on_GiftType_item_selected"]
 [connection signal="item_selected" from="GiftEditor/VBoxContainer/SelectSkin" to="GiftEditor" method="_on_SelectSkin_item_selected"]
 [connection signal="focus_entered" from="GiftEditor/VBoxContainer/RubyAmount" to="GiftEditor" method="_on_RubyAmount_focus_entered"]
-[connection signal="text_entered" from="GiftEditor/VBoxContainer/RubyAmount" to="GiftEditor" method="_on_RubyAmount_text_entered"]
+[connection signal="focus_exited" from="GiftEditor/VBoxContainer/RubyAmount" to="GiftEditor" method="_on_RubyAmount_focus_exited"]
+[connection signal="text_entered" from="GiftEditor/VBoxContainer/RubyAmount" to="GiftEditor" method="_on_RubyAmount_changed"]
 [connection signal="pressed" from="GiftEditor/VBoxContainer/Done" to="GiftEditor" method="_on_Done_pressed"]
 [connection signal="pressed" from="GiftEditor/Code/Button" to="GiftEditor" method="_on_Button_pressed"]
+[connection signal="pressed" from="GiftEditor/Code/Copy" to="GiftEditor" method="_on_Copy_pressed"]
 [connection signal="pressed" from="GiftEditor/Code/NewGift" to="GiftEditor" method="_on_NewGift_pressed"]
 [connection signal="pressed" from="Profile/Panel/MarginContainer/VBoxContainer/Clear" to="." method="_on_Clear_pressed"]
 [connection signal="pressed" from="Loading/Cancel" to="." method="_on_Cancel_pressed"]
