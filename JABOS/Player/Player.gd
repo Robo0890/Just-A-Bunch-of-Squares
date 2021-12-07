@@ -43,14 +43,12 @@ var removing = false
 var in_wardrode = false
 
 #Skins
-const SKIN_DEFAULT = 0
-const SKIN_ROBOT = 1
-
+var glowing_skins = ["Robot", "Cyborg"]
 
 
 
 func _ready():
-	change_skin(SKIN_DEFAULT)
+	change_skin(0)
 	if color == Color.white:
 		color = Color.from_hsv(.4 * (player_id), 1, 1)
 	if device_type == "Keyboard1":
@@ -229,6 +227,11 @@ func change_skin(skin_id : int):
 	skin_img = load("res://Images/Skins/" + skin_name + ".png")
 	skin_img_mask = load("res://Images/Skins/mask." + skin_name + ".png")
 	
+	if glowing_skins.has(skin_name):
+		$SpriteMask.self_modulate = Color(2, 2, 2)
+	else:
+		$SpriteMask.self_modulate = Color(1, 1, 1)
+		
 	Profile.global_preserve[player_id].skin = skin_id
 
 func _on_Left_pressed():

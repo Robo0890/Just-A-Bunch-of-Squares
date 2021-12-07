@@ -1,6 +1,6 @@
 extends Control
 
-var splash = true
+var splash = false
 
 func _ready():
 	$Update.hide()
