@@ -219,7 +219,8 @@ func flip():
 		$CollisionShape.disabled = false
 		
 # warning-ignore:shadowed_variable
-func change_skin(skin_id : int):
+func change_skin(id : int):
+	skin_id = id
 	var skin_name = Profile.data.Owned.Skins[skin_id]
 	skin = skin_name
 	$Sprite.texture = load("res://Images/Skins/" + skin_name + ".png")
