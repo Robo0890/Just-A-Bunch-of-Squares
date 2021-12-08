@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Images/Face.png" type="Texture" id=2]
+[ext_resource path="res://Images/Skins/Robot.png" type="Texture" id=2]
 [ext_resource path="res://Images/BloomEffect.png" type="Texture" id=3]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/backward.png" type="Texture" id=4]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/forward.png" type="Texture" id=5]
 [ext_resource path="res://Images/Skins/Default.png" type="Texture" id=6]
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=7]
+[ext_resource path="res://Images/Skins/mask.Robot.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 40 )
@@ -33,8 +34,7 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="SpriteMask" type="Sprite" parent="."]
-modulate = Color( 0.921569, 0, 0, 1 )
-texture = ExtResource( 2 )
+texture = ExtResource( 8 )
 
 [node name="Glow" type="Sprite" parent="SpriteMask"]
 modulate = Color( 1, 1, 1, 0.376471 )

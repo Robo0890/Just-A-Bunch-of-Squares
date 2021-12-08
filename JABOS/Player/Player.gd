@@ -43,7 +43,7 @@ var removing = false
 var in_wardrode = false
 
 #Skins
-var glowing_skins = ["Robot", "Cyborg"]
+var glowing_skins = ["Robot", "Cyborg", "CyberDog"]
 
 
 
