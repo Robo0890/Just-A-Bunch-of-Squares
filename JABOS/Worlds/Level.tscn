@@ -9,6 +9,14 @@
 [node name="Level" type="Node"]
 script = ExtResource( 3 )
 
+[node name="Control" type="ParallaxBackground" parent="."]
+layer = 128
+
+[node name="GUI" parent="Control" instance=ExtResource( 1 )]
+rect_pivot_offset = Vector2( 512, 300 )
+
+[node name="Game" parent="." instance=ExtResource( 4 )]
+
 [node name="CloudGame" type="Node" parent="."]
 script = ExtResource( 5 )
 
@@ -20,14 +28,6 @@ script = ExtResource( 2 )
 position = Vector2( 512, 300 )
 current = true
 zoom = Vector2( 2, 2 )
-
-[node name="Control" type="ParallaxBackground" parent="."]
-layer = 128
-
-[node name="GUI" parent="Control" instance=ExtResource( 1 )]
-rect_pivot_offset = Vector2( 512, 300 )
-
-[node name="Game" parent="." instance=ExtResource( 4 )]
 
 [node name="Reset_Timer" type="Timer" parent="."]
 one_shot = true
