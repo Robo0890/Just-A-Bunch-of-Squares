@@ -53,7 +53,6 @@ func add_player(id, device, input_method, color = Color.white):
 	new_player.color = color
 	Profile.global_preserve[id] = {"device" : device, "input_method" : input_method, "skin" : 0, "color" : color}
 	add_child(new_player)
-	print(connected_devices)
 	Level.GUI.player_join(new_player)
 	return new_player
 

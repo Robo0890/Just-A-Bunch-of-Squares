@@ -8,7 +8,7 @@ var camera_speed = 5
 var players_left : int
 var leaderboard_data = {}
 
-var is_singleplayer = false
+var is_singleplayer = true
 
 
 func _ready():

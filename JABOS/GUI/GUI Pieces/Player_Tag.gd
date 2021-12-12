@@ -29,13 +29,14 @@ func _process(delta):
 				modulate = Color(1,1,1,1)
 			else:
 				modulate = Color(1,1,1,.5)
-				
-			var display_type = str(Game.get_display_score(Player.player_id)).split("?=")[0]
-			var display_value = str(Game.get_display_score(Player.player_id)).split("?=")[1]
-			var pram2 = str(Game.get_display_score(Player.player_id)).split("?=")[2]
+			
+			var display_data = str(Game.get_display_score(Player.player_id)).split("?=")
+			var display_type = display_data[0]
+			var display_prams = display_data
+			
 			match display_type:
 				"Text":
-					display_value = str(Game.get_display_score(Player.player_id)).split("?=")[1]
+					var display_value = str(display_prams[1])
 					if Player.active:
 						$Text.modulate = Color.green
 					else:
@@ -51,9 +52,29 @@ func _process(delta):
 						modulate = Color(1,1,1,.5)
 						self_modulate = Color.red
 					$ProgressBar.visible = true
-					$ProgressBar.value = int(display_value)
-					$ProgressBar.max_value = int(pram2)
-					$Text.text = "        " + str(display_value) + "/" + str(pram2)
-						
+					$ProgressBar.value = int(display_prams[1])
+					$ProgressBar.max_value = int(display_prams[2])
+					$Text.text = "        " + str(display_prams[1]) + "/" + str(display_prams[2])
+					
+				"Bool":
+					if bool(int(display_prams[1])):
+						$Text.text = "        " + str(display_prams[2])
+						modulate = Color(1,1,1,1)
+					else:
+						modulate = Color(1,1,1,.5)
+						$Text.text = "        " + str(display_prams[3])
+				
+				"List":
+					if bool(int(display_prams[1])):
+						$Text.text = "        " + display_prams[2]
+						modulate = Color(1,1,1,1)
+					else:
+						modulate = Color(1,1,1,.5)
+						$Text.text = "        " + display_prams[2]
+					
+					if !Player.active:
+						modulate = Color(1,1,1,.5)
+						self_modulate = Color.red
+						$Text.text = "        " + "Out"
 			
 

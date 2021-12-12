@@ -3,7 +3,7 @@ extends Node2D
 
 onready var Part : Node
 
-var gamemode = "Default"
+export var gamemode = "Default"
 
 var random_part = 1
 var max_parts = 1

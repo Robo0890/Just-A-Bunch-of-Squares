@@ -68,7 +68,7 @@ func _ready():
 	var gamemode_list = get_gamemodes()
 	
 	for x in gamemode_list:
-		if Profile.data.Owned.Gamemodes.has(x):
+		if true:#Profile.data.Owned.Gamemodes.has(x):
 			var path = "res://Gamemodes/" + x 
 			var new_item_name = x
 			var new_item_icon = load(path + "/Images/Icon.png")

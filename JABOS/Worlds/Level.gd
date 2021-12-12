@@ -69,6 +69,13 @@ func _physics_process(delta):
 				reset()
 
 func game_start():
+	if !Game.is_singleplayer and $Manager.get_children().size() <= 1:
+		OS.alert("This is a multiplayer gamemode")
+		ready_players.clear()
+		for player in $Manager.get_children():
+			player.ready = false
+		return
+		
 	player_count = $Manager.get_child_count()
 	Game_Object = get_tree().get_nodes_in_group("Game")[0]
 	game_state = "Playing"
@@ -115,4 +122,3 @@ func _on_Reset_Timer_timeout():
 
 func _on_IPGetter_request_completed(result, response_code, headers, body : PoolByteArray):
 	Profile.public_ip = (body.get_string_from_ascii()).replace("\n", "")
-	print(Profile.public_ip)

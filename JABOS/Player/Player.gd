@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal player_collision
+
 onready var Level = get_parent().get_parent()
 
 var player_id : int
@@ -8,6 +10,8 @@ var spawnpoint = Vector2(0,0)
 var player_data = {
 	"time" : 0
 }
+
+var selected = false
 
 var speed = 2
 var gravity = 39.29
@@ -84,6 +88,10 @@ func _ready():
 		
 func _physics_process(delta):
 	if !removing:
+		$Selected.visible = selected
+		$TouchArea.modulate.a = int(selected)
+		
+		
 		if !device_type.split(":")[0] == "Cloud":
 			$SpriteMask.modulate = color
 			
@@ -111,6 +119,9 @@ func _physics_process(delta):
 				process_input()
 			if !frozen:
 				move_and_slide(velocity, Vector2.UP)
+				modulate = Color(1, 1, 1, 1)
+			else:
+				modulate = Color(1, 1, 1, .5)
 		else:
 			position.x = Level.Cloud.players[device_type.split(":")[1]].xpos
 
@@ -203,6 +214,7 @@ func kill(is_respwan, add_fall = false):
 	else:
 		active = false
 		visible = false
+		position.y += 1000
 		
 func respawn():
 	frozen = true
@@ -263,3 +275,10 @@ func remove():
 	InputMap.erase_action("p" + str(player_id) + "ability")
 	yield(get_tree().create_timer(1),"timeout")
 	queue_free()
+
+
+func _on_TouchArea_area_entered(area):
+	if area.get_parent().is_in_group("Player"):
+		emit_signal("player_collision", area.get_parent())
+
+

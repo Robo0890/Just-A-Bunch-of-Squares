@@ -8,7 +8,9 @@ var camera_speed = 5
 var players_left : int
 var leaderboard_data = {}
 
-var is_singleplayer = false
+var is_singleplayer = true
+
+
 
 
 func _ready():
@@ -47,7 +49,7 @@ func game_tick():
 		if x.active:
 			move += x.position.x - Level.Game_Camera.position.x
 			move = (move / Level.player_count) / 75 + 32
-	Level.Game_Camera.position.x += (move/4) + (.0002 * Level.Game_Camera.position.x)
+	Level.Game_Camera.position.x += (move/4) + (.0001 * Level.Game_Camera.position.x)
 
 	#For each player, check if they have gone off screen
 	for player in Players:

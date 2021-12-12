@@ -1,6 +1,6 @@
 extends Control
 
-var splash = true
+var splash = false
 
 func _ready():
 	$Update.hide()
@@ -8,7 +8,7 @@ func _ready():
 	
 	var load_data = Save.load_data("jabos_profile")
 	if load_data.size() > 0:
-		print(load_data)
+		#print(load_data)
 		for x in load_data:
 			Profile.data[x] = load_data[x]
 	else:
