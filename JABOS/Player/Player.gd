@@ -89,7 +89,7 @@ func _ready():
 func _physics_process(delta):
 	if !removing:
 		$Selected.visible = selected
-		$TouchArea.modulate.a = int(selected)
+		$TouchArea.modulate.a = .8 * int(selected)
 		
 		
 		if !device_type.split(":")[0] == "Cloud":
