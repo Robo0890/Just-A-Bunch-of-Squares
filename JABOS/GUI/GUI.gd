@@ -238,6 +238,7 @@ func _on_Shop_pressed():
 func _on_Close_pressed():
 	$PlayerManager.hide()
 	$Options.show()
+	$Options/VBoxContainer/MarginContainer/GridContainer/GameMode.grab_focus()
 	Animator.play("Options")
 	_ui_click_select(0)
 	ui_focus = "Options"

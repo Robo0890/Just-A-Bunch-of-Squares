@@ -325,6 +325,12 @@ __meta__ = {
 anchor_right = 1.0
 margin_right = -1012.0
 margin_bottom = 35.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 custom_styles/hover = SubResource( 9 )
 custom_styles/pressed = SubResource( 9 )
 custom_styles/focus = SubResource( 9 )
@@ -683,8 +689,8 @@ margin_bottom = 54.0
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Shop" to="." method="_on_Shop_pressed"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud" to="." method="_on_CreateCloud_item_selected"]
-[connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Players" to="." method="_on_Players_pressed"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Players" to="." method="_ui_click"]
+[connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Players" to="." method="_on_Players_pressed"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/Touch" to="." method="_on_Touch_item_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Pin" to="." method="_on_Pin_pressed"]
 [connection signal="text_entered" from="Options/VBoxContainer/MarginContainer/GridContainer/JoinPin" to="." method="_on_JoinPin_text_entered"]
