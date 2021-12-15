@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/slam_001.wav-e3a3ef1c401b53972ae70400f2ce1ccb.sample"
+
+[deps]
+
+source_file="res://GUI/Audio/Custom/slam_001.wav"
+dest_files=[ "res://.import/slam_001.wav-e3a3ef1c401b53972ae70400f2ce1ccb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -71,6 +71,7 @@ func _physics_process(delta):
 				reset()
 
 func game_start():
+	UIAudio.play_sound("Custom/slam_001")
 	if !Game.is_singleplayer and $Manager.get_children().size() <= 1:
 		OS.alert("This is a multiplayer gamemode")
 		ready_players.clear()

@@ -52,6 +52,8 @@ func start():
 func tag(new_it_player):
 	if new_it_player.player_data["taggable"] and !new_it_player.is_respawning:
 		
+		UIAudio.play_sound("Custom/select_005")
+		
 		It_Player.speed = It_Player.DEFAULT_SPEED
 		
 		$Tag.global_position = It_Player.global_position + Vector2(0, -100)

@@ -164,18 +164,19 @@ func _on_Button_pressed():
 
 
 
-func _ui_click():
-	UIAudio.play_sound("select_008")
+func _ui_click(index = 0):
+	UIAudio.play_sound("Custom/select_002")
 
 
-func _ui_click_select(index):
-	UIAudio.play_sound("toggle_002")
+func _ui_click_select(index = 0):
+	UIAudio.play_sound("Custom/select_004")
 	
 
 
 func _on_gamemode_selected(index):
 	var item_name = GamemodeBox.get_item_text(index)
 	Level.change_gamemode(item_name)
+	UIAudio.play_sound("Custom/select_001")
 
 
 

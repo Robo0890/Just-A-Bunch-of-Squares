@@ -177,6 +177,7 @@ func process_input():
 		
 		if Input.is_action_just_pressed("p" + str(player_id) + "ready") and get_parent().get_parent().game_state == "Lobby":
 			ready = !ready
+			$SoundBox.play_sound("drop_001")
 		if Input.is_action_pressed("p" + str(player_id) + "flip") and is_on_ceiling():
 			if !$CeilingDetector.get_collider().is_in_group("Player"):
 				flip()
@@ -186,6 +187,7 @@ func process_input():
 			match Level.game_state:
 				"Lobby":
 					in_wardrode = true
+					$SoundBox.play_sound("Custom/select_001")
 	else:
 		velocity.x = 0
 		velocity.y += gravity
@@ -205,12 +207,15 @@ func process_input():
 			
 		if Input.is_action_just_pressed("p" + str(player_id) + "movement_right"):
 			skin_id += 1
+			$SoundBox.play_sound("Custom/select_003")
 		if Input.is_action_just_pressed("p" + str(player_id) + "movement_left"):
 			skin_id -= 1
+			$SoundBox.play_sound("Custom/select_003")
 			
 		if Input.is_action_just_pressed("p" + str(player_id) + "ability"):
 			in_wardrode = false
 			change_skin(skin_id)
+			$SoundBox.play_sound("Custom/select_005")
 		
 		
 func kill(is_respwan, add_fall = false):
