@@ -18,7 +18,6 @@ var Last_It : KinematicBody2D
 var It_Player : KinematicBody2D
 
 func _ready():
-	$Level_Genorator.gamemode = "Classic"
 	$Level_Genorator.start()
 
 func start():
@@ -44,6 +43,7 @@ func start():
 			It_Player.connect("player_collision", self, "tag")
 			It_Player.frozen = true
 			$Cooldown.start(2)
+			$KillTimer.start(25)
 			
 			It_Player.speed = IT_PLAYER_SPEED
 			
@@ -77,7 +77,7 @@ func tag(new_it_player):
 		It_Player.frozen = true
 		
 		$Cooldown.start(2)
-		$KillTimer.start(10)
+		$KillTimer.start(15)
 	else:
 		It_Player.player_data["taggable"] = true
 
@@ -97,40 +97,19 @@ func _physics_process(delta):
 func game_tick():
 	#Move the game camera
 	var move = 0
-	var out_zoom = 0
-	var in_zoom = 0
-	var zoom = 2
 	for x in get_tree().get_nodes_in_group("Player"):
 		if x.active:
-			if x.position.x > out_zoom:
-				out_zoom = x.position.x
-			if x.position.x < in_zoom:
-				in_zoom = x.position.x
 			move = x.position.x - (Level.Game_Camera.position.x - 512)
 			move = (move / Level.player_count) / 15
 			Level.Game_Camera.position.x += (move)
 			
 	
-	$LeftBorder.position = Level.Game_Camera.position - Vector2(get_viewport_rect().size.x + 512,0)
-	$RightBorder.position = Level.Game_Camera.position + Vector2(get_viewport_rect().size.x - 512,0)
 
 	#For each player, check if they have gone off screen
 	for player in Players:
 		if player.position.y >= 1200:
 			player.kill(true, true)
 			
-		
-		"""if player.position.x < $LeftBorder.position.x:
-			player.position.x = $LeftBorder.position.x
-			player.spawnpoint = player.position
-			player.is_respawning = false
-			player.frozen = false
-		
-		if player.position.x > $RightBorder.position.x:
-			player.position.x = $RightBorder.position.x
-			player.spawnpoint = player.position
-			player.is_respawning = false
-			player.frozen = false"""
 
 
 			

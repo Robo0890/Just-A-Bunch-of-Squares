@@ -44,6 +44,7 @@ func _input(event):
 
 
 func add_player(id, device, input_method, color = Color.white):
+	UIAudio.play_sound("drop_003")
 	next_player_id += 1
 	active_players.append(id)
 	var new_player = Player.instance()

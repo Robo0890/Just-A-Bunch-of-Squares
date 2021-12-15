@@ -26,6 +26,7 @@ extents = Vector2( 318.941, 44.4096 )
 [node name="Parts" type="Node2D"]
 
 [node name="Part0" type="Node2D" parent="."]
+visible = false
 
 [node name="Box1" type="CollisionShape2D" parent="Part0"]
 position = Vector2( 77.1212, -3.05176e-05 )

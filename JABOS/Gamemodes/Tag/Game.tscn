@@ -145,11 +145,6 @@ one_shot = true
 wait_time = 10.0
 one_shot = true
 
-[node name="LeftBorder" type="Node2D" parent="."]
-
-[node name="RightBorder" type="Node2D" parent="."]
-position = Vector2( 1024, 0 )
-
 [node name="Tag" type="Node2D" parent="."]
 
 [node name="Label" type="Label" parent="Tag"]

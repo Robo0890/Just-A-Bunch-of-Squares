@@ -26,6 +26,8 @@ onready var Classic = preload("res://Gamemodes/Classic/Game.tscn")
 func _ready():
 	$IPGetter.request("https://ipv4.icanhazip.com/", [], false, HTTPClient.METHOD_GET)
 	
+	UIAudio.play_sound("maximize_006")
+	
 	change_gamemode(Profile.data.gamemode)
 	
 	var joincode = JavaScript.eval("""

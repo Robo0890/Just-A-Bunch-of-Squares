@@ -671,8 +671,8 @@ __meta__ = {
 [node name="Close" type="Button" parent="PlayerManager/MarginContainer/VBoxContainer"]
 margin_right = 976.0
 margin_bottom = 50.0
-text = "Close"
-icon = ExtResource( 6 )
+text = "Done"
+icon = ExtResource( 19 )
 
 [node name="Players" type="VBoxContainer" parent="PlayerManager/MarginContainer/VBoxContainer"]
 margin_top = 54.0
@@ -686,6 +686,7 @@ margin_bottom = 54.0
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Shop" to="." method="_on_Shop_pressed"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud" to="." method="_on_CreateCloud_item_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Players" to="." method="_on_Players_pressed"]
+[connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Players" to="." method="_ui_click"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/Touch" to="." method="_on_Touch_item_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Pin" to="." method="_on_Pin_pressed"]
 [connection signal="text_entered" from="Options/VBoxContainer/MarginContainer/GridContainer/JoinPin" to="." method="_on_JoinPin_text_entered"]

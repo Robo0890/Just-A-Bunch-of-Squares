@@ -50,6 +50,7 @@ scale_amount = 5.0
 color_ramp = SubResource( 2 )
 
 [node name="Level_Genorator" parent="." instance=ExtResource( 2 )]
+gamemode = "Space Jump"
 
 [node name="Course" type="StaticBody2D" parent="."]
 position = Vector2( 512, 360 )

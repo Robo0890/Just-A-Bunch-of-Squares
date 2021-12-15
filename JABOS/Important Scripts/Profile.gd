@@ -40,7 +40,7 @@ const DEFAULT_DATA = {
 	"version" : 0.0
 }
 
-const CURRENT_VERSION = 1.5
+const CURRENT_VERSION = 1.6
 
 var global_preserve = {}
 var touch_disabled = false

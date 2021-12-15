@@ -55,6 +55,11 @@ texture = ExtResource( 3 )
 modulate = Color( 1, 1, 1, 0 )
 enabled = true
 
+[node name="CeilingDetector" type="RayCast2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+enabled = true
+cast_to = Vector2( 0, -50 )
+
 [node name="Wardrobe" type="Panel" parent="."]
 visible = false
 show_behind_parent = true

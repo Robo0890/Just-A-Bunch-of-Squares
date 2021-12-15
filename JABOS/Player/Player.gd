@@ -113,6 +113,9 @@ func _physics_process(delta):
 				player_data.time += .016
 			
 			
+			
+			
+			
 			$Wardrobe.visible = in_wardrode
 			
 			if Level.GUI.ui_focus == "none":
@@ -161,6 +164,9 @@ func process_input():
 			jumps = max_jumps
 		
 		if Input.is_action_pressed("p" + str(player_id) + "jump") and is_on_ceiling():
+			if $CeilingDetector.is_colliding():
+				if $CeilingDetector.get_collider().is_in_group("Player"):
+					pass
 			velocity.y = -10
 			
 		if Input.is_action_just_pressed("p" + str(player_id) + "jump") and is_on_wall():
@@ -172,7 +178,8 @@ func process_input():
 		if Input.is_action_just_pressed("p" + str(player_id) + "ready") and get_parent().get_parent().game_state == "Lobby":
 			ready = !ready
 		if Input.is_action_pressed("p" + str(player_id) + "flip") and is_on_ceiling():
-			flip()
+			if !$CeilingDetector.get_collider().is_in_group("Player"):
+				flip()
 			
 			
 		if Input.is_action_just_pressed("p" + str(player_id) + "ability"):

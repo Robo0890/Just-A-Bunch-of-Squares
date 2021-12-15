@@ -12,7 +12,6 @@ var is_singleplayer = true
 
 
 func _ready():
-	$Level_Genorator.gamemode = "Space Jump"
 	$Level_Genorator.start()
 
 func start():

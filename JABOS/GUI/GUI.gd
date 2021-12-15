@@ -152,24 +152,24 @@ func show_leaderboard():
 func _on_TextureButton_pressed():
 	ui_focus = "none"
 	Animator.play_backwards("Options")
-	UIAudio.play_sound("click2")
+	_ui_click_select(0)
 	$Top_UI/Dummy.grab_focus()
 
 
 func _on_Button_pressed():
 	ui_focus = "Options"
 	Animator.play("Options")
-	UIAudio.play_sound("click1")
+	_ui_click()
 	$Options/VBoxContainer/MarginContainer/GridContainer/GameMode.grab_focus()
 
 
 
 func _ui_click():
-	UIAudio.play_sound("click1")
+	UIAudio.play_sound("select_008")
 
 
 func _ui_click_select(index):
-	UIAudio.play_sound("click4")
+	UIAudio.play_sound("toggle_002")
 	
 
 
@@ -238,7 +238,7 @@ func _on_Close_pressed():
 	$PlayerManager.hide()
 	$Options.show()
 	Animator.play("Options")
-	UIAudio.play_sound("click1")
+	_ui_click_select(0)
 	ui_focus = "Options"
 	
 

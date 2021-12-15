@@ -1,6 +1,12 @@
 extends Control
 
-var splash = false
+var splash = true
+
+
+func _notification(what):
+	if what == NOTIFICATION_WM_QUIT_REQUEST:
+		get_tree().quit()
+
 
 func _ready():
 	$Update.hide()
@@ -34,13 +40,15 @@ func _ready():
 # warning-ignore:unused_argument
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "EonSplash":
-		
 		if Profile.data.version < Profile.CURRENT_VERSION:
 			$Update.show()
-			yield($Update/MarginContainer/VBoxContainer/HSplitContainer/TLDR/Button, "pressed")
+			yield($Update/MarginContainer/VBoxContainer/HSplitContainer/Notes/Button, "pressed")
+			UIAudio.play_sound("confirmation_001")
 			$Update.hide()
-	Profile.data.version = Profile.CURRENT_VERSION
-	get_tree().change_scene("res://Worlds/Level.tscn")
+		$Background/AnimationPlayer.play("FadeOut")
+	if anim_name == "FadeOut":
+		Profile.data.version = Profile.CURRENT_VERSION
+		get_tree().change_scene("res://Worlds/Level.tscn")
 
 
 func _on_TouchScreenButton_pressed():
