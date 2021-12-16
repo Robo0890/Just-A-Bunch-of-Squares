@@ -17,10 +17,11 @@ __meta__ = {
 }
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-value = 98.0
+value = 50.0
 percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false

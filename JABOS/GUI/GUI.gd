@@ -75,6 +75,13 @@ func _ready():
 			popup.add_icon_item(new_item_icon, new_item_name)
 			
 	
+	
+	for item in $PowerupManager/MarginContainer/VBoxContainer/Powerups.get_children():
+		if Profile.enabled_powerups.has(item.name):
+			item.call_deferred("set", "pressed", true)
+		
+	
+	
 	for x in get_tree().get_nodes_in_group("Cloud_Only"):
 		x.visible = false
 		
@@ -237,6 +244,7 @@ func _on_Shop_pressed():
 
 func _on_Close_pressed():
 	$PlayerManager.hide()
+	$PowerupManager.hide()
 	$Options.show()
 	$Options/VBoxContainer/MarginContainer/GridContainer/GameMode.grab_focus()
 	Animator.play("Options")
@@ -257,3 +265,18 @@ func _on_Touch_item_selected(index):
 	$"Bottom_UI/Mobile Controller".visible = !Profile.touch_disabled
 	print(Profile.touch_disabled)
 	
+
+
+func _on_Powerups_pressed():
+	$Options.hide()
+	$PowerupManager.show()
+	ui_focus = "Manage"
+	$PowerupManager/MarginContainer/VBoxContainer/Close.grab_focus()
+
+
+func _on_powerup_toggled(button_pressed):
+	Profile.enabled_powerups.clear()
+	for item in $PowerupManager/MarginContainer/VBoxContainer/Powerups.get_children():
+		if item.pressed:
+			Profile.enabled_powerups.append(item.name)
+			

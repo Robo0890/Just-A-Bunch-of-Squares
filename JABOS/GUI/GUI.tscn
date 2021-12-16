@@ -1,10 +1,10 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=1]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/signal3.png" type="Texture" id=2]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/share1.png" type="Texture" id=3]
 [ext_resource path="res://GUI/Fonts/Title_Font.tres" type="DynamicFont" id=4]
-[ext_resource path="res://GUI/Fonts/MomcakeBold-WyonA.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://GUI/Icons/customicons/x1/Slam.png" type="Texture" id=5]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/down.png" type="Texture" id=6]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/menuList.png" type="Texture" id=7]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/cross.png" type="Texture" id=8]
@@ -20,6 +20,9 @@
 [ext_resource path="res://GUI/GUI Pieces/MobileControls.tscn" type="PackedScene" id=18]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/checkmark.png" type="Texture" id=19]
 [ext_resource path="res://Images/Gear.png" type="Texture" id=20]
+[ext_resource path="res://GUI/Icons/customicons/x2/Flamethrower.png" type="Texture" id=21]
+[ext_resource path="res://GUI/Icons/customicons/x2/Double Jump.png" type="Texture" id=22]
+[ext_resource path="res://GUI/Themes/panel.Default_Stylebox.stylebox" type="StyleBox" id=23]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.319318 ), -1.83695, 0.0, 0, 0 ]
@@ -29,6 +32,8 @@ offsets = PoolRealArray( 0, 0.205298, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 0, 1, 0.0683594, 1, 1, 1, 1, 0 )
 
 [sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=14]
 
 [sub_resource type="StyleBoxEmpty" id=9]
 
@@ -61,10 +66,6 @@ corner_radius_bottom_left = 10
 corner_detail = 20
 expand_margin_left = 12.0
 expand_margin_right = 12.0
-
-[sub_resource type="DynamicFont" id=7]
-size = 23
-font_data = ExtResource( 5 )
 
 [sub_resource type="SpriteFrames" id=10]
 animations = [ {
@@ -297,6 +298,11 @@ __meta__ = {
 margin_left = 729.0
 margin_right = 844.0
 margin_bottom = 50.0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 14 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/disabled = SubResource( 14 )
+custom_styles/normal = ExtResource( 23 )
 text = "230"
 icon = ExtResource( 16 )
 __meta__ = {
@@ -420,7 +426,7 @@ margin_bottom = 60.0
 [node name="MarginContainer" type="MarginContainer" parent="Options/VBoxContainer"]
 margin_top = 75.0
 margin_right = 623.0
-margin_bottom = 536.0
+margin_bottom = 541.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_bottom = 214
@@ -428,7 +434,7 @@ custom_constants/margin_bottom = 214
 [node name="GridContainer" type="GridContainer" parent="Options/VBoxContainer/MarginContainer"]
 margin_left = 28.0
 margin_right = 594.0
-margin_bottom = 247.0
+margin_bottom = 252.0
 rect_min_size = Vector2( 566, 0 )
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -467,21 +473,19 @@ text = "SHop"
 icon = ExtResource( 14 )
 
 [node name="Power-Ups" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
-margin_top = 111.0
+margin_top = 113.0
 margin_right = 214.0
-margin_bottom = 156.0
+margin_bottom = 158.0
 custom_fonts/font = ExtResource( 4 )
 text = "Power-Ups:"
 
-[node name="PowerUps" type="Button" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
+[node name="Powerups" type="Button" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
 margin_left = 270.0
 margin_top = 111.0
 margin_right = 550.0
-margin_bottom = 156.0
-custom_colors/font_color = Color( 0.521569, 0.521569, 0.521569, 1 )
-custom_colors/font_color_hover = Color( 0.521569, 0.521569, 0.521569, 1 )
-custom_fonts/font = SubResource( 7 )
-text = "Comming Soon"
+margin_bottom = 161.0
+text = "Edit"
+icon = ExtResource( 5 )
 
 [node name="CloudGame" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
 visible = false
@@ -504,17 +508,17 @@ items = [ "Join", ExtResource( 11 ), false, 1, null ]
 selected = 0
 
 [node name="PlayerList" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
-margin_top = 166.0
+margin_top = 171.0
 margin_right = 214.0
-margin_bottom = 211.0
+margin_bottom = 216.0
 custom_fonts/font = ExtResource( 4 )
 text = "Players:"
 
 [node name="Players" type="Button" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
 margin_left = 270.0
-margin_top = 164.0
+margin_top = 169.0
 margin_right = 550.0
-margin_bottom = 214.0
+margin_bottom = 219.0
 text = "Manage"
 icon = ExtResource( 15 )
 
@@ -538,15 +542,15 @@ items = [ "Enabled", ExtResource( 19 ), false, 0, null, "Disabled", ExtResource(
 selected = 0
 
 [node name="Blank" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
-margin_top = 222.0
+margin_top = 227.0
 margin_right = 214.0
-margin_bottom = 247.0
+margin_bottom = 252.0
 
 [node name="Expander" type="Label" parent="Options/VBoxContainer/MarginContainer/GridContainer"]
 margin_left = 270.0
-margin_top = 222.0
+margin_top = 227.0
 margin_right = 550.0
-margin_bottom = 247.0
+margin_bottom = 252.0
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 0 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
@@ -684,10 +688,77 @@ margin_top = 54.0
 margin_right = 976.0
 margin_bottom = 54.0
 
+[node name="PowerupManager" type="Panel" parent="."]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -425.0
+custom_styles/panel = SubResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="PowerupManager"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 24
+custom_constants/margin_top = 24
+custom_constants/margin_left = 24
+custom_constants/margin_bottom = 24
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PowerupManager/MarginContainer"]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 1000.0
+margin_bottom = 409.0
+size_flags_horizontal = 3
+custom_constants/separation = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Close" type="Button" parent="PowerupManager/MarginContainer/VBoxContainer"]
+margin_right = 976.0
+margin_bottom = 50.0
+text = "Done"
+icon = ExtResource( 19 )
+
+[node name="Powerups" type="VBoxContainer" parent="PowerupManager/MarginContainer/VBoxContainer"]
+margin_top = 55.0
+margin_right = 976.0
+margin_bottom = 355.0
+rect_min_size = Vector2( 0, 300 )
+
+[node name="Flamethrower" type="CheckButton" parent="PowerupManager/MarginContainer/VBoxContainer/Powerups"]
+margin_right = 976.0
+margin_bottom = 104.0
+text = "Flamethrower"
+icon = ExtResource( 21 )
+
+[node name="Double Jump" type="CheckButton" parent="PowerupManager/MarginContainer/VBoxContainer/Powerups"]
+margin_top = 108.0
+margin_right = 976.0
+margin_bottom = 212.0
+text = "Double Jump"
+icon = ExtResource( 22 )
+
+[node name="Label" type="Label" parent="PowerupManager/MarginContainer/VBoxContainer"]
+margin_top = 360.0
+margin_right = 976.0
+margin_bottom = 385.0
+text = "Click on a power up to enable it"
+align = 1
+
 [connection signal="pressed" from="Top_UI/Option_Button" to="." method="_on_Button_pressed"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_ui_click"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Shop" to="." method="_on_Shop_pressed"]
+[connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Powerups" to="." method="_ui_click"]
+[connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Powerups" to="." method="_on_Powerups_pressed"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/CreateCloud" to="." method="_on_CreateCloud_item_selected"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Players" to="." method="_ui_click"]
 [connection signal="pressed" from="Options/VBoxContainer/MarginContainer/GridContainer/Players" to="." method="_on_Players_pressed"]
@@ -696,3 +767,6 @@ margin_bottom = 54.0
 [connection signal="text_entered" from="Options/VBoxContainer/MarginContainer/GridContainer/JoinPin" to="." method="_on_JoinPin_text_entered"]
 [connection signal="pressed" from="Options/CenterContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="PlayerManager/MarginContainer/VBoxContainer/Close" to="." method="_on_Close_pressed"]
+[connection signal="pressed" from="PowerupManager/MarginContainer/VBoxContainer/Close" to="." method="_on_Close_pressed"]
+[connection signal="toggled" from="PowerupManager/MarginContainer/VBoxContainer/Powerups/Flamethrower" to="." method="_on_powerup_toggled"]
+[connection signal="toggled" from="PowerupManager/MarginContainer/VBoxContainer/Powerups/Double Jump" to="." method="_on_powerup_toggled"]

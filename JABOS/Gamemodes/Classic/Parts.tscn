@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Level Builder/End.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Important Scripts/Powerup Spawn.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 400, 40 )
@@ -75,6 +76,9 @@ shape = SubResource( 1 )
 [node name="End" parent="Part2" instance=ExtResource( 1 )]
 position = Vector2( 2854.84, -113.316 )
 
+[node name="Powerup Spawn" parent="Part2" instance=ExtResource( 3 )]
+position = Vector2( 1920.61, -366.631 )
+
 [node name="Part3" type="Node2D" parent="."]
 visible = false
 
@@ -92,6 +96,9 @@ shape = SubResource( 1 )
 
 [node name="End" parent="Part3" instance=ExtResource( 1 )]
 position = Vector2( 2743.72, -141.889 )
+
+[node name="Powerup Spawn" parent="Part3" instance=ExtResource( 3 )]
+position = Vector2( 2633.69, 23.5452 )
 
 [node name="Part4" type="Node2D" parent="."]
 visible = false
@@ -144,3 +151,6 @@ shape = SubResource( 7 )
 
 [node name="End" parent="Part5" instance=ExtResource( 1 )]
 position = Vector2( 2574.76, 132.844 )
+
+[node name="Powerup Spawn" parent="Part5" instance=ExtResource( 3 )]
+position = Vector2( 1096.53, 369.994 )

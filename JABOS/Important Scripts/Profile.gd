@@ -42,8 +42,11 @@ const DEFAULT_DATA = {
 
 const CURRENT_VERSION = 1.6
 
+
 var global_preserve = {}
 var touch_disabled = false
+
+var enabled_powerups = []
 
 var is_cloud_game = false
 var gift_link = ""

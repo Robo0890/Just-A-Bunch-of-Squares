@@ -21,7 +21,6 @@ func _physics_process(delta):
 	
 	
 func load_part(part):
-	print(gamemode)
 	Part = load("res://Gamemodes/" + gamemode + "/Parts.tscn").instance()
 	var p = Part
 	var boxes = p.get_node("Part" + str(part)).get_children()

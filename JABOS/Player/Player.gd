@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal player_collision
+signal killed
 
 onready var Level = get_parent().get_parent()
 
@@ -49,9 +50,32 @@ var in_wardrode = false
 #Skins
 var glowing_skins = ["Robot", "Cyborg", "CyberDog"]
 
+#Power ups
+var powerup = {
+	"name" : "none",
+	"effect" : "none",
+	"time" : 0,
+	"timeout" : 0
+}
+
+const CLEAR_POWERUP = {
+	"name" : "none",
+	"effect" : "none",
+	"time" : 0,
+	"timeout" : 0
+}
+
+
 
 
 func _ready():
+	
+	for effect in get_tree().get_nodes_in_group("powerup_effect"):
+		if effect.get_parent().get_parent() == self:
+			effect.emitting = false
+			effect.visible = true
+	
+	
 	change_skin(0)
 	if color == Color.white:
 		color = Color.from_hsv(.4 * (player_id), 1, 1)
@@ -87,10 +111,44 @@ func _ready():
 		add_input_map(InputEventJoypadButton, "ability", JOY_XBOX_X)
 		
 func _physics_process(delta):
+	
+	#*****POWER UPS*****
+	
+	if powerup.timeout != -1:
+		powerup.timeout -= .016
+		if powerup.timeout <= 0:
+			powerup = CLEAR_POWERUP
+	
+	$PowerUpTime.visible = !powerup.name == "none"
+	$PowerUpTime.max_value = powerup.time
+	$PowerUpTime.value = powerup.timeout
+	$PowerUpTime.step = powerup.time / 100
+	
+	
+	$Effects_Modulate.modulate = color
+	
+	for effect in get_tree().get_nodes_in_group("powerup_effect"):
+		if effect.get_parent().get_parent() == self:
+			effect.emitting = false
+		
+	for effect in get_tree().get_nodes_in_group(powerup.effect):
+		if effect.get_parent().get_parent() == self:
+			effect.emitting = true
+			
+			
+	match powerup.name:
+		"Double Jump":
+			jumps = 1
+	
+	
+	#*****POWER UPS*****
+	
 	if !removing:
 		$Selected.visible = selected
 		$TouchArea.modulate.a = .8 * int(selected)
 		
+		
+
 		
 		if !device_type.split(":")[0] == "Cloud":
 			$SpriteMask.modulate = color
@@ -178,9 +236,17 @@ func process_input():
 		if Input.is_action_just_pressed("p" + str(player_id) + "ready") and get_parent().get_parent().game_state == "Lobby":
 			ready = !ready
 			$SoundBox.play_sound("drop_001")
-		if Input.is_action_pressed("p" + str(player_id) + "flip") and is_on_ceiling():
-			if !$CeilingDetector.get_collider().is_in_group("Player"):
-				flip()
+		if Input.is_action_pressed("p" + str(player_id) + "flip"):
+			if is_on_ceiling():
+				if $CeilingDetector.is_colliding():
+					if !$CeilingDetector.get_collider().is_in_group("Player"):
+						flip()
+				else:
+					flip()
+				
+					
+			elif !is_on_floor():
+				velocity.x *= 2
 			
 			
 		if Input.is_action_just_pressed("p" + str(player_id) + "ability"):
@@ -188,6 +254,8 @@ func process_input():
 				"Lobby":
 					in_wardrode = true
 					$SoundBox.play_sound("Custom/select_001")
+				"Playing":
+					use_powerup()
 	else:
 		velocity.x = 0
 		velocity.y += gravity
@@ -227,10 +295,12 @@ func kill(is_respwan, add_fall = false):
 		active = false
 		visible = false
 		position.y += 1000
+		emit_signal("killed", self)
+	
 		
 func respawn():
 	frozen = true
-	$CollisionShape.disabled = true
+	$CollisionShape.call_deferred("hide")
 	is_respawning = true
 	position = spawnpoint + Vector2(0,-600)
 
@@ -291,6 +361,19 @@ func remove():
 
 func _on_TouchArea_area_entered(area):
 	if area.get_parent().is_in_group("Player"):
-		emit_signal("player_collision", area.get_parent())
+		var collided_player = area.get_parent()
+		
+		if powerup.name == "Flamethrower":
+			collided_player.kill(false)
+		
+		emit_signal("player_collision", collided_player)
 
 
+func use_powerup():
+	match powerup.name:
+		"none":
+			pass
+	
+	powerup = CLEAR_POWERUP
+	
+	

@@ -24,7 +24,9 @@ func start():
 		is_singleplayer = true
 		
 	for player in Players:
+		player.connect("killed", self, "remove_player")
 		leaderboard_data[player.player_id] = {}
+		leaderboard(player.player_id, "Winner", false)
 
 func _physics_process(delta):
 	#Move the edge indicator to the left border of the window
@@ -57,16 +59,7 @@ func game_tick():
 			
 		#Using the edge indicator from above, determine wether a player is offscreen
 		if player.position.x <= $Edge.global_position.x - 512 and player.active:
-			player.kill(false) #Run kill() function on the offscreen player
-			players_left -= 1
-			
-			#If that player is the last one remaining:
-			if players_left == 0:
-				#Player is winner
-				leaderboard(player.player_id, "Winner", true)
-			else:
-				#Player did not win
-				leaderboard(player.player_id, "Winner", false)
+			player.kill(false)
 
 		#Update the leaderboard stats
 		leaderboard(player.player_id, "Falls", player.falls)
@@ -76,10 +69,6 @@ func game_tick():
 # warning-ignore:integer_division
 		leaderboard(player.player_id, "Ruby", int(player.player_data.time) / 2)
 		leaderboard(player.player_id, "XP", int(player.player_data.time) * 2)
-
-		#If all players are dead, end the game
-		if players_left == 0:
-			end()
 
 func end():
 	#Tell the Level scene that the game is over
@@ -97,6 +86,24 @@ func set_all_players(what : String, to_what):
 			to_what = Players[0].get("DEFAULT_" + what.to_upper())
 		for player in Players:
 			player.set(what, to_what)
+			
+			
+			
+func remove_player(player):
+	players_left -= 1
+			
+	#If that player is the last one remaining:
+	if players_left == 0:
+	#Player is winner
+		leaderboard(player.player_id, "Winner", true)
+	else:
+	#Player did not win
+		leaderboard(player.player_id, "Winner", false)
+		
+	#If all players are dead, end the game
+	if players_left == 0:
+		end()
+
 
 #Get value of given player by id
 func get_player(id : int, what : String):
