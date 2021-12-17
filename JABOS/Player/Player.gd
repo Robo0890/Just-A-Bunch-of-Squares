@@ -266,7 +266,8 @@ func process_input():
 					in_wardrode = true
 					$SoundBox.play_sound("Custom/select_001")
 				"Playing":
-					use_powerup()
+					if active:
+						use_powerup()
 	else:
 		velocity.x = 0
 		velocity.y += gravity
