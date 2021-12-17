@@ -32,8 +32,8 @@ func _ready():
 	
 	if splash:
 		$Background/AnimationPlayer.play("EonSplash")
-		yield(get_tree().create_timer(1),"timeout")
-		$GameSound.play()
+		#yield(get_tree().create_timer(1),"timeout")
+		#$GameSound.play()
 	else:
 		_on_AnimationPlayer_animation_finished("EonSplash")
 
@@ -49,7 +49,3 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "FadeOut":
 		Profile.data.version = Profile.CURRENT_VERSION
 		get_tree().change_scene("res://Worlds/Level.tscn")
-
-
-func _on_TouchScreenButton_pressed():
-	get_tree().change_scene("res://Worlds/Level.tscn")

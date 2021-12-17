@@ -111,8 +111,8 @@ __meta__ = {
 }
 
 [node name="Wardrobe" type="ColorRect" parent="Panel/Right"]
-margin_left = 716.0
-margin_right = 816.0
+margin_left = 612.0
+margin_right = 712.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 color = Color( 1, 1, 1, 0 )
@@ -124,7 +124,6 @@ shape = SubResource( 1 )
 shape_visible = false
 
 [node name="Ability" type="ColorRect" parent="Panel/Right"]
-visible = false
 margin_left = 716.0
 margin_right = 816.0
 margin_bottom = 100.0

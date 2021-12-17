@@ -135,6 +135,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("../GameSound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [sub_resource type="Animation" id=14]
 resource_name = "FadeOut"
@@ -188,6 +200,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../GameSound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
 }
 
 [sub_resource type="Gradient" id=15]
@@ -285,7 +309,7 @@ scale_amount = 5.0
 color_ramp = SubResource( 22 )
 
 [node name="SplashLogo" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0.533333 )
+modulate = Color( 1, 1, 1, 0 )
 self_modulate = Color( 0.27451, 0.27451, 0.27451, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -328,16 +352,6 @@ __meta__ = {
 
 [node name="GameSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-
-[node name="TouchScreenButton" type="Button" parent="."]
-visible = false
-modulate = Color( 1, 1, 1, 0 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-disabled = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Update" type="Panel" parent="."]
 visible = false
@@ -500,4 +514,3 @@ expand = true
 stretch_mode = 6
 
 [connection signal="animation_finished" from="Background/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
-[connection signal="pressed" from="TouchScreenButton" to="." method="_on_TouchScreenButton_pressed"]

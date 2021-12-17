@@ -24,20 +24,20 @@ func _process(delta):
 	if visible:
 		match Level.game_state:
 			"Playing":
-				$Panel/Right/Wardrobe/Skin.visible = false
-				$Panel/Right/Ready/Ready.visible = false
-				$Panel/Left/Quit/Quit.visible = false
-				$Panel/Right/Ability/Skin.visible = true
+				$Panel/Right/Wardrobe.visible = false
+				$Panel/Right/Ready.visible = false
+				$Panel/Left/Quit.visible = false
+				$Panel/Right/Ability.visible = true
 			"Lobby":
-				$Panel/Right/Ready/Ready.visible = true
-				$Panel/Left/Quit/Quit.visible = true
-				$Panel/Right/Wardrobe/Skin.visible = true
-				$Panel/Right/Ability/Skin.visible = false
+				$Panel/Right/Ready.visible = true
+				$Panel/Left/Quit.visible = false
+				$Panel/Right/Wardrobe.visible = true
+				$Panel/Right/Ability.visible = false
 				$Panel2.visible = false
 			"End":
 				$Panel/Left/Left.visible = false
 				$Panel/Left/Right/Right.visible = false
-				$Panel/Right/Ability/Skin.visible = false
+				$Panel/Right/Ability.visible = false
 				$Panel.self_modulate = Color(1,1,1,0)
 				$Panel2.visible = true
 				
