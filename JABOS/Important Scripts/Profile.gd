@@ -40,7 +40,7 @@ const DEFAULT_DATA = {
 	"version" : 0.0
 }
 
-const CURRENT_VERSION = 1.6
+const CURRENT_VERSION = 1.5
 
 
 var global_preserve = {}

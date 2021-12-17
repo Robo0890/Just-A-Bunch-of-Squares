@@ -1,6 +1,6 @@
 extends Control
 
-var splash = false
+var splash = true
 
 
 func _notification(what):
@@ -40,7 +40,7 @@ func _ready():
 # warning-ignore:unused_argument
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "EonSplash":
-		if Profile.data.version < Profile.CURRENT_VERSION:
+		if Profile.data.version != Profile.CURRENT_VERSION:
 			$Update.show()
 			yield($Update/MarginContainer/VBoxContainer/HSplitContainer/Notes/Button, "pressed")
 			UIAudio.play_sound("confirmation_001")

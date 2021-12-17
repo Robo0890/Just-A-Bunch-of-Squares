@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Images/Skins/Robot.png" type="Texture" id=2]
@@ -10,7 +10,8 @@
 [ext_resource path="res://Images/Skins/mask.Robot.png" type="Texture" id=8]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/down.png" type="Texture" id=9]
 [ext_resource path="res://GUI/Audio/UI_Audio.gd" type="Script" id=10]
-[ext_resource path="res://GUI/Icons/gameicons-expansion/PNG/White/1x/coin.png" type="Texture" id=11]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/target.png" type="Texture" id=11]
+[ext_resource path="res://GUI/Icons/gameicons/PNG/White/2x/buttonX.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 42, 42 )
@@ -30,10 +31,15 @@ expand_margin_left = 12.0
 expand_margin_right = 12.0
 
 [sub_resource type="Curve" id=6]
+max_value = 2.0
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Gradient" id=5]
-colors = PoolColorArray( 1, 0.0410156, 0, 1, 1, 0.908203, 0, 0 )
+colors = PoolColorArray( 1, 0.0410156, 0, 1, 1, 0.875032, 0, 0.0382513 )
+
+[sub_resource type="Gradient" id=12]
+offsets = PoolRealArray( 0, 0.0710383, 1 )
+colors = PoolColorArray( 0.907227, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0 )
 
 [sub_resource type="Curve" id=8]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.456818 ), 0.0, 0.0, 0, 0 ]
@@ -48,6 +54,9 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.752273 ), 0.0, 0.0, 0, 
 [sub_resource type="Gradient" id=10]
 offsets = PoolRealArray( 0, 0.289617, 1 )
 colors = PoolColorArray( 0, 0.71875, 1, 1, 0, 1, 0.976563, 0.808743, 0, 1, 0.8125, 0 )
+
+[sub_resource type="Gradient" id=11]
+colors = PoolColorArray( 1, 0, 0, 1, 1, 0.886275, 0, 0 )
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.442623, 1 )
@@ -175,14 +184,38 @@ lifetime = 2.0
 lifetime_randomness = 0.2
 local_coords = false
 draw_order = 1
+texture = ExtResource( 3 )
 emission_shape = 1
 emission_sphere_radius = 40.0
 gravity = Vector2( 0, -50 )
 radial_accel = 100.0
-scale_amount = 40.0
+scale_amount = 0.1
 scale_amount_random = 0.5
 scale_amount_curve = SubResource( 6 )
 color_ramp = SubResource( 5 )
+
+[node name="Explode" type="CPUParticles2D" parent="Effects" groups=["explode", "powerup_effect"]]
+visible = false
+z_index = -1
+amount = 100
+lifetime = 3.0
+preprocess = 1.0
+speed_scale = 3.0
+explosiveness = 0.8
+lifetime_randomness = 0.2
+local_coords = false
+draw_order = 1
+texture = ExtResource( 3 )
+emission_shape = 1
+emission_sphere_radius = 70.0
+direction = Vector2( 0, 0 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 0.2
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 6 )
+color_ramp = SubResource( 12 )
 
 [node name="Magic" type="CPUParticles2D" parent="Effects" groups=["magic", "powerup_effect"]]
 visible = false
@@ -202,6 +235,7 @@ scale_amount_curve = SubResource( 8 )
 color_ramp = SubResource( 7 )
 
 [node name="BlueParticles" type="CPUParticles2D" parent="Effects" groups=["blue_particles", "powerup_effect"]]
+visible = false
 amount = 20
 local_coords = false
 emission_shape = 2
@@ -211,6 +245,21 @@ scale_amount = 10.0
 scale_amount_random = 0.1
 scale_amount_curve = SubResource( 9 )
 color_ramp = SubResource( 10 )
+
+[node name="Fuse" type="CPUParticles2D" parent="Effects" groups=["fuse", "powerup_effect"]]
+visible = false
+position = Vector2( 0, -39.5 )
+amount = 20
+local_coords = false
+direction = Vector2( 0, -1 )
+spread = 5.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+angular_velocity = 15.0
+angular_velocity_random = 1.0
+scale_amount = 20.0
+scale_amount_random = 0.5
+color_ramp = SubResource( 11 )
 
 [node name="Effects_Modulate" type="Node2D" parent="."]
 
@@ -224,16 +273,33 @@ scale_amount = 10.0
 scale_amount_random = 0.1
 color_ramp = SubResource( 4 )
 
-[node name="PowerUpTime" type="TextureProgress" parent="."]
+[node name="PowerUpUse" type="TextureRect" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -25.2806
-margin_top = -92.0671
-margin_right = 24.7194
-margin_bottom = -42.0671
-rect_pivot_offset = Vector2( 25, 25 )
+margin_left = -52.5
+margin_top = -140.0
+margin_right = 47.5
+margin_bottom = -40.0
+rect_pivot_offset = Vector2( 50, 50 )
+texture = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PowerUpTime" type="TextureProgress" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -51.5
+margin_top = -140.0
+margin_right = 48.5
+margin_bottom = -40.0
+rect_pivot_offset = Vector2( 50, 50 )
 texture_under = ExtResource( 11 )
 texture_progress = ExtResource( 11 )
 fill_mode = 4

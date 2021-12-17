@@ -17,7 +17,7 @@ extents = Vector2( 50, 50 )
 script = ExtResource( 3 )
 powerup_name = "Double Jump"
 effect = "blue_particles"
-time = 10
+time = -1
 
 [node name="Icon" type="Sprite" parent="."]
 texture = ExtResource( 1 )

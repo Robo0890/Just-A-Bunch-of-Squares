@@ -58,6 +58,9 @@ shape = SubResource( 1 )
 [node name="End" parent="Part1" instance=ExtResource( 1 )]
 position = Vector2( 2184.28, -146.228 )
 
+[node name="Powerup Spawn" parent="Part1" instance=ExtResource( 3 )]
+position = Vector2( 746.715, -110.998 )
+
 [node name="Part2" type="Node2D" parent="."]
 visible = false
 
@@ -100,6 +103,9 @@ position = Vector2( 2743.72, -141.889 )
 [node name="Powerup Spawn" parent="Part3" instance=ExtResource( 3 )]
 position = Vector2( 2633.69, 23.5452 )
 
+[node name="Powerup Spawn2" parent="Part3" instance=ExtResource( 3 )]
+position = Vector2( 1022.53, 410.357 )
+
 [node name="Part4" type="Node2D" parent="."]
 visible = false
 
@@ -118,8 +124,10 @@ shape = SubResource( 4 )
 [node name="End" parent="Part4" instance=ExtResource( 1 )]
 position = Vector2( 1145.23, 28.5732 )
 
+[node name="Powerup Spawn" parent="Part4" instance=ExtResource( 3 )]
+position = Vector2( 561.94, 23.5452 )
+
 [node name="Part5" type="Node2D" parent="."]
-visible = false
 
 [node name="Box1" type="CollisionShape2D" parent="Part5"]
 position = Vector2( 574.639, 488.919 )
@@ -154,3 +162,9 @@ position = Vector2( 2574.76, 132.844 )
 
 [node name="Powerup Spawn" parent="Part5" instance=ExtResource( 3 )]
 position = Vector2( 1096.53, 369.994 )
+
+[node name="Powerup Spawn2" parent="Part5" instance=ExtResource( 3 )]
+position = Vector2( 1516.98, -70.6353 )
+
+[node name="Powerup Spawn3" parent="Part5" instance=ExtResource( 3 )]
+position = Vector2( 591.993, -73.9989 )

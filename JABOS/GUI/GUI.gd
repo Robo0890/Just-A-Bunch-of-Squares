@@ -76,7 +76,7 @@ func _ready():
 			
 	
 	
-	for item in $PowerupManager/MarginContainer/VBoxContainer/Powerups.get_children():
+	for item in $PowerupManager/MarginContainer/VBoxContainer/ScrollContainer/Powerups.get_children():
 		if Profile.enabled_powerups.has(item.name):
 			item.call_deferred("set", "pressed", true)
 		
@@ -276,7 +276,7 @@ func _on_Powerups_pressed():
 
 func _on_powerup_toggled(button_pressed):
 	Profile.enabled_powerups.clear()
-	for item in $PowerupManager/MarginContainer/VBoxContainer/Powerups.get_children():
+	for item in $PowerupManager/MarginContainer/VBoxContainer/ScrollContainer/Powerups.get_children():
 		if item.pressed:
 			Profile.enabled_powerups.append(item.name)
 			

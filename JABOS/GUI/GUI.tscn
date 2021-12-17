@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://GUI/Themes/JABOS.theme" type="Theme" id=1]
 [ext_resource path="res://GUI/Icons/gameicons/PNG/White/1x/signal3.png" type="Texture" id=2]
@@ -23,6 +23,8 @@
 [ext_resource path="res://GUI/Icons/customicons/x2/Flamethrower.png" type="Texture" id=21]
 [ext_resource path="res://GUI/Icons/customicons/x2/Double Jump.png" type="Texture" id=22]
 [ext_resource path="res://GUI/Themes/panel.Default_Stylebox.stylebox" type="StyleBox" id=23]
+[ext_resource path="res://GUI/Icons/customicons/x2/Player.png" type="Texture" id=24]
+[ext_resource path="res://GUI/Icons/customicons/x2/Slam.png" type="Texture" id=25]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.319318 ), -1.83695, 0.0, 0, 0 ]
@@ -680,6 +682,7 @@ __meta__ = {
 [node name="Close" type="Button" parent="PlayerManager/MarginContainer/VBoxContainer"]
 margin_right = 976.0
 margin_bottom = 50.0
+focus_neighbour_top = NodePath(".")
 text = "Done"
 icon = ExtResource( 19 )
 
@@ -693,7 +696,7 @@ visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -425.0
+margin_top = -438.0
 custom_styles/panel = SubResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -714,7 +717,7 @@ __meta__ = {
 margin_left = 24.0
 margin_top = 24.0
 margin_right = 1000.0
-margin_bottom = 409.0
+margin_bottom = 414.0
 size_flags_horizontal = 3
 custom_constants/separation = 5
 __meta__ = {
@@ -724,34 +727,62 @@ __meta__ = {
 [node name="Close" type="Button" parent="PowerupManager/MarginContainer/VBoxContainer"]
 margin_right = 976.0
 margin_bottom = 50.0
+focus_neighbour_top = NodePath(".")
 text = "Done"
 icon = ExtResource( 19 )
 
-[node name="Powerups" type="VBoxContainer" parent="PowerupManager/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="PowerupManager/MarginContainer/VBoxContainer"]
 margin_top = 55.0
 margin_right = 976.0
-margin_bottom = 355.0
-rect_min_size = Vector2( 0, 300 )
+margin_bottom = 80.0
+text = "Click on a power up to enable it"
+align = 1
 
-[node name="Flamethrower" type="CheckButton" parent="PowerupManager/MarginContainer/VBoxContainer/Powerups"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PowerupManager/MarginContainer/VBoxContainer"]
+margin_top = 85.0
 margin_right = 976.0
+margin_bottom = 385.0
+rect_min_size = Vector2( 0, 300 )
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="Powerups" type="VBoxContainer" parent="PowerupManager/MarginContainer/VBoxContainer/ScrollContainer"]
+margin_left = 26.0
+margin_right = 950.0
+margin_bottom = 328.0
+rect_min_size = Vector2( 924, 0 )
+size_flags_horizontal = 6
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Flamethrower" type="CheckButton" parent="PowerupManager/MarginContainer/VBoxContainer/ScrollContainer/Powerups"]
+margin_right = 924.0
 margin_bottom = 104.0
 text = "Flamethrower"
 icon = ExtResource( 21 )
 
-[node name="Double Jump" type="CheckButton" parent="PowerupManager/MarginContainer/VBoxContainer/Powerups"]
-margin_top = 108.0
-margin_right = 976.0
-margin_bottom = 212.0
+[node name="Double Jump" type="CheckButton" parent="PowerupManager/MarginContainer/VBoxContainer/ScrollContainer/Powerups"]
+margin_top = 112.0
+margin_right = 924.0
+margin_bottom = 216.0
 text = "Double Jump"
 icon = ExtResource( 22 )
 
-[node name="Label" type="Label" parent="PowerupManager/MarginContainer/VBoxContainer"]
-margin_top = 360.0
-margin_right = 976.0
-margin_bottom = 385.0
-text = "Click on a power up to enable it"
-align = 1
+[node name="Swap" type="CheckButton" parent="PowerupManager/MarginContainer/VBoxContainer/ScrollContainer/Powerups"]
+margin_top = 224.0
+margin_right = 924.0
+margin_bottom = 328.0
+text = "Swap"
+icon = ExtResource( 24 )
+
+[node name="Bomb" type="CheckButton" parent="PowerupManager/MarginContainer/VBoxContainer/ScrollContainer/Powerups"]
+margin_top = 336.0
+margin_right = 924.0
+margin_bottom = 440.0
+text = "Bomb"
+icon = ExtResource( 25 )
 
 [connection signal="pressed" from="Top_UI/Option_Button" to="." method="_on_Button_pressed"]
 [connection signal="item_selected" from="Options/VBoxContainer/MarginContainer/GridContainer/GameMode" to="." method="_on_gamemode_selected"]
@@ -768,5 +799,7 @@ align = 1
 [connection signal="pressed" from="Options/CenterContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="PlayerManager/MarginContainer/VBoxContainer/Close" to="." method="_on_Close_pressed"]
 [connection signal="pressed" from="PowerupManager/MarginContainer/VBoxContainer/Close" to="." method="_on_Close_pressed"]
-[connection signal="toggled" from="PowerupManager/MarginContainer/VBoxContainer/Powerups/Flamethrower" to="." method="_on_powerup_toggled"]
-[connection signal="toggled" from="PowerupManager/MarginContainer/VBoxContainer/Powerups/Double Jump" to="." method="_on_powerup_toggled"]
+[connection signal="toggled" from="PowerupManager/MarginContainer/VBoxContainer/ScrollContainer/Powerups/Flamethrower" to="." method="_on_powerup_toggled"]
+[connection signal="toggled" from="PowerupManager/MarginContainer/VBoxContainer/ScrollContainer/Powerups/Double Jump" to="." method="_on_powerup_toggled"]
+[connection signal="toggled" from="PowerupManager/MarginContainer/VBoxContainer/ScrollContainer/Powerups/Swap" to="." method="_on_powerup_toggled"]
+[connection signal="toggled" from="PowerupManager/MarginContainer/VBoxContainer/ScrollContainer/Powerups/Bomb" to="." method="_on_powerup_toggled"]

@@ -114,15 +114,26 @@ func _physics_process(delta):
 	
 	#*****POWER UPS*****
 	
-	if powerup.timeout != -1:
-		powerup.timeout -= .016
-		if powerup.timeout <= 0:
-			powerup = CLEAR_POWERUP
+	if powerup.name != "none":
 	
-	$PowerUpTime.visible = !powerup.name == "none"
-	$PowerUpTime.max_value = powerup.time
-	$PowerUpTime.value = powerup.timeout
-	$PowerUpTime.step = powerup.time / 100
+		if powerup.timeout != -1:
+			powerup.timeout -= 1.0 * delta
+			if powerup.timeout <= 0:
+				powerup = CLEAR_POWERUP
+		
+		if powerup.time == -1:
+			$PowerUpTime.hide()
+			$PowerUpUse.show()
+		else:
+			$PowerUpTime.show()
+			$PowerUpUse.hide()
+			$PowerUpTime.visible = !powerup.name == "none"
+			$PowerUpTime.max_value = powerup.time
+			$PowerUpTime.value = powerup.timeout
+			$PowerUpTime.step = powerup.time / 100
+	else:
+		$PowerUpTime.hide()
+		$PowerUpUse.hide()
 	
 	
 	$Effects_Modulate.modulate = color
@@ -135,11 +146,8 @@ func _physics_process(delta):
 		if effect.get_parent().get_parent() == self:
 			effect.emitting = true
 			
-			
-	match powerup.name:
-		"Double Jump":
-			jumps = 1
 	
+
 	
 	#*****POWER UPS*****
 	
@@ -168,7 +176,7 @@ func _physics_process(delta):
 					$CollisionShape.disabled = false
 			
 			if active:
-				player_data.time += .016
+				player_data.time += 1.0 * delta
 			
 			
 			
@@ -231,7 +239,10 @@ func process_input():
 			jump()
 			jumps = max_jumps
 			
-		velocity.x = (speed * 500) * (Input.get_action_strength("p" + str(player_id) + "movement_right") - Input.get_action_strength("p" + str(player_id) + "movement_left"))
+			
+		#****X VELOCITY*****
+		velocity.x = ((speed * 500) * (Input.get_action_strength("p" + str(player_id) + "movement_right") - Input.get_action_strength("p" + str(player_id) + "movement_left")))
+		#*******************
 		
 		if Input.is_action_just_pressed("p" + str(player_id) + "ready") and get_parent().get_parent().game_state == "Lobby":
 			ready = !ready
@@ -292,9 +303,11 @@ func kill(is_respwan, add_fall = false):
 	if is_respwan:
 		respawn()
 	else:
+		$CollisionShape.disabled = true
 		active = false
 		visible = false
-		position.y += 1000
+		position.x = -2048
+		frozen = true
 		emit_signal("killed", self)
 	
 		
@@ -370,10 +383,52 @@ func _on_TouchArea_area_entered(area):
 
 
 func use_powerup():
+	print("used " + powerup.name)
 	match powerup.name:
 		"none":
 			pass
-	
-	powerup = CLEAR_POWERUP
-	
-	
+		
+		"Double Jump":
+			jump()
+			powerup = CLEAR_POWERUP
+		
+		"Swap":
+			#SWAP
+			var Swap_Player = null
+			var most_x_val = -1024
+			var victums = get_tree().get_nodes_in_group("Player")
+			for player in victums:
+				if player != self and player.active and !player.is_respawning:
+					if player.position.x >= most_x_val:
+						Swap_Player = player
+						most_x_val = player.position.x
+			
+			if Swap_Player == null:
+				return
+			
+			var player1_pos = position
+			var player2_pos = Swap_Player.position
+			
+			
+			Swap_Player.position = player1_pos + Vector2(0, 50)
+			position = player2_pos + Vector2(0, 50)
+			
+			
+			powerup = CLEAR_POWERUP
+			#END SWAP
+		
+		"Bomb":
+			var get_players = get_tree().get_nodes_in_group("Player")
+			for player in get_players:
+				if position.distance_to(player.position) <= 250 and player != self:
+					player.kill(false)
+				
+			powerup = {
+				"name" : "Explode",
+				"effect" : "explode",
+				"time" : 1,
+				"timeout" : 1
+			}
+
+
+
