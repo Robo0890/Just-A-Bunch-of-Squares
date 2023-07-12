@@ -3,18 +3,6 @@
 [ext_resource type="Script" path="res://Classes/Square.gd" id="1_qkb72"]
 [ext_resource type="Texture2D" uid="uid://dqtwq4wmqdykc" path="res://Skins/Default/Default.png" id="2_3f740"]
 
-[node name="Square" type="Node"]
+[node name="Square" type="Node2D"]
 script = ExtResource("1_qkb72")
 skin = ExtResource("2_3f740")
-
-[node name="Sprite" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("2_3f740")
-region_enabled = true
-region_rect = Rect2(0, 0, 32, 32)
-
-[node name="Color" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("2_3f740")
-region_enabled = true
-region_rect = Rect2(0, 32, 32, 32)

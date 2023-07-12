@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://co2jc4q21u8qr"]
+[gd_scene load_steps=4 format=3 uid="uid://bhyruaykt0a4l"]
 
+[ext_resource type="PackedScene" uid="uid://b2iv42sl8e25a" path="res://Classes/Player.tscn" id="1_8jis8"]
 [ext_resource type="Texture2D" uid="uid://dan0lwgtfk2xs" path="res://Images/cloud.png" id="1_ojkfn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_41hqa"]
@@ -7,9 +8,13 @@ size = Vector2(500, 50)
 
 [node name="Level" type="Node2D"]
 
+[node name="Player" parent="." instance=ExtResource("1_8jis8")]
+position = Vector2(531, 309)
+
 [node name="Course" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Course"]
+position = Vector2(555, 436)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Course/StaticBody2D"]
 shape = SubResource("RectangleShape2D_41hqa")
@@ -20,12 +25,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_right = 500.0
-offset_bottom = 50.0
+offset_left = -250.0
+offset_top = -25.0
+offset_right = 250.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Background" type="CanvasLayer" parent="."]
+layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
 anchors_preset = 15
