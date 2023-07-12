@@ -1,8 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://co2jc4q21u8qr"]
+[gd_scene load_steps=3 format=3 uid="uid://co2jc4q21u8qr"]
 
 [ext_resource type="Texture2D" uid="uid://dan0lwgtfk2xs" path="res://Images/cloud.png" id="1_ojkfn"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_41hqa"]
+size = Vector2(500, 50)
+
 [node name="Level" type="Node2D"]
+
+[node name="Course" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Course"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Course/StaticBody2D"]
+shape = SubResource("RectangleShape2D_41hqa")
+
+[node name="ColorRect" type="ColorRect" parent="Course/StaticBody2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 500.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Background" type="CanvasLayer" parent="."]
 
