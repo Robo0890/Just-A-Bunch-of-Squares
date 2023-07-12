@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmif6qtqll36u"]
+
+[ext_resource type="Script" path="res://Classes/Square.gd" id="1_qkb72"]
+[ext_resource type="Texture2D" uid="uid://bkwh4l5eklkc5" path="res://Skins/Ninja/Ninja.png" id="2_aswum"]
+
+[node name="Skin" type="Node"]
+script = ExtResource("1_qkb72")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_aswum")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="Color" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_aswum")
+region_enabled = true
+region_rect = Rect2(0, 32, 32, 32)

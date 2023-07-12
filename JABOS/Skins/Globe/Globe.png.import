@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkwh4l5eklkc5"
-path="res://.godot/imported/Ninja.png-2aa087c8b162a5db467fe858a3090f66.ctex"
+uid="uid://0evcs0b8o88a"
+path="res://.godot/imported/Globe.png-22af54209d545c98d01cf0cb13d0ed8b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Skins/Ninja/Ninja.png"
-dest_files=["res://.godot/imported/Ninja.png-2aa087c8b162a5db467fe858a3090f66.ctex"]
+source_file="res://Skins/Globe/Globe.png"
+dest_files=["res://.godot/imported/Globe.png-22af54209d545c98d01cf0cb13d0ed8b.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

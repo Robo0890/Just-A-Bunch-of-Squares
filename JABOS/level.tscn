@@ -1,3 +1,31 @@
-[gd_scene format=3 uid="uid://co2jc4q21u8qr"]
+[gd_scene load_steps=2 format=3 uid="uid://co2jc4q21u8qr"]
+
+[ext_resource type="Texture2D" uid="uid://dan0lwgtfk2xs" path="res://Images/cloud.png" id="1_ojkfn"]
 
 [node name="Level" type="Node2D"]
+
+[node name="Background" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25098, 0.74902, 1, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Background"]
+texture_filter = 1
+position = Vector2(-85, 207)
+amount = 3
+lifetime = 7.0
+texture = ExtResource("1_ojkfn")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 250)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 250.0
+initial_velocity_max = 250.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+color = Color(1, 1, 1, 0.619608)
